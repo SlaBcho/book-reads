@@ -1,0 +1,85 @@
+header {
+    display: block;
+
+}
+
+.header {
+    width: 100%;
+    margin: auto;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 56px;
+    padding-right: 56px;
+    background-color: white;
+}
+
+.logo a img{
+    padding-right: 15px;
+    height: 40px;
+    background-color: white;
+    background-blend-mode: multiply;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.logo span {
+    font-weight: 900;
+    font-size: 36px;
+    vertical-align:super;
+    color: #7040A4
+}
+
+.searcher {
+    width: 40%;
+}
+
+.search {
+    width: 500px;
+    height: 35px;
+    border: 1px solid #0082E6;
+    font-family: inherit;
+    font-size: inherit;
+    font: inherit;
+    line-height: 20px;
+    border-right-width: 0;
+    border-radius: 16px;
+    outline: 0;
+    box-shadow: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: 0 10px
+}
+
+.tools {
+    justify-content: center;
+    align-items:center;
+    display: flex;
+    width: 30%;
+    margin: auto;
+    margin-left: 40px;
+}
+
+.tool {
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-size: 14px;
+}
+
+.links {
+    justify-content: space-between;
+    display: flex;
+    box-sizing: border-box;
+    padding: 5px 0px;
+    height: 45px;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+
+}
