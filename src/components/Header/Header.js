@@ -20,13 +20,19 @@ const Header = () => {
                 <div className={styles['tools']}>
                     <ul className={styles['links']}>
                         <li>
-                            <Link className={styles['tool']} to="/login">&#160; Вход</Link>
+                            <Link className={styles['tool']} to="/login">
+                                <i class="fas fa-user-circle"></i>
+                                &#160; Моят акаунт</Link>
                         </li>
                         <li>
-                            <Link className={styles['tool']} to="/favourites">&#160; Любими</Link>
+                            <Link className={styles['tool']} to="/favourites">
+                                <i class="far fa-heart"></i>
+                                &#160; Любими</Link>
                         </li>
                         <li>
-                            <Link className={styles['tool']} to="/myBooks">&#160; Моите книги</Link>
+                            <Link className={styles['tool']} to="/myBooks">
+                                <i class="fas fa-book"></i>
+                                &#160; Моите книги</Link>
                         </li>
                     </ul>
                 </div>
