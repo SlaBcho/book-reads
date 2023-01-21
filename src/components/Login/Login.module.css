@@ -17,10 +17,9 @@
     height: 100%;
 }
 
-.logo {
-    box-sizing: border-box;
-    display: block;
-    text-align: center;
+.log img {
+    width: 25px;
+    height: 25px;
 }
 
 .form-box {

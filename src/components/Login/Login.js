@@ -1,14 +1,9 @@
 import styles from './Login.module.css';
 
-
 export const Login = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.logo}>
-                <a href="/">
-                    <img id="logo" src="/img/book-reads-logo.png" alt="emagLogo" />
-                </a>
-            </div>
+            
             <div className={styles['form-box']}>
                 <div className={styles.heading}>
                     <h1>Здравей!</h1>

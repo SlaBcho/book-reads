@@ -1,15 +1,18 @@
-import Navigation from './Navigation/Navigation';
+import { Link } from 'react-router-dom';
 
 import styles from './Header.module.css';
+
+import Navigation from './Navigation/Navigation';
+
 
 const Header = () => {
     return (
         <header>
             <section className={styles['header']}>
                 <div className={styles['logo']}>
-                    <a href="/">
+                    <Link to="/">
                         <img src="/img/book-reads-logo.png" alt="logo" />
-                    </a>
+                    </Link>
                 </div>
                 <div className={styles['searher']}>
                     <input className={styles['search']} type="Какво търсиш днес?" placeholder="Какво търсиш днес?" />
@@ -17,13 +20,13 @@ const Header = () => {
                 <div className={styles['tools']}>
                     <ul className={styles['links']}>
                         <li>
-                            <a className={styles['tool']} href="/login">&#160; Вход</a>
+                            <Link className={styles['tool']} to="/login">&#160; Вход</Link>
                         </li>
                         <li>
-                            <a className={styles['tool']} href="/favourites">&#160; Любими</a>
+                            <Link className={styles['tool']} to="/favourites">&#160; Любими</Link>
                         </li>
                         <li>
-                            <a className={styles['tool']} href="/cart">&#160; Моите книги</a>
+                            <Link className={styles['tool']} to="/myBooks">&#160; Моите книги</Link>
                         </li>
                     </ul>
                 </div>

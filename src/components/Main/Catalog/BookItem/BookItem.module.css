@@ -1,0 +1,45 @@
+.img-card {
+    margin:auto;
+    width: 202px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    padding-left: 10px;
+}
+
+.book-list {
+    background-color: white;
+    display: block;
+    align-items: center;
+    width: 220px;
+}
+
+.book-list div a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    padding: 5px;
+}
+
+.book-list:hover {
+    box-shadow: 0 2px 10px -2px rgb(0 0 0 / 15%);
+    cursor: pointer;
+}
+
+.rating {
+    padding-top: 5px;
+    padding-bottom: 16px;
+    unicode-bidi: bidi-override;
+    text-align: left;
+    direction: rtl;
+}
+
+.rating span {
+    font-size: 20px;
+    padding: 4px;
+}
+
+.rating span:before {
+    content: "\2605";
+    position: absolute;
+    color: gold;
+}
