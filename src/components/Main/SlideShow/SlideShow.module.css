@@ -1,0 +1,10 @@
+.slide-container {
+    display: block;
+    height: 500px;
+    width: 100%;
+    box-shadow: 0 2px 10px -2px rgb(0 0 0 / 15%);
+}
+
+.slide-container div {
+    height: 500px;
+}

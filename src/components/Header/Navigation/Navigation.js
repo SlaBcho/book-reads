@@ -6,8 +6,8 @@ const Navigation = () => {
             <div className={styles['nav']}>
                 <ul>
                     <li><a className={styles['nav-button']} href="/#">Всички книги</a></li>
-                    <li><a className={styles['nav-button']} href="/#">Бест селъри</a></li>
                     <li><a className={styles['nav-button']} href="/#">Топ Заглавия</a></li>
+                    <li><a className={styles['nav-button']} href="/#">Фентъзи</a></li>
                     <li><a className={styles['nav-button']} href="/#">Художествена литература</a></li>
                     <li><a className={styles['nav-button']} href="/#">Икономика и бизнес</a></li>
                     <li><a className={styles['nav-button']} href="/#">Психология и философия</a></li>

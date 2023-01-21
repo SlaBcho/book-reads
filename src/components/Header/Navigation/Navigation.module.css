@@ -7,14 +7,14 @@ nav {
 }
 
 .nav {
-        width: 92%;
-        margin: auto;
-        height: 36px;
-        display: flex;
-        padding-left: 10px;
-        padding-right: 10px;
-        align-items: center;
-        
+    width: 92%;
+    margin: auto;
+    height: 36px;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+
 }
 
 nav ul {
@@ -27,27 +27,34 @@ nav ul {
 
 nav ul li {
     padding: 6px;
+    
 }
 
 ul li a {
+    text-align: center;
     text-decoration: none;
     padding: 5px 3px;
-    margin: 5px 0 5px 4px;
+    margin: 5px 0 4px 0px;
     color: #fff;
     border-radius: 16px;
     border: transparent 1px solid;
-    text-align: -webkit-match-parent;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-family: "Open Sans,Helvetica,Arial,sans-serif";
+    font-size: 14px;
     justify-content: center;
 }
 
 .nav-button {
-    padding-left: 30px;
+    margin-left: 28px;
+    padding-left: 3px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .nav-button:hover {
     border: 1px solid white;
     border-radius: 35px;
     cursor: pointer;
+    outline: 0;
 }
