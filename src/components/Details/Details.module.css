@@ -1,0 +1,159 @@
+.details-section {
+    margin-left: 40px;
+    display: flex;
+    box-sizing: border-box;
+    font-family: Open Sans;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.66;
+}
+
+.left-sidebar {
+    display: block;
+    box-sizing: border-box;
+    width: 75%;
+    margin-top: 40px;
+}
+
+.right-sidebar {
+    margin-top: 40px;
+    margin-right: 90px;
+    display: block;
+    box-sizing: border-box;
+    width: 25%;
+    align-items: center;
+}
+
+.image {
+    align-items: center;
+    width:40%;
+    display: block;
+    float:left;
+    margin: 0px 56px 30px;
+    box-sizing: border-box;
+    border: 1px solid #666;
+}
+
+.image img {
+    margin-left: 45px;
+    box-sizing: border-box;
+    width:285px;
+    height: 420px;
+    vertical-align: middle;
+}
+
+.details {
+    align-items: center;
+    width: 90%;
+}
+
+.details h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.details span {
+    margin: 5px 20px;
+}
+
+.details p {
+    margin-top: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align:justify;
+    line-height: 1.66;
+    box-sizing: border-box;
+}
+
+.favourites {
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    background: #2B7A78;
+    margin-top: 55px;
+    margin-bottom: 15px;
+    margin-left: 36px;
+    padding: 11px;
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
+
+tbody {
+    box-sizing: border-box;
+    display:block;
+    border-collapse: separate;
+    border-spacing: 1px; 
+}
+
+tbody tr {
+    background: #f6f6f6;
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+tbody tr th {
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    color: #666;
+    text-align: left;
+    vertical-align: top;
+}
+tbody tr td {
+    width:70%;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+    color: #666;
+    text-align: left;
+    vertical-align: top;
+}
+
+
+tbody:nth-child(odd) tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.bottom-bar {
+    display: flex;
+    margin-left: 90px;
+    width: 90%;
+}
+
+.buttons {
+    display: block;
+    box-sizing: border-box;
+}
+
+.buttons button {
+    box-sizing: border-box;
+
+    display: block;
+    cursor: pointer;
+    color: #444;
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 240px;
+    height: 60px;
+}
+
+.description {
+    background-color: white;
+    box-sizing: border-box;
+    display: block;
+    width:50%;
+    border: 1px solid #ddd;
+}
+
+.description p {
+    text-align:left;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+}
