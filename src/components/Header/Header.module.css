@@ -9,7 +9,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
     background-color: white;
 }
 
@@ -18,7 +18,7 @@ header {
     margin-right: 40px;
 }
 
-.logo a img{
+.logo a img {
     padding-right: 15px;
     height: 40px;
 }
@@ -43,11 +43,24 @@ header {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 40px;
+    background-image: url(https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-bleue.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    outline: 0;
+    background-position: 465px;
+    background-size: 32px;
+}
+
+.searcher i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
 }
 
 .tools {
     justify-content: center;
-    align-items:center;
+    align-items: center;
     display: flex;
     width: 30%;
     margin: auto;

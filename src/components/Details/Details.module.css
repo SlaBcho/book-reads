@@ -1,5 +1,7 @@
 .details-section {
-    margin-left: 40px;
+    background-color: white;
+    width: 1180px;
+    margin-left: 90px;
     display: flex;
     box-sizing: border-box;
     font-family: Open Sans;
@@ -35,7 +37,7 @@
 }
 
 .image img {
-    margin-left: 45px;
+    margin-left: 20px;
     box-sizing: border-box;
     width:285px;
     height: 420px;
@@ -121,9 +123,11 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 }
 
 .bottom-bar {
+    width: 1180px;
+    background-color: white;
     display: flex;
     margin-left: 90px;
-    width: 90%;
+    margin-top: 60px;
 }
 
 .buttons {
@@ -147,7 +151,7 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     background-color: white;
     box-sizing: border-box;
     display: block;
-    width:50%;
+    width:600px;
     border: 1px solid #ddd;
 }
 

@@ -1,0 +1,121 @@
+.container {
+    /* width:1220px; */
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.user-container {
+    margin-left: 90px;
+    margin-right: 20px;
+    width: 240px;
+    height: 450px;
+    padding-right: 15px;
+    display: block;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 15px 15px 15px #ccc;
+}
+
+h3 {
+    padding-left: 10px;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.428571429;
+}
+
+h2 {
+    padding-left: 10px;
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.428571429;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.user-container p {
+    display: block;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.favourite-container {
+    width: 920px;
+    height: 513px;
+    display: block;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 15px 15px 15px #ccc;
+}
+
+.img i{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+.login{
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    background: #0082e6;
+    width: 180px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    display: block;
+    padding: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
+
+.register {
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    background: #42b72a;
+    width: 180px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    display: block;
+    padding: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
+
+p{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.image {
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 40px;
+    display: block;
+    align-items: center;
+}
+
+.favourite-container button{
+    margin: auto;
+    margin-top: 25px;
+}

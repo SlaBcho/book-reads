@@ -1,3 +1,11 @@
 body {
     background-color: #f7f7f7;
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #222222;
+}
+
+.fa-user-circle {
+    color: #0a4e4c;
 }

@@ -15,6 +15,7 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className={styles['searher']}>
+                    {/* <i className="fas fa-search "></i> */}
                     <input className={styles['search']} type="Какво търсиш днес?" placeholder="Какво търсиш днес?" />
                 </div>
                 <div className={styles['tools']}>

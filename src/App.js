@@ -6,6 +6,7 @@ import { Register } from './components/Register/Register';
 
 import Main from './components/Main/Main';
 import Details from './components/Details/Details';
+import Favourites from './components/Favourites/Favourites';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path={'/login'} element={<Login />} />
         <Route path={'/register'} element={<Register />} />
         <Route path={'/details'} element={<Details />} />
+        <Route path={'/favourites'} element={<Favourites />} />
       </Routes>
     </div>
   );
