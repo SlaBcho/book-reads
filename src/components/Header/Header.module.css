@@ -31,15 +31,11 @@ header {
 .search {
     width: 500px;
     height: 35px;
-    border: 1px solid #0082E6;
+    border: 1px solid #2B7A78;
     font-family: inherit;
     font-size: inherit;
     font: inherit;
-    line-height: 20px;
-    border-right-width: 0;
     border-radius: 16px;
-    outline: 0;
-    box-shadow: none;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 40px;
@@ -49,14 +45,9 @@ header {
     outline: 0;
     background-position: 465px;
     background-size: 32px;
+    
 }
 
-.searcher i {
-    position: absolute;
-    right: 0px;
-    padding: 10px 12px;
-    pointer-events: none;
-}
 
 .tools {
     justify-content: center;
@@ -65,6 +56,11 @@ header {
     width: 30%;
     margin: auto;
     margin-left: 40px;
+    margin-bottom: 15px;
+}
+
+.tools i {
+    color: #2B7A78;
 }
 
 .tool {

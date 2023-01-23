@@ -15,24 +15,23 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className={styles['searher']}>
-                    {/* <i className="fas fa-search "></i> */}
-                    <input className={styles['search']} type="Какво търсиш днес?" placeholder="Какво търсиш днес?" />
+                    <input className={styles['search']} type="text" placeholder="Какво търсиш днес?" />
                 </div>
                 <div className={styles['tools']}>
                     <ul className={styles['links']}>
                         <li>
                             <Link className={styles['tool']} to="/login">
-                                <i className="fas fa-user-circle"></i>
+                                <i className="fas fa-user-circle fa-2x"></i>
                                 &#160; Моят акаунт</Link>
                         </li>
                         <li>
                             <Link className={styles['tool']} to="/favourites">
-                                <i className="far fa-heart"></i>
+                                <i className="far fa-heart fa-2x"></i>
                                 &#160; Любими</Link>
                         </li>
                         <li>
                             <Link className={styles['tool']} to="/myBooks">
-                                <i className="fas fa-book"></i>
+                                <i className="fas fa-book fa-2x"></i>
                                 &#160; Моите книги</Link>
                         </li>
                     </ul>

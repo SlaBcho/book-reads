@@ -7,6 +7,7 @@ import { Register } from './components/Register/Register';
 import Main from './components/Main/Main';
 import Details from './components/Details/Details';
 import Favourites from './components/Favourites/Favourites';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path={'/details'} element={<Details />} />
         <Route path={'/favourites'} element={<Favourites />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
