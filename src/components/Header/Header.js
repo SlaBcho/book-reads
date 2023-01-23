@@ -22,17 +22,17 @@ const Header = () => {
                     <ul className={styles['links']}>
                         <li>
                             <Link className={styles['tool']} to="/login">
-                                <i class="fas fa-user-circle"></i>
+                                <i className="fas fa-user-circle"></i>
                                 &#160; Моят акаунт</Link>
                         </li>
                         <li>
                             <Link className={styles['tool']} to="/favourites">
-                                <i class="far fa-heart"></i>
+                                <i className="far fa-heart"></i>
                                 &#160; Любими</Link>
                         </li>
                         <li>
                             <Link className={styles['tool']} to="/myBooks">
-                                <i class="fas fa-book"></i>
+                                <i className="fas fa-book"></i>
                                 &#160; Моите книги</Link>
                         </li>
                     </ul>

@@ -14,32 +14,34 @@ const Details = () => {
 
                         <p>Книгата на Пол Каланити „И дъхът стана въздух“ от издателство Сиела е най-добрият мемоар на 2016 година според читателите в сайта Goodreads и е сред най-добрите книги за 2016 година според The Washington Post и The New York Times.
                             Освен похвалите книгата притежава неумолимото послание на неугасващата надежда за достойно живян живот, в който смъртта е по-лесна за приемане.</p>
-                        <button className={styles['favourites']}><i class="far fa-heart"></i> Добави в любими</button>
+                        <button className={styles['favourites']}><i className="far fa-heart"></i> Добави в любими</button>
                     </div>
                 </div>
                 <div className={styles['right-sidebar']}>
-                    <tbody>
-                        <tr>
-                            <th>Автор</th>
-                            <td>Пол Каланити</td>
-                        </tr>
-                        <tr>
-                            <th>Година на издаване</th>
-                            <td>2017</td>
-                        </tr>
-                        <tr>
-                            <th>Корица</th>
-                            <td>мека</td>
-                        </tr>
-                        <tr>
-                            <th>Страници</th>
-                            <td>196</td>
-                        </tr>
-                        <tr>
-                            <th>Език</th>
-                            <td>български</td>
-                        </tr>
-                    </tbody>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Автор</th>
+                                <td>Пол Каланити</td>
+                            </tr>
+                            <tr>
+                                <th>Година на издаване</th>
+                                <td>2017</td>
+                            </tr>
+                            <tr>
+                                <th>Корица</th>
+                                <td>мека</td>
+                            </tr>
+                            <tr>
+                                <th>Страници</th>
+                                <td>196</td>
+                            </tr>
+                            <tr>
+                                <th>Език</th>
+                                <td>български</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
             <section className={styles['bottom-bar']}>

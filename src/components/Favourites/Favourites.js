@@ -18,6 +18,7 @@ const Favourites = () => {
             </article>
             <article className={styles['favourite-container']}>
                 <h2>Любими 0 продукта</h2>
+                <hr />
                 <div >
                     <img className={styles['image']} src="img/favourite.webp" alt="favourite" />
                     <h3>Хмм, няма нито един продукт в твоя списък.</h3>

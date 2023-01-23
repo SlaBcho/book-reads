@@ -14,7 +14,6 @@ nav {
     padding-left: 10px;
     padding-right: 10px;
     align-items: center;
-
 }
 
 nav ul {
@@ -27,7 +26,6 @@ nav ul {
 
 nav ul li {
     padding: 6px;
-    
 }
 
 ul li a {
@@ -49,7 +47,6 @@ ul li a {
     text-align: center;
     align-items: center;
     justify-content: center;
-
 }
 
 .nav-button:hover {
@@ -58,3 +55,4 @@ ul li a {
     cursor: pointer;
     outline: 0;
 }
+

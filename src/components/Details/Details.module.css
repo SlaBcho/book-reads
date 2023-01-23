@@ -19,7 +19,7 @@
 
 .right-sidebar {
     margin-top: 40px;
-    margin-right: 90px;
+    margin-right: 50px;
     display: block;
     box-sizing: border-box;
     width: 25%;
@@ -37,7 +37,7 @@
 }
 
 .image img {
-    margin-left: 20px;
+    margin-left: 25px;
     box-sizing: border-box;
     width:285px;
     height: 420px;
@@ -85,7 +85,7 @@
     border-radius: 21px;
 }
 
-tbody {
+table {
     box-sizing: border-box;
     display:block;
     border-collapse: separate;
