@@ -3,13 +3,7 @@
     padding-top: 40px;
     text-align: center;
     padding-bottom: 20px;
-    box-sizing: border-box;
-    display: block;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
     line-height: 1.42857;
-    color: #000;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     background-color: #f7f7f7;
@@ -40,8 +34,6 @@
 
 .heading {
     margin-top: 25px;
-    box-sizing: border-box;
-    display: block;
     text-align: center;
 }
 
@@ -55,20 +47,12 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     text-align: center;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 form {
     position: relative;
     margin-bottom: 15px;
-    box-sizing: border-box;
-    display: block;
     text-align: center;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857;
-    color: #000;
 }
 
 form>div>label {
@@ -99,7 +83,6 @@ form>div>label {
 }
 
 .continue {
-    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
     background: #0082e6;
@@ -117,15 +100,9 @@ form>div>label {
 .text {
     box-sizing: border-box;
     text-align: center;
-    font-family: "Open Sans",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857;
-    color: #000;
 }
 
 .register {
-    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
     background: #42b72a;

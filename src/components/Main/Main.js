@@ -3,7 +3,7 @@ import styles from './Main.module.css';
 
 import  Slideshow  from './SlideShow/SlideShow';
 
-const Main = () => {
+const Main = ({book}) => {
     return (
         <main>
             <Slideshow />

@@ -1,7 +1,4 @@
-header {
-    display: block;
 
-}
 
 .header {
     width: 100%;
@@ -9,7 +6,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background-color: white;
 }
 
@@ -22,7 +18,6 @@ header {
     padding-right: 15px;
     height: 40px;
 }
-
 
 .searcher {
     width: 40%;
@@ -65,7 +60,6 @@ header {
 
 .tool {
     justify-content: space-between;
-    box-sizing: border-box;
     align-items: center;
     display: flex;
     color: black;
@@ -76,11 +70,9 @@ header {
 .links {
     justify-content: space-between;
     display: flex;
-    box-sizing: border-box;
     padding: 5px 0px;
     height: 45px;
     width: 100%;
     text-decoration: none;
     text-align: center;
-
 }

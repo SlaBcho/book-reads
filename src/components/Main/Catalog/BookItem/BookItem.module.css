@@ -1,16 +1,13 @@
 .img-card {
-    margin:auto;
     width: 202px;
-    padding-top: 21px;
-    padding-bottom: 15px;
-    padding-left: 10px;
+   padding: 10px;
 }
 
 .book-list {
     background-color: white;
     display: block;
     align-items: center;
-    width: 220px;
+    width: 380px;
 }
 
 .book-list:hover {
@@ -29,5 +26,12 @@
 }
 
 .rating div {
-    margin-left: 5px;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 16px;
 }

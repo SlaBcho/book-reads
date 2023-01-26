@@ -2,7 +2,7 @@ import Books from './Books/Books';
 import styles from './Catalog.module.css';
 
 
-const Catalog = ({ books }) => {
+const Catalog = () => {
     return (
         <section className={styles['catalog']}>
             <h2 className={styles['articles-name']}>Най-четени книги</h2>

@@ -11,7 +11,6 @@
     width: 240px;
     height: 450px;
     padding-right: 15px;
-    display: block;
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 5px;
@@ -20,8 +19,6 @@
 
 h3 {
     padding-left: 10px;
-    box-sizing: border-box;
-    display: block;
     text-align: center;
     font-size: 21px;
     font-weight: 400;
@@ -30,8 +27,6 @@ h3 {
 
 h2 {
     padding-left: 10px;
-    box-sizing: border-box;
-    display: block;
     text-align: left;
     font-size: 21px;
     font-weight: 400;
@@ -41,8 +36,6 @@ h2 {
 }
 
 .user-container p {
-    display: block;
-    box-sizing: border-box;
     font-size: 14px;
     margin-left: 10px;
     margin-top: 15px;
@@ -52,8 +45,6 @@ h2 {
 .favourite-container {
     width: 920px;
     height: 513px;
-    display: block;
-    box-sizing: border-box;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 15px 15px 15px #ccc;
@@ -66,8 +57,6 @@ h2 {
 }
 
 .login{
-    box-sizing: border-box;
-    text-align: center;
     cursor: pointer;
     background: #0082e6;
     width: 180px;
@@ -84,7 +73,6 @@ h2 {
 }
 
 .register {
-    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
     background: #42b72a;

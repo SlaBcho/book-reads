@@ -23,7 +23,7 @@ export const Register = () => {
                             <input className={styles['form-control']} type="password" id="repeat-passwprd" name="repeat-password"></input>
                         </div>
 
-                        <input className={styles.continue} type="submit" name="user-login" value="Регистрирай се" />
+                        <input className={styles.register} type="submit" name="user-login" value="Регистрирай се" />
                     </form>
                 </div>
             </div>

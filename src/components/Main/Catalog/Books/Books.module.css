@@ -1,9 +1,9 @@
 .catalog-items {
     display: flex;
-    margin: auto;
     margin-bottom: 20px;
     justify-content: space-between;
-    width: 100%;
-    height: 400px;
-    gap: 15px;
+    width: 1180px;
+    height: auto;
+    gap: 20px;
+    overflow: auto;
 }

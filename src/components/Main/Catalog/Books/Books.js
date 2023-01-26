@@ -1,16 +1,22 @@
-import  BookItem  from '../BookItem/BookItem';
+import BookItem from '../BookItem/BookItem';
 
 import styles from './Books.module.css';
 
-const Books = ({ books }) => {
+import { useContext } from 'react';
+import { BookContext } from '../../../../context/BookContext';
+
+const Books = () => {
+    const { books } = useContext(BookContext);
 
     return (
         <section className={styles['catalog-items']}>
+            {books.map(b => <BookItem key={b._id} book={b} />)}
+            {/* <BookItem />
             <BookItem />
             <BookItem />
             <BookItem />
             <BookItem />
-            <BookItem />
+            <BookItem /> */}
         </section>
     );
 };
