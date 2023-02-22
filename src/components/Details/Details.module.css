@@ -1,7 +1,6 @@
 .details-section {
     background-color: white;
     width: 1180px;
-    /* margin-left: 90px; */
     display: flex;
     font-size: 13px;
     color: #666;
@@ -38,9 +37,13 @@
 .details {
     align-items: center;
     width: 90%;
+    position: relative;
 }
 
 .details h2 {
+    height: 60px;
+    margin-top: 0px;
+    padding-bottom: 10px;
     font-size: 24px;
     font-weight: 700;
     color: #444;
@@ -52,7 +55,9 @@
 }
 
 .details p {
-    margin-top: 50px;
+    height: 200px;
+    margin-top: 30px;
+    margin-bottom: 15px;
     font-size: 14px;
     font-weight: 600;
     text-align:justify;
@@ -63,7 +68,7 @@
     text-align: center;
     cursor: pointer;
     background: #2B7A78;
-    margin-top: 55px;
+    margin-top: 35px;
     margin-bottom: 15px;
     margin-left: 36px;
     padding: 11px;
@@ -71,6 +76,9 @@
     font-weight: 600;
     border: 1px solid transparent;
     border-radius: 21px;
+    position: absolute;
+    top: 340px;
+    left: 490px;
 }
 
 table {
@@ -112,11 +120,8 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     width: 1180px;
     background-color: white;
     display: flex;
-    /* margin-left: 90px; */
     margin-top: 60px;
 }
-
-
 
 .buttons button {
 
@@ -136,8 +141,6 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 }
 
 .summary p {
-    text-align:left;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 30px;
+    text-align:justify;
+    padding: 20px;
 }

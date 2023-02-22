@@ -1,17 +1,27 @@
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 1366px;
+    z-index: 15;
+    background-color: white;
 
+}
 
 .header {
-    width: 100%;
+    width: 87%;
+    margin: 0 auto;
     height: 56px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 40px;
     background-color: white;
 }
 
 .logo {
-    margin-left: 90px;
-    margin-right: 40px;
+    width: 10%;
 }
 
 .logo a img {
@@ -31,27 +41,24 @@
     font-size: inherit;
     font: inherit;
     border-radius: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 40px;
     background-image: url(https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-bleue.png);
     background-size: contain;
     background-repeat: no-repeat;
     outline: 0;
-    background-position: 465px;
+    background-position: 475px;
     background-size: 32px;
-    
+    padding-left: 16px;
 }
 
 
+
+
 .tools {
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     display: flex;
-    width: 30%;
-    margin: auto;
-    margin-left: 40px;
-    margin-bottom: 15px;
+    margin: 0 auto;
+    width: 40%;
 }
 
 .tools i {
@@ -68,11 +75,33 @@
 }
 
 .links {
-    justify-content: space-between;
     display: flex;
-    padding: 5px 0px;
+    text-align: center;
+    justify-content: space-between;
     height: 45px;
     width: 100%;
     text-decoration: none;
-    text-align: center;
+}
+
+.links i {
+    margin-right: 8px;
+}
+
+@media (max-width:1230px) {
+    .search {
+        width: 400px;
+        background-position: 375px;
+    }
+}
+
+@media (max-width:1175px) {
+   
+
+    .tools {
+        width: 25%;
+    }
+
+    .links span {
+        display: none;
+    }
 }

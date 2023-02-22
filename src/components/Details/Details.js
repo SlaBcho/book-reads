@@ -29,7 +29,7 @@ const Details = () => {
                     </div>
                     <div className={styles['details']}>
                         <h2>{book.title}</h2>
-                        <span>Автор: Пол Каланити</span>
+                        <span>Автор: {book.author}</span>
 
                         <p>{book.description}.</p>
                         <button className={styles['favourites']}><i className="far fa-heart"></i> Добави в любими</button>
@@ -40,7 +40,7 @@ const Details = () => {
                         <tbody>
                             <tr>
                                 <th>Автор</th>
-                                <td>Пол Каланити</td>
+                                <td>{book.author}</td>
                             </tr>
                             <tr>
                                 <th>Година на издаване</th>
@@ -68,7 +68,8 @@ const Details = () => {
                     <button>Мнения</button>
                     <button>Прелисти</button>
                 </div>
-                <div className={styles['summary']}>{book.summary}
+                <div className={styles['summary']}>
+                    <p>{book.summary}</p>
                 </div>
             </section>
         </>

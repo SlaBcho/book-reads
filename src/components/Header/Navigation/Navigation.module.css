@@ -2,56 +2,45 @@ nav {
     width: 100%;
     height: 40px;
     background-image: linear-gradient(to right,#17252A, #0a4e4c, #3AAFA9, #DEF2F0);
-    justify-content: center;
-    align-items: center;
 }
 
 .nav {
-    width: 92%;
-    margin: auto;
+    width: 88%;
+    margin:0 auto;
     height: 36px;
     display: flex;
-    padding-left: 10px;
-    padding-right: 10px;
     align-items: center;
 }
 
 nav ul {
+    width: 100%;
     list-style-type: none;
     display: flex;
-    text-decoration: none;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-}
-
-nav ul li {
-    padding: 6px;
 }
 
 ul li a {
     text-align: center;
     text-decoration: none;
-    padding: 5px 3px;
-    margin: 5px 0 4px 0px;
     color: #fff;
     border-radius: 16px;
     border: transparent 1px solid;
     font-family: "Open Sans,Helvetica,Arial,sans-serif";
     font-size: 14px;
     justify-content: center;
-}
-
-.nav-button {
-    margin-left: 28px;
-    padding-left: 3px;
     text-align: center;
     align-items: center;
     justify-content: center;
+    transition: border 300ms ease-in-out;
+    padding: 4px 8px;
 }
+
 
 .nav-button:hover {
     border: 1px solid white;
     border-radius: 35px;
+    padding: 4px 8px;
     cursor: pointer;
     outline: 0;
 }
