@@ -8,3 +8,10 @@
 .slide-container div {
     height: 500px;
 }
+
+@media (max-width:600px) {
+    .slide-container {
+        width: 580px;
+        object-fit: cover;
+    }
+}

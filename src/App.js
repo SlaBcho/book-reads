@@ -13,13 +13,15 @@ import Main from './components/Main/Main';
 import Details from './components/Details/Details';
 import Favourites from './components/Favourites/Favourites';
 import Footer from './components/Footer/Footer';
+import { AuthContext } from './context/AuthContext';
 
-// import { useLocalStorage } from './hooks/useLocalStorage';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import Logout from './components/Logout/Logout';
 
 
 function App() {
   const [books, setBooks] = useState([]);
-  // const [auth, setAuth] = useLocalStorage('auth', {});
+  const [auth, setAuth] = useLocalStorage('auth', {});
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,25 +31,35 @@ function App() {
       });
   }, []);
 
+  const userLogin = (authData) => {
+        setAuth(authData);
+    };
+
+    const userLogout = () => {
+        setAuth({});
+    };
 
 
   return (
+    <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
+
     <div className="wrapper">
       <Header />
-
       <BookContext.Provider value={{ books }}>
         <main>
           <Routes>
             <Route path={'/'} element={<Main />} />
             <Route path={'/login'} element={<Login />} />
             <Route path={'/register'} element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path={'/details/:gameId'} element={<Details />} />
             <Route path={'/favourites'} element={<Favourites />} />
           </Routes>
         </main>
       </BookContext.Provider>
       <Footer />
-    </div>
+    </div >
+    </AuthContext.Provider>
   );
 }
 
