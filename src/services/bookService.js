@@ -1,12 +1,15 @@
 import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data/books';
-// http://localhost:3030/data/books?where=category%3D%22fantasy%22
 
 export const getAll = () => request.get(`${baseUrl}`);
 
-export const getById = (gameId) => request.get(`${baseUrl}/${gameId}`);
+export const getByCategory = (bookCategory) => request.get(`${baseUrl}?where=category%3D%22${bookCategory}%22`);
 
-export const create = (gameData) => request.post(baseUrl, gameData);
+export const getNewest = () => request.get(`${baseUrl}?sortBy=_createdOn%20desc`);
 
-export const edit = (gameId, gameData) => request.put(`${baseUrl}/${gameId}`, gameData);
+export const getById = (bookId) => request.get(`${baseUrl}/${bookId}`);
+
+export const create = (bookData) => request.post(baseUrl, bookData);
+
+export const edit = (bookId, bookData) => request.put(`${baseUrl}/${bookId}`, bookData);

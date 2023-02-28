@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
 
 import * as bookService from '../../services/bookService';
+import Rating from '../Main/Catalog/BookItem/Rating';
 
 const Details = () => {
     const { books } = useContext(BookContext);
