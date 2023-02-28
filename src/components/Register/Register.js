@@ -5,7 +5,7 @@ import * as authService from '../../services/authService';
 
 import styles from './Register.module.css';
 
-export const Register = () => {
+const Register = () => {
 
     const navigate = useNavigate();
     const { userLogin } = useContext(AuthContext);

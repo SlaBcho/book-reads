@@ -1,25 +1,25 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './Details.module.css';
-import { useContext } from 'react';
-import { BookContext } from '../../context/BookContext';
+import { useState, useEffect } from 'react';
 
 import * as bookService from '../../services/bookService';
-import Rating from '../Main/Catalog/BookItem/Rating';
+import { useContext } from 'react';
+import { BookContext } from '../../context/BookContext';
+import { AuthContext } from '../../context/AuthContext';
+// import Rating from '../Main/Catalog/BookItem/Rating';
 
 const Details = () => {
-    const { books } = useContext(BookContext);
+    const { addToFavouriteHandler } = useContext(BookContext);
+    const [book, setBook] = useState([]);
+    const { bookId } = useParams();
+    const { user } = useContext(AuthContext);
 
-    const { gameId } = useParams();
-
-    const book = books.find(el => el._id === gameId);
-
-    // useEffect(() => {
-    //     bookService.getById(gameId)
-    //         .then(result => {
-    //             console.log(result);
-    //         });
-    // });
+    useEffect(() => {
+        bookService.getById(bookId)
+            .then(res => {
+                setBook(res);
+            }, []);
+    });
 
     return (
         <>
@@ -33,7 +33,12 @@ const Details = () => {
                         <span>Автор: {book.author}</span>
 
                         <p>{book.description}.</p>
-                        <button className={styles['favourites']}><i className="far fa-heart"></i> Добави в любими</button>
+                        {user.email &&
+                            (<button onClick={() => addToFavouriteHandler(book)} className={styles['favourites']}>
+                                <i className="far fa-heart"></i>
+                                Добави в любими
+                            </button>)
+                        }
                     </div>
                 </div>
                 <div className={styles['right-sidebar']}>

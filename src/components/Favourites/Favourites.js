@@ -2,76 +2,32 @@ import { Link } from 'react-router-dom';
 import styles from './Favourites.module.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import FavouriteBook from './FavouriteBook';
+import { BookContext } from '../../context/BookContext';
 
 const Favourites = () => {
 
     const { user } = useContext(AuthContext);
+    const { favourite } = useContext(BookContext);
 
     return (
         <>
-            {/* for not logged user */}
-
-
-            {user.email ? (<section className={styles['container']}>
-                <article className={styles['user-container']}>
-                    <div className={styles['img']}>
-                        <i className="fas fa-user-circle fa-10x"></i>
-                    </div>
-                    <div>
-                        <h3>Здравей</h3>
-                        <p>{user.email}</p>
-                    </div>
-                    <div>
-                        <Link to="/logout">
-                        <button className={styles['logout']}><i class="fa-solid fa-arrow-right-from-bracket"></i>Изход</button>
-                        </Link>
-                    </div>
-                </article>
-                <article className={styles['favourite-container']}>
-                    <h2>Любими 0 книги</h2>
-                    <hr />
-                    <ul >
-                        <li className={styles['favourite-book']}>
-                            <div className={styles['book-img']}>
-                                <Link to="/details/:bookId">
-                                    <img src="img/when-breath-become-air.jpg" alt="book" />
-                                </Link>
-                            </div>
-                            <div className={styles['content']}>
-                                <h3>И дъхът стана въздух</h3>
-                                <h4>Поул Каланити</h4>
-                                <button className={styles['logout']}><i class="fa-solid fa-trash-can"></i>Изтрий от любими</button>
-                            </div>
-                        </li>
-                        <li className={styles['favourite-book']}>
-                            <div className={styles['book-img']}>
-                                <Link to="/details/:bookId">
-                                    <img src="img/when-breath-become-air.jpg" alt="book" />
-                                </Link>
-                            </div>
-                            <div className={styles['content']}>
-                                <h3>И дъхът стана въздух</h3>
-                                <h4>Поул Каланити</h4>
-                                <button className={styles['logout']}><i class="fa-solid fa-trash-can"></i>Изтрий от любими</button>
-                            </div>
-                        </li>
-                        <li className={styles['favourite-book']}>
-                            <div className={styles['book-img']}>
-                                <Link to="/details/:bookId">
-                                    <img src="img/when-breath-become-air.jpg" alt="book" />
-                                </Link>
-                            </div>
-                            <div className={styles['content']}>
-                                <h3>И дъхът стана въздух</h3>
-                                <h4>Поул Каланити</h4>
-                                <button className={styles['logout']}><i class="fa-solid fa-trash-can"></i>Изтрий от любими</button>
-                            </div>
-                        </li>
-                    </ul>
-                    <button className={styles['login']}><Link to="/">Виж още книги</Link></button>
-                </article>
-            </section>)
-                : (<section className={styles['container']}>
+            <section className={styles['container']}>
+                {user.email ? (
+                    <article className={styles['user-container']}>
+                        <div className={styles['img']}>
+                            <i className="fas fa-user-circle fa-10x"></i>
+                        </div>
+                        <div>
+                            <h3>Здравей</h3>
+                            <p>{user.email}</p>
+                        </div>
+                        <div>
+                            <Link to="/logout">
+                                <button className={styles['logout']}><i class="fa-solid fa-arrow-right-from-bracket"></i>Изход</button>
+                            </Link>
+                        </div>
+                    </article>) : (
                     <article className={styles['user-container']}>
                         <div className={styles['img']}>
                             <i className="fas fa-user-circle fa-10x"></i>
@@ -89,6 +45,8 @@ const Favourites = () => {
                             </Link>
                         </div>
                     </article>
+                )}
+                {favourite.length === 0 || !user.email ? (
                     <article className={styles['favourite-container']}>
                         <h2>Любими 0 книги</h2>
                         <hr />
@@ -99,10 +57,24 @@ const Favourites = () => {
                             <p>Добави в Любими и си направи списъци според твоите предпочитания.</p>
                             <p>Можеш да ги споделиш по всяко време с приятели.</p>
                         </div>
-                        <button className={styles['login']}><Link to="/">Виж още книги</Link></button>
+                        <Link to="/all-books">
+                            <button className={styles['login']}>Виж още книги</button>
+                        </Link>
                     </article>
-                </section>)}
+                ) : (
+                    < article className={styles['favourite-container']}>
+                        <h2>Любими 0 книги</h2>
+                        <hr />
+                        <ul >
+                            {favourite.map(b => <FavouriteBook key={b._id} favourite={b}/>)}
+                        </ul>
+                        <Link to="/all-books">
+                            <button className={styles['login']}>Виж още книги</button>
+                        </Link>
+                    </article>
+                )}
 
+            </section>
         </>
     );
 };

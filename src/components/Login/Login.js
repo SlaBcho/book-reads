@@ -4,7 +4,7 @@ import * as authService from '../../services/authService';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-export const Login = () => {
+const Login = () => {
     const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -69,3 +69,5 @@ export const Login = () => {
         </div>
     );
 };
+
+export default Login;

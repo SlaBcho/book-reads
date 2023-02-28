@@ -1,5 +1,4 @@
 import ReactStars from 'react-rating-stars-component';
-import React from 'react';
 
 const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -18,7 +17,6 @@ const Rating = () => {
             fullIcon={<i className="fa fa-star"></i>}
             activeColor="#ffd700"
         />
-
     );
 };
 
