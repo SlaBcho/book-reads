@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import * as bookService from './services/bookService';
-import { useLocalStorage } from './hooks/useLocalStorage';
-// import { AuthContext } from './context/AuthContext';
 import { BookContext } from './context/BookContext';
-import { AuthContext } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
@@ -22,7 +20,6 @@ import Footer from './components/Footer/Footer';
 function App() {
 	const [books, setBooks] = useState([]);
 	const [bookByCategory, setBooksByCategory] = useState([]);
-	const [auth, setAuth] = useLocalStorage('auth', {});
 	const [favourite, setFavourite] = useState([]);
 
 	const location = useLocation();
@@ -43,14 +40,6 @@ function App() {
 			});
 	}, [category]);
 
-	const userLogin = (authData) => {
-		setAuth(authData);
-	};
-
-	const userLogout = () => {
-		setAuth({});
-	};
-
 	const addToFavouriteHandler = (book) => {
 		setFavourite(state => [...state, book]);
 	};
@@ -61,11 +50,10 @@ function App() {
 	};
 
 	return (
-		<AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
-
+		<AuthProvider>
 			<div className="wrapper">
 				<Header />
-				<BookContext.Provider value={{books, bookByCategory, addToFavouriteHandler, removeFromFavouriteHandler, favourite}}>
+				<BookContext.Provider value={{ books, bookByCategory, addToFavouriteHandler, removeFromFavouriteHandler, favourite }}>
 					<main>
 						<Routes>
 							<Route path={'/'} element={<Main />} />
@@ -89,7 +77,7 @@ function App() {
 				</BookContext.Provider>
 				<Footer />
 			</div >
-		</AuthContext.Provider>
+		</AuthProvider>
 	);
 }
 

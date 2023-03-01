@@ -1,12 +1,18 @@
 import styles from './Login.module.css';
+
 import { Link, useNavigate } from 'react-router-dom';
+
 import * as authService from '../../services/authService';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
+
     const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const { user } = useContext(AuthContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -28,45 +34,47 @@ const Login = () => {
 
     return (
         <div className={styles['container']}>
-
-            <div className={styles['form-box']}>
-                <div className={styles.heading}>
-                    <h1>Здравей!</h1>
-                </div>
-                <div>
-                    <form onSubmit={onSubmit}>
-                        <div>
-                            <label htmlFor="email" >Моля въведете имейл адрес</label>
-                            <input className={styles['form-control']}
-                                type="email"
-                                id="email"
-                                name="email"></input>
+            {user.email ? null
+                : (
+                    <div className={styles['form-box']}>
+                        <div className={styles.heading}>
+                            <h1>Здравей!</h1>
                         </div>
                         <div>
-                            <label htmlFor="user_login_password" >Моля въведете парола</label>
-                            <input className={styles['form-control']}
-                                type="password"
-                                id="passwprd"
-                                name="password"></input>
-                        </div>
+                            <form onSubmit={onSubmit}>
+                                <div>
+                                    <label htmlFor="email" >Моля въведете имейл адрес</label>
+                                    <input className={styles['form-control']}
+                                        type="email"
+                                        id="email"
+                                        name="email"></input>
+                                </div>
+                                <div>
+                                    <label htmlFor="user_login_password" >Моля въведете парола</label>
+                                    <input className={styles['form-control']}
+                                        type="password"
+                                        id="passwprd"
+                                        name="password"></input>
+                                </div>
 
-                        <input className={styles.continue}
-                            type="submit"
-                            name="user-login"
-                            value="Продължи" />
-                    </form>
-                    <div className={styles.text}>
-                        <p> Нямате акаунт? Не се тревожете!</p>
-                        <Link to="/register">
-                            <input className={styles.register}
-                                type="submit"
-                                name="user-register"
-                                value="Регистрация" />
-                        </Link>
+                                <input className={styles.continue}
+                                    type="submit"
+                                    name="user-login"
+                                    value="Продължи" />
+                            </form>
+                            <div className={styles.text}>
+                                <p> Нямате акаунт? Не се тревожете!</p>
+                                <Link to="/register">
+                                    <input className={styles.register}
+                                        type="submit"
+                                        name="user-register"
+                                        value="Регистрация" />
+                                </Link>
+                            </div>
+                        </div>
                     </div>
-                </div>
+    )};
             </div>
-        </div>
     );
 };
 
