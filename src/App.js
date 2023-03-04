@@ -21,7 +21,7 @@ function App() {
 	const [books, setBooks] = useState([]);
 	const [bookByCategory, setBooksByCategory] = useState([]);
 	const [favourite, setFavourite] = useState([]);
-
+	
 	const location = useLocation();
 	const category = location.pathname.slice(1);
 
@@ -36,7 +36,6 @@ function App() {
 		bookService.getByCategory(category)
 			.then(res => {
 				setBooksByCategory(res);
-				console.log(res);
 			});
 	}, [category]);
 
@@ -46,7 +45,6 @@ function App() {
 
 	const removeFromFavouriteHandler = (id) => {
 		setFavourite(state => state.filter(b => b._id !== id));
-
 	};
 
 	return (

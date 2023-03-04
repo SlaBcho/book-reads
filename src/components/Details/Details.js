@@ -10,7 +10,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
-    const [book, setBook] = useState([]);
+    const [book, setBook] = useState({});
+    const [added, setAdded] = useState(0);
     const { bookId } = useParams();
     const { user } = useContext(AuthContext);
 
@@ -18,8 +19,23 @@ const Details = () => {
         bookService.getById(bookId)
             .then(res => {
                 setBook(res);
-            }, []);
-    });
+            });
+    }, [bookId]);
+
+    useEffect(() => {
+        bookService.getMyFavouritesByBookId(bookId, user._id)
+            .then(res => {
+                setAdded(res);
+            });
+    }, [bookId, user._id]);
+
+    const onAddToFavourite = () => {
+        bookService.favouriteBook(bookId)
+            .then(result => {
+                addToFavouriteHandler({ ...book, userId: user._id });
+                setAdded(1);
+            });
+    };
 
     return (
         <>
@@ -33,11 +49,12 @@ const Details = () => {
                         <span>Автор: {book.author}</span>
 
                         <p>{book.description}.</p>
-                        {user.email &&
-                            (<button onClick={() => addToFavouriteHandler(book)} className={styles['favourites']}>
+
+                        {(user.email && added < 1) ?
+                            (<button onClick={onAddToFavourite} className={styles['favourites']}>
                                 <i className="far fa-heart"></i>
                                 Добави в любими
-                            </button>)
+                            </button>) : null
                         }
                     </div>
                 </div>

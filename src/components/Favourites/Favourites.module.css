@@ -1,7 +1,6 @@
 .container {
-    /* width:1220px; */
     display: flex;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -46,6 +45,7 @@ h2 {
 
 .favourite-container {
     width: 920px;
+    min-height: 500px;
     height: 100%;
     padding: 16px;
     background-color: #fff;
@@ -65,8 +65,8 @@ h2 {
     width: 180px;
     margin-top: 30px;
     margin-bottom: 10px;
-    margin-left: 30px;
     display: block;
+    margin-left: 15px;
     padding: 11px;
     color: #fff;
     position: relative;
@@ -82,7 +82,8 @@ h2 {
     width: 180px;
     margin-top: 15px;
     margin-bottom: 10px;
-    margin-left: 30px;
+    margin-left: 15px;
+
     display: block;
     padding: 11px;
     color: #fff;
@@ -106,12 +107,14 @@ p{
     align-items: center;
 }
 
-.favourite-container button{
+.favourite-container a{
+    text-align: center;
     margin: auto;
     margin-top: 25px;
 }
 
 a {
+    text-align: center;
     color: white;
     font-weight: 500;
 }
@@ -123,7 +126,8 @@ a {
     width: 180px;
     margin-top: 15px;
     margin-bottom: 10px;
-    margin-left: 30px;
+    margin-left: 15px;
+
     display: block;
     padding: 11px;
     color: #fff;
@@ -138,7 +142,7 @@ a {
 .favourite-book {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 16px;
     border-bottom: 1px solid #aaa;
     padding: 8px;
@@ -157,6 +161,11 @@ a {
 .favourite-book .content {
     padding: 16px;
     text-align: center;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .favourite-book .content h3 {

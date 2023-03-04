@@ -10,6 +10,8 @@ const Favourites = () => {
     const { user } = useContext(AuthContext);
     const { favourite } = useContext(BookContext);
 
+    const favouriteBooks = favourite.filter(b => b.userId === user._id);
+
     return (
         <>
             <section className={styles['container']}>
@@ -23,8 +25,9 @@ const Favourites = () => {
                             <p>{user.email}</p>
                         </div>
                         <div>
-                            <Link to="/logout">
-                                <button className={styles['logout']}><i class="fa-solid fa-arrow-right-from-bracket"></i>Изход</button>
+                            <Link className={styles['logout']} to="/logout">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Изход
                             </Link>
                         </div>
                     </article>) : (
@@ -37,16 +40,16 @@ const Favourites = () => {
                             <p>Влез в твоя акаунт или се регистрирай, за да можеш да запазиш любимите си книги.</p>
                         </div>
                         <div>
-                            <Link to="/login">
-                                <button className={styles['login']}>Влез в акаунт</button>
+                            <Link className={styles['login']} to="/login">
+                                Влез в акаунт
                             </Link>
-                            <Link to="/register">
-                                <button className={styles['register']}>Нов акаунт</button>
+                            <Link className={styles['register']} to="/register">
+                                Нов акаунт
                             </Link>
                         </div>
                     </article>
                 )}
-                {favourite.length === 0 || !user.email ? (
+                {favouriteBooks.length === 0 || !user.email ? (
                     <article className={styles['favourite-container']}>
                         <h2>Любими 0 книги</h2>
                         <hr />
@@ -57,19 +60,19 @@ const Favourites = () => {
                             <p>Добави в Любими и си направи списъци според твоите предпочитания.</p>
                             <p>Можеш да ги споделиш по всяко време с приятели.</p>
                         </div>
-                        <Link to="/all-books">
-                            <button className={styles['login']}>Виж още книги</button>
+                        <Link className={styles['login']} to="/all-books">
+                            Виж всички книги
                         </Link>
                     </article>
                 ) : (
                     < article className={styles['favourite-container']}>
-                        <h2>Любими 0 книги</h2>
+                        <h2>Любими {favourite.length} книги</h2>
                         <hr />
                         <ul >
-                            {favourite.map(b => <FavouriteBook key={b._id} favourite={b}/>)}
+                            {favouriteBooks.map(b => <FavouriteBook key={b._id} favourite={b} />)}
                         </ul>
-                        <Link to="/all-books">
-                            <button className={styles['login']}>Виж още книги</button>
+                        <Link className={styles['login']} to="/all-books">
+                            Добавете още книги
                         </Link>
                     </article>
                 )}

@@ -1,12 +1,13 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 import styles from './Header.module.css';
 
 import Navigation from './Navigation/Navigation';
 
-
 const Header = () => {
-   
+    const { user } = useContext(AuthContext);
 
     return (
         <header>
@@ -22,10 +23,18 @@ const Header = () => {
                 <div className={styles['tools']}>
                     <ul className={styles['links']}>
                         <li>
-                            <Link className={styles['tool']} to="/login">
-                                <i className="fas fa-user-circle fa-2x"></i>
-                                <span>Моят акаунт</span>
-                            </Link>
+                            {user.email ? (
+                                <Link className={styles['tool']} to="/logout">
+                                    <i className="fa-solid fa-arrow-right-from-bracket fa-2x"></i>
+                                    <span>Изход</span>
+                                </Link>
+                            ) : (
+                                <Link className={styles['tool']} to="/login">
+                                    <i className="fas fa-user-circle fa-2x"></i>
+                                    <span>Вход/Регистрация</span>
+                                </Link>
+                            )}
+
                         </li>
                         <li>
                             <Link className={styles['tool']} to="/favourites">
