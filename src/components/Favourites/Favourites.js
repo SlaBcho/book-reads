@@ -1,17 +1,16 @@
-import { Link } from 'react-router-dom';
 import styles from './Favourites.module.css';
+import FavouriteBook from './FavouriteBook';
+import { Link } from 'react-router-dom';
+
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import FavouriteBook from './FavouriteBook';
 import { BookContext } from '../../context/BookContext';
 
 const Favourites = () => {
-
     const { user } = useContext(AuthContext);
     const { favourite } = useContext(BookContext);
-
-    const favouriteBooks = favourite.filter(b => b.userId === user._id);
-
+   
+    const favouriteBook = favourite.filter(b => b.userId === user._id);
     return (
         <>
             <section className={styles['container']}>
@@ -26,7 +25,7 @@ const Favourites = () => {
                         </div>
                         <div>
                             <Link className={styles['logout']} to="/logout">
-                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                 Изход
                             </Link>
                         </div>
@@ -49,7 +48,7 @@ const Favourites = () => {
                         </div>
                     </article>
                 )}
-                {favouriteBooks.length === 0 || !user.email ? (
+                {favouriteBook.length === 0 || !user.email ? (
                     <article className={styles['favourite-container']}>
                         <h2>Любими 0 книги</h2>
                         <hr />
@@ -66,10 +65,10 @@ const Favourites = () => {
                     </article>
                 ) : (
                     < article className={styles['favourite-container']}>
-                        <h2>Любими {favourite.length} книги</h2>
+                        <h2>Любими {favouriteBook.length} книги</h2>
                         <hr />
                         <ul >
-                            {favouriteBooks.map(b => <FavouriteBook key={b._id} favourite={b} />)}
+                            {favouriteBook.map(b => <FavouriteBook key={b._id} favourite={b} />)}
                         </ul>
                         <Link className={styles['login']} to="/all-books">
                             Добавете още книги

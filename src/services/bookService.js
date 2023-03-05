@@ -17,3 +17,5 @@ export const edit = (bookId, bookData) => request.put(`${baseUrl}/books/${bookId
 export const favouriteBook = (bookId) => request.post(`${baseUrl}/favourites`, { bookId });
 
 export const getMyFavouritesByBookId = (bookId, userId) => request.get(`${baseUrl}/favourites?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${userId}%22&count`);
+
+export const removeFavourite = (newId) => request.del(`${baseUrl}/favourites/${newId}`);

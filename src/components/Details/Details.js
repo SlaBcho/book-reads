@@ -1,19 +1,22 @@
-import { useParams } from 'react-router-dom';
 import styles from './Details.module.css';
+
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import * as bookService from '../../services/bookService';
+
 import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
-// import Rating from '../Main/Catalog/BookItem/Rating';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
+    const { user } = useContext(AuthContext);
+
     const [book, setBook] = useState({});
     const [added, setAdded] = useState(0);
+
     const { bookId } = useParams();
-    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         bookService.getById(bookId)
@@ -32,8 +35,8 @@ const Details = () => {
     const onAddToFavourite = () => {
         bookService.favouriteBook(bookId)
             .then(result => {
-                addToFavouriteHandler({ ...book, userId: user._id });
                 setAdded(1);
+                addToFavouriteHandler({ ...book, userId: user._id, newId: result._id });
             });
     };
 
