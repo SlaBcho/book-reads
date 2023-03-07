@@ -1,8 +1,8 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-
 import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 import Navigation from './Navigation/Navigation';
 
@@ -43,7 +43,7 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className={styles['tool']} to="/myBooks">
+                            <Link className={styles['tool']} to="/my-books">
                                 <i className="fas fa-book fa-2x"></i>
                                 <span>Моите книги</span>
                             </Link>

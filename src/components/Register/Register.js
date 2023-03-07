@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import * as authService from '../../services/authService';
@@ -10,14 +10,21 @@ const Register = () => {
     const navigate = useNavigate();
     const { userLogin } = useContext(AuthContext);
 
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+        repeatPassword: '',
+    });
+    
+
+    const onChangeHandler = (e) => {
+        setUserData(state => ({ ...state, [e.target.name]: e.target.value }));
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.target);
-
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const repeatPassword = formData.get('repeat-password');
+        const { email, password, repeatPassword } = userData;
 
         if (password !== repeatPassword) {
             return;
@@ -44,26 +51,36 @@ const Register = () => {
                             <input className={styles['form-control']}
                                 type="email"
                                 id="email"
-                                name="email"></input>
+                                name="email"
+                                value={userData.email}
+                                onChange={onChangeHandler}>
+                            </input>
                         </div>
                         <div>
                             <label htmlFor="password" >Моля въведете парола</label>
                             <input className={styles['form-control']}
                                 type="password"
-                                id="passwprd"
-                                name="password"></input>
+                                id="password"
+                                name="password"
+                                value={userData.password}
+                                onChange={onChangeHandler}>
+                            </input>
                         </div>
                         <div>
-                            <label htmlFor="repeat-password" >Моля повторете паролата</label>
+                            <label htmlFor="repeatPassword" >Моля повторете паролата</label>
                             <input className={styles['form-control']}
                                 type="password"
-                                id="repeat-passwprd"
-                                name="repeat-password"></input>
+                                id="repeatPassword"
+                                name="repeatPassword"
+                                value={userData.repeatPassword}
+                                onChange={onChangeHandler}>
+                            </input>
                         </div>
-                            <input className={styles.register}
-                                type="submit"
-                                name="user-login"
-                                value="Регистрирай се" />
+                        <input className={styles.register}
+                            type="submit"
+                            name="user-login"
+                            value="Регистрирай се" 
+                            />
                     </form>
                 </div>
             </div>

@@ -32,7 +32,6 @@ export const request = async (method, url, data) => {
     } catch (error) {
 
     }
-
 };
 
 export const get = request.bind({}, 'GET');

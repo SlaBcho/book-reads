@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import * as authService from '../../services/authService';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
@@ -12,13 +12,18 @@ const Login = () => {
     const { userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const [userData, setUserData] = useState({
+        email:'',
+        password:''
+    });
+
+    const onChangeHandler = (e) => {
+        setUserData(state => ({...state, [e.target.name]:e.target.value}));
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
-
-        const {
-            email,
-            password
-        } = Object.fromEntries(new FormData(e.target));
+        const {email, password} = userData;
 
         authService.login(email, password)
             .then(authData => {
@@ -43,14 +48,20 @@ const Login = () => {
                                         <input className={styles['form-control']}
                                             type="email"
                                             id="email"
-                                            name="email"></input>
+                                            name="email"
+                                            value={userData.email}
+                                            onChange={onChangeHandler}>
+                                            </input>
                                     </div>
                                     <div>
                                         <label htmlFor="user_login_password" >Моля въведете парола</label>
                                         <input className={styles['form-control']}
                                             type="password"
                                             id="passwprd"
-                                            name="password"></input>
+                                            name="password"
+                                            value={userData.password}
+                                            onChange={onChangeHandler}>
+                                            </input>
                                     </div>
 
                                     <input className={styles.continue}

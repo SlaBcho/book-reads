@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import * as bookService from './services/bookService';
+
 import { BookContext } from './context/BookContext';
 import { AuthProvider } from './context/AuthContext';
 
@@ -16,6 +17,7 @@ import Main from './components/Main/Main';
 import Details from './components/Details/Details';
 import Favourites from './components/Favourites/Favourites';
 import Footer from './components/Footer/Footer';
+import MyBooks from './components/MyBooks/MyBooks';
 
 function App() {
 	const [books, setBooks] = useState([]);
@@ -60,16 +62,16 @@ function App() {
 							<Route path={'/logout'} element={<Logout />} />
 							<Route path={'/details/:bookId'} element={<Details />} />
 							<Route path={'/favourites'} element={<Favourites />} />
+							<Route path={'/my-books'} element={<MyBooks />} />
 
 							<Route path={'/all-books'} element={<AllBooks />} />
 							<Route path={'/best-seller'} element={<CategoryBooks />} />
 							<Route path={'/fantasy'} element={<CategoryBooks />} />
-							<Route path={'/all-books'} element={<CategoryBooks />} />
-							<Route path={'/iconomic-and-business'} element={<CategoryBooks />} />
+							<Route path={'/fiction'} element={<CategoryBooks />} />
+							<Route path={'/history-and-politics'} element={<CategoryBooks />} />
 							<Route path={'/psychology'} element={<CategoryBooks />} />
 							<Route path={'/autobiography'} element={<CategoryBooks />} />
-							<Route path={'/psychology'} element={<CategoryBooks />} />
-
+							<Route path={'/kids-book'} element={<CategoryBooks />} />
 						</Routes>
 					</main>
 				</BookContext.Provider>

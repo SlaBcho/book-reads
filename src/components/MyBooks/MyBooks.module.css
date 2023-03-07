@@ -53,11 +53,6 @@ h2 {
     box-shadow: 15px 15px 15px #ccc;
 }
 
-.favourite-container ul {
-    max-height: 400px;
-    overflow: auto;
-}
-
 .img i{
     margin-top: 15px;
     margin-bottom: 15px;
@@ -115,7 +110,11 @@ p{
 .favourite-container a{
     text-align: center;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 15px;
+}
+.favourite-container ul {
+    max-height: 400px;
+    overflow: auto;
 }
 
 a {
@@ -124,12 +123,55 @@ a {
     font-weight: 500;
 }
 
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:16px
+}
+
 .logout {
     text-align: center;
     cursor: pointer;
     background: #db0000;
     width: 180px;
     margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+
+    display: block;
+    padding: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
+
+.delete {
+    text-align: center;
+    cursor: pointer;
+    background: #db0000;
+    width: 90px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+
+    display: block;
+    padding: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
+
+.edit {
+    text-align: center;
+    cursor: pointer;
+    background: #2d8a85;
+    width: 90px;
+    margin-top: 5px;
     margin-bottom: 10px;
     margin-left: 15px;
 

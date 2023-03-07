@@ -3,7 +3,7 @@ import styles from './Footer.module.css';
 const Footer = () => {
     return (
         <footer>
-            <div className="coppy-right">Copyright © Soft-Uni Project</div>
+            <div className={styles['coppy-right']}>Copyright © Soft-Uni Project</div>
         </footer>
     );
 };

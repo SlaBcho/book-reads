@@ -2,6 +2,8 @@ import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data';
 
+export const getMyBooks = (userId) => request.get(`${baseUrl}/books?where=_ownerId%3D%22${userId}%22`);
+
 export const getAll = () => request.get(`${baseUrl}/books`);
 
 export const getByCategory = (bookCategory) => request.get(`${baseUrl}/books?where=category%3D%22${bookCategory}%22`);

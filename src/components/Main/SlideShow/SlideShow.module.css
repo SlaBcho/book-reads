@@ -1,8 +1,10 @@
 .slide-container {
     display: block;
     height: 500px;
-    width: 100%;
+    width: 88%;
+    margin: 0 auto;
     box-shadow: 15px 15px 20px -2px rgb(0 0 0 / 15%);
+    position: relative;
 }
 
 .slide-container div {
@@ -15,3 +17,4 @@
         object-fit: cover;
     }
 }
+

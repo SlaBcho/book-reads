@@ -1,15 +1,15 @@
 .catalog {
-        display: inline-block;
-        box-sizing: border-box;
-        width: 96%;
+        /* display: inline-block; */
+        /* box-sizing: border-box; */
+        width: 87%;
         padding-right: 10px;
+        margin:0 auto
 }
 
 .articles-name {
     font-size: 25px;
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-left: 52px;
     font-family: inherit;
     font-weight: 400;
     line-height: 1.428571429;
@@ -17,4 +17,5 @@
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 2px 2px rgba(0,0,0, 0.2);
 }

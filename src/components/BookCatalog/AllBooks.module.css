@@ -1,9 +1,11 @@
 .all-books {
     display: flex;
+    width: 88%;
+    min-height: 427px;
+    margin:0 auto;
     margin-bottom: 20px;
     align-items: center;
     justify-content: space-between;
-    width: 1180px;
     height: auto;
     gap: 20px;
     flex-wrap: wrap;
