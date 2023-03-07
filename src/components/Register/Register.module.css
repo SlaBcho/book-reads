@@ -106,10 +106,9 @@ form>div>label {
     text-align: center;
     cursor: pointer;
     background: #42b72a;
-    width: 80%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 36px;
+    width: 60%;
+    margin: 15px auto;
+    
     display: block;
     padding: 11px;
     color: #fff;

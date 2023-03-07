@@ -44,7 +44,7 @@ const MyBooks = () => {
                     </div>
                     <div>
                         <h3>Хей, сега си анонимен user.</h3>
-                        <p>Влез в твоя акаунт или се регистрирай, за да можеш да запазиш любимите си книги.</p>
+                        <p>Влез в твоя акаунт или се регистрирай, за да можеш да добавиш своя любима книги.</p>
                     </div>
                     <div>
                         <Link className={styles['login']} to="/login">
@@ -64,10 +64,10 @@ const MyBooks = () => {
                         <img className={styles['image']} src="img/favourite.webp" alt="favourite" />
                         <h3>Хмм, няма нито един продукт в твоя списък.</h3>
                         <h3>Виж някои препоръки, които могат да те вдъхновят.</h3>
-                        <p>Добави в Любими и си направи списъци според твоите предпочитания.</p>
+                        <p>Добави любима книга в секция Моите Книги и си направи списъци според твоите предпочитания.</p>
                         <p>Можеш да ги споделиш по всяко време с приятели.</p>
                     </div>
-                    <Link className={styles['login']} to="/create">
+                    <Link className={styles['create']} to="/create">
                         Добавете книга
                     </Link>
                 </article>
@@ -78,7 +78,7 @@ const MyBooks = () => {
                     <ul >
                         {myBooks.map(b => <MyBook key={b._id} favourite={b} />)}
                     </ul>
-                    <Link className={styles['login']} to="/create">
+                    <Link className={styles['create']} to="/create">
                         Добавете още книги
                     </Link>
                 </article>

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -18,11 +18,14 @@ import Details from './components/Details/Details';
 import Favourites from './components/Favourites/Favourites';
 import Footer from './components/Footer/Footer';
 import MyBooks from './components/MyBooks/MyBooks';
+import CreateBook from './components/CreateBook/CreateBook';
 
 function App() {
 	const [books, setBooks] = useState([]);
 	const [bookByCategory, setBooksByCategory] = useState([]);
 	const [favourite, setFavourite] = useState([]);
+	const [createBook, setCreateBook] = useState([]);
+    const navigate = useNavigate();
 	
 	const location = useLocation();
 	const category = location.pathname.slice(1);
@@ -49,18 +52,30 @@ function App() {
 		setFavourite(state => state.filter(b => b._id !== id));
 	};
 
+	const addBookHandler = (bookData) => {
+        setCreateBook(state => [
+            ...state,
+            bookData
+        ]);
+
+        navigate('/my-books');
+    };
+
 	return (
 		<AuthProvider>
 			<div className="wrapper">
 				<Header />
-				<BookContext.Provider value={{ books, bookByCategory, addToFavouriteHandler, removeFromFavouriteHandler, favourite }}>
+				<BookContext.Provider value={{ books, bookByCategory,  favourite, addToFavouriteHandler, removeFromFavouriteHandler, addBookHandler }}>
 					<main>
 						<Routes>
 							<Route path={'/'} element={<Main />} />
 							<Route path={'/login'} element={<Login />} />
 							<Route path={'/register'} element={<Register />} />
 							<Route path={'/logout'} element={<Logout />} />
+							
 							<Route path={'/details/:bookId'} element={<Details />} />
+							<Route path={'/create'} element={<CreateBook />} />
+
 							<Route path={'/favourites'} element={<Favourites />} />
 							<Route path={'/my-books'} element={<MyBooks />} />
 

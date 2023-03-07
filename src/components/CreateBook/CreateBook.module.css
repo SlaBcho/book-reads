@@ -1,0 +1,75 @@
+.create-section {
+    width: 100%;
+    height: 80vh;
+    position: relative;
+}
+
+
+
+.create-section .create-form {
+    max-width: 500px;
+    padding: 8px 16px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap:4px;
+    box-shadow: 2px 15px 15px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.create-form div:nth-child(6),
+.create-form div:nth-child(7) {
+    width:95%;
+    margin:0 auto;
+}
+
+.create-form .form-input {
+    width: 95%;
+    height: 30px;
+    margin-bottom: 15px;
+    color: black;
+    font-size: 15px;
+    background: #fff;
+    border: 1px solid #d5dee6;
+    padding: 6px 35px 6px 10px;
+    border-radius: 21px;
+    overflow: visible;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.create-form .form-area {
+    width: 100%;
+    margin-bottom: 15px;
+    color: black;
+    font-size: 15px;
+    background: #fff;
+    border: 1px solid #d5dee6;
+    padding: 6px 35px 6px 10px;
+    border-radius: 21px;
+    overflow: visible;
+    box-sizing: border-box;
+    text-align: center;
+    resize: none;
+}
+
+.create-form .create-btn {
+    cursor: pointer;
+    background: #0082e6;
+    width: 180px;
+    margin: 0 auto;
+    display: block;
+    padding: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 21px;
+}
