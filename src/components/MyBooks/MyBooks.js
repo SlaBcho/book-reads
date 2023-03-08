@@ -6,10 +6,12 @@ import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 import * as bookService from '../../services/bookService';
-
+import { BookContext } from '../../context/BookContext';
 
 const MyBooks = () => {
     const [myBooks, setMyBooks] = useState([]);
+
+    const {detelteBookHandler} = useContext(BookContext);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
@@ -20,8 +22,8 @@ const MyBooks = () => {
     }, [user]);
 
     const onBookDelete = (bookId) => {
-        bookService.remove(bookId);
-        setMyBooks(state => state.filter( b => b._id !== bookId));
+        detelteBookHandler(bookId);
+        setMyBooks(state => state.filter(b => b._id !== bookId));
     };
 
     return (
@@ -72,9 +74,9 @@ const MyBooks = () => {
                             <p>Добави любима книга в секция Моите Книги и си направи списъци според твоите предпочитания.</p>
                             <p>Можеш да ги споделиш по всяко време с приятели.</p>
                         </div>
-                        <Link className={styles['create']} to="/create">
+                        {/* <Link className={styles['create']} to="/create">
                             Добавете книга
-                        </Link>
+                        </Link> */}
                     </article>
                 ) : (
                     < article className={styles['favourite-container']}>

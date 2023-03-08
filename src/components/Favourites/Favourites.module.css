@@ -25,7 +25,7 @@ h3 {
     line-height: 1.428571429;
 }
 
-h2 {
+.favourite-container h2 {
     padding-left: 10px;
     text-align: left;
     font-size: 21px;
@@ -55,6 +55,7 @@ h2 {
 
 .favourite-container ul {
     max-height: 400px;
+    padding:0 24px;
     overflow: auto;
 }
 
@@ -150,7 +151,6 @@ a {
     justify-content: space-between;
     gap: 16px;
     border-bottom: 1px solid #aaa;
-    padding: 8px;
 }
 
 .favourite-book .book-img {

@@ -16,7 +16,7 @@ const Edit = () => {
             .then(result => {
                 setBookData(result);
             });
-    },[bookId]);
+    }, [bookId]);
 
     const onChangeHandler = (e) => {
         setBookData(state => ({ ...state, [e.target.name]: e.target.value }));

@@ -1,61 +1,78 @@
 .details-section {
     background-color: white;
     width: 1180px;
+    margin: 0 auto;
     display: flex;
     font-size: 13px;
     color: #666;
     line-height: 1.66;
+    padding: 16px 0;
 }
 
 .left-sidebar {
     width: 75%;
     margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 24px;
 }
 
 .right-sidebar {
     margin-top: 40px;
-    margin-right: 50px;
+    margin-right: 40px;
     width: 25%;
     align-items: center;
 }
 
 .image {
-    align-items: center;
+    /* align-items: center; */
+    box-sizing: border-box;
     width:40%;
-    float:left;
-    margin: 0px 56px 30px;
     border: 1px solid #666;
+    padding: 0 25px;
 }
 
 .image img {
-    margin-left: 25px;
     width:285px;
     height: 420px;
+    margin: 0 auto;
     vertical-align: middle;
 }
 
 .details {
     align-items: center;
-    width: 90%;
-    position: relative;
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.details h2 {
-    height: 60px;
-    margin-top: 0px;
-    padding-bottom: 10px;
+.details .title {
+    height: 10%;
+    padding: 0 12px;
+    margin-top: 0;
+    line-height: 1.2;
     font-size: 24px;
     font-weight: 700;
     color: #444;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+    text-align: center;
+
 }
 
-.details span {
+.details .author {
+    height: 5%;
+    display: block;
     margin: 5px 20px;
 }
 
-.details p {
-    height: 200px;
+.details .description {
+    height: 40%;
+    text-indent: 16px;
     margin-top: 30px;
     margin-bottom: 15px;
     font-size: 14px;
@@ -63,23 +80,39 @@
     text-align:justify;
     line-height: 1.66;
 }
+.rating {
+    height: 10%;
+    width: 150px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rating .rating-count {
+    height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
 
 .favourites {
+    height: 10%;
     text-align: center;
     cursor: pointer;
     background: #2B7A78;
-    margin-top: 35px;
-    margin-bottom: 15px;
-    margin-left: 36px;
     padding: 11px;
     color: #fff;
     font-weight: 600;
     border: 1px solid transparent;
     border-radius: 21px;
-    position: absolute;
+    margin-top: 15px;
+    /* position: absolute;
     top: 340px;
-    left: 490px;
+    left: 490px; */
 }
+
+
 
 table {
     border-collapse: separate;
@@ -118,9 +151,11 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 
 .bottom-bar {
     width: 1180px;
+    margin: 0 auto;
     background-color: white;
     display: flex;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: 32px;
 }
 
 .buttons button {
@@ -132,6 +167,10 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     border: 1px solid #ddd;
     width: 240px;
     height: 60px;
+}
+
+.buttons .active {
+    background-color: #c5c3c3;
 }
 
 .summary {

@@ -1,5 +1,6 @@
 import styles from './Details.module.css';
 
+
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -8,6 +9,7 @@ import * as bookService from '../../services/bookService';
 import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
+import Rating from '../Main/Catalog/BookItem/Rating';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
@@ -48,10 +50,15 @@ const Details = () => {
                         <img src={book.imageUrl} alt="book"></img>
                     </div>
                     <div className={styles['details']}>
-                        <h2>{book.title}</h2>
-                        <span>Автор: {book.author}</span>
+                        <h2 className={styles['title']}>{book.title}</h2>
+                        <span className={styles['author']}>Автор: {book.author}</span>
 
-                        <p>{book.description}.</p>
+                        <p className={styles['description']}>{book.description}.</p>
+
+                        <div className={styles['rating']}>
+                        <Rating />
+                        <p className={styles['rating-count']}>{book.rating} (0)</p>
+                        </div>
 
                         {(user.email && added < 1) ?
                             (<button onClick={onAddToFavourite} className={styles['favourites']}>
@@ -90,7 +97,7 @@ const Details = () => {
             </section>
             <section className={styles['bottom-bar']}>
                 <div className={styles['buttons']}>
-                    <button>Пълно описание</button>
+                    <button className={styles['active']}>Пълно описание</button>
                     <button>Мнения</button>
                     <button>Прелисти</button>
                 </div>

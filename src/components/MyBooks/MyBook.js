@@ -20,6 +20,7 @@ const MyBook = ({ myBook, onBookDelete }) => {
                         Изтрий
                     </button>
                     <Link to={`/edit/${myBook._id}`} className={styles['edit']}>
+                        <i className="fa-solid fa-pen"></i>
                         Редактирай
                     </Link>
                 </div>

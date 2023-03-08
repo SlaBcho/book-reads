@@ -61,9 +61,14 @@ function App() {
 		navigate('/my-books');
 	};
 
-	const editBookHandler = (gameId, gameData) => {
-		setBooks(state => state.map(x => x._id === gameId ? gameData : x));
+	const editBookHandler = (bookId, bookData) => {
+		setBooks(state => state.map(x => x._id === bookId ? bookData : x));
 	};
+
+	const detelteBookHandler = (bookId) => {
+        bookService.remove(bookId);
+        setBooks(state => state.filter( b => b._id !== bookId));
+    };
 
 	return (
 		<AuthProvider>
@@ -76,7 +81,8 @@ function App() {
 					addToFavouriteHandler,
 					removeFromFavouriteHandler,
 					addBookHandler,
-					editBookHandler
+					editBookHandler,
+					detelteBookHandler
 				}}>
 					<main>
 						<Routes>
