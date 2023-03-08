@@ -19,14 +19,14 @@ import Favourites from './components/Favourites/Favourites';
 import Footer from './components/Footer/Footer';
 import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
+import Edit from './components/Edit/Edit';
 
 function App() {
 	const [books, setBooks] = useState([]);
 	const [bookByCategory, setBooksByCategory] = useState([]);
 	const [favourite, setFavourite] = useState([]);
-	const [createBook, setCreateBook] = useState([]);
-    const navigate = useNavigate();
-	
+	const navigate = useNavigate();
+
 	const location = useLocation();
 	const category = location.pathname.slice(1);
 
@@ -53,29 +53,42 @@ function App() {
 	};
 
 	const addBookHandler = (bookData) => {
-        setCreateBook(state => [
-            ...state,
-            bookData
-        ]);
+		setBooks(state => [
+			...state,
+			bookData
+		]);
 
-        navigate('/my-books');
+		navigate('/my-books');
+	};
+
+	const editBookHandler = (gameId, gameData) => {
+        setBooks(state => state.map(x => x._id === gameId ? gameData : x));
     };
 
 	return (
 		<AuthProvider>
 			<div className="wrapper">
 				<Header />
-				<BookContext.Provider value={{ books, bookByCategory,  favourite, addToFavouriteHandler, removeFromFavouriteHandler, addBookHandler }}>
+				<BookContext.Provider value={{
+					books,
+					bookByCategory,
+					favourite,
+					addToFavouriteHandler,
+					removeFromFavouriteHandler,
+					addBookHandler,
+					editBookHandler
+				}}>
 					<main>
 						<Routes>
 							<Route path={'/'} element={<Main />} />
 							<Route path={'/login'} element={<Login />} />
 							<Route path={'/register'} element={<Register />} />
 							<Route path={'/logout'} element={<Logout />} />
-							
+
 							<Route path={'/details/:bookId'} element={<Details />} />
 							<Route path={'/create'} element={<CreateBook />} />
-
+							<Route path={'/edit/:bookId'} element={<Edit />} />
+							
 							<Route path={'/favourites'} element={<Favourites />} />
 							<Route path={'/my-books'} element={<MyBooks />} />
 

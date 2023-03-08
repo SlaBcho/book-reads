@@ -19,7 +19,7 @@ const MyBook = ({ favourite }) => {
                     <i className="fa-solid fa-trash-can"></i>
                     Изтрий
                 </button>
-                <Link to={'/edit/:bookId'} className={styles['edit']}>
+                <Link to={`/edit/${favourite._id}`} className={styles['edit']}>
                     Редактирай
                 </Link>
                 </div>

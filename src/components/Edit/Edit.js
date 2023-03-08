@@ -1,32 +1,38 @@
-import styles from './CreateBook.module.css';
-
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import styles from './Edit.module.css';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BookContext } from '../../context/BookContext';
+
 import * as bookService from '../../services/bookService';
 
-const CreateBook = () => {
+const Edit = () => {
+    const navigate = useNavigate();
+    const [currentBook, setCurrentBook] = useState({});
+    const [bookData, setBookData] = useState({});
+    const { editBookHandler } = useContext(BookContext);
+    const { bookId } = useParams();
 
-    const { addBookHandler } = useContext(BookContext);
+    useEffect(() => {
+        bookService.getById(bookId)
+            .then(result => {
+                setCurrentBook(result);
+                setBookData(result);
+            });
+    },[bookId]);
 
-     const [bookData, setBookData] = useState({
-        title:'',
-        author:'',
-        category:'',
-        imageUrl:'',
-        description:'',
-        summary:''
-    });
 
     const onChangeHandler = (e) => {
-        setBookData(state => ({...state, [e.target.name]:e.target.value}));
+        setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
+        // const bookData = Object.fromEntries(new FormData(e.target));
 
-        bookService.create(bookData)
+        bookService.edit(bookId, bookData)
             .then(result => {
-                addBookHandler(result);
+                editBookHandler(result);
+                navigate(`/details/${bookId}`);
             });
     };
 
@@ -41,9 +47,9 @@ const CreateBook = () => {
                         type="text"
                         name="title"
                         id="title"
-                        value={bookData.title} 
+                        value={bookData.title}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <label htmlFor="author">Автор</label>
@@ -52,9 +58,9 @@ const CreateBook = () => {
                         type="text"
                         name="author"
                         id="author"
-                        value={bookData.author} 
+                        value={bookData.author}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <label htmlFor="category">Категория</label>
@@ -63,9 +69,9 @@ const CreateBook = () => {
                         type="text"
                         name="category"
                         id="category"
-                        value={bookData.category} 
+                        value={bookData.category}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <label htmlFor="imageUrl">Снимка(линк)</label>
@@ -74,21 +80,21 @@ const CreateBook = () => {
                         type="text"
                         name="imageUrl"
                         id="imageUrl"
-                        value={bookData.imageUrl} 
+                        value={bookData.imageUrl}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <label htmlFor="description">На кратко за книгата</label>
                     <textarea
-                    rows={3}
+                        rows={3}
                         className={styles['form-area']}
                         type="text"
                         name="description"
                         id="description"
-                        value={bookData.description} 
+                        value={bookData.description}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <label htmlFor="summary">Резюме</label>
@@ -98,9 +104,9 @@ const CreateBook = () => {
                         type="text"
                         name="summary"
                         id="summary"
-                        value={bookData.summary} 
+                        value={bookData.summary}
                         onChange={onChangeHandler}
-                        />
+                    />
                 </div>
                 <div>
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
@@ -110,4 +116,4 @@ const CreateBook = () => {
     );
 };
 
-export default CreateBook;
+export default Edit;
