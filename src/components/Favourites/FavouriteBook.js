@@ -7,7 +7,7 @@ import { BookContext } from '../../context/BookContext';
 import * as bookService from '../../services/bookService';
 
 const FavouriteBook = ({ favourite }) => {
-    const {removeFromFavouriteHandler} = useContext(BookContext);
+    const { removeFromFavouriteHandler } = useContext(BookContext);
 
     const onRemoveFromFavourite = () => {
         bookService.removeFavourite(favourite.newId);

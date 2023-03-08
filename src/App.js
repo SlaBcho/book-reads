@@ -62,8 +62,8 @@ function App() {
 	};
 
 	const editBookHandler = (gameId, gameData) => {
-        setBooks(state => state.map(x => x._id === gameId ? gameData : x));
-    };
+		setBooks(state => state.map(x => x._id === gameId ? gameData : x));
+	};
 
 	return (
 		<AuthProvider>
@@ -88,7 +88,7 @@ function App() {
 							<Route path={'/details/:bookId'} element={<Details />} />
 							<Route path={'/create'} element={<CreateBook />} />
 							<Route path={'/edit/:bookId'} element={<Edit />} />
-							
+
 							<Route path={'/favourites'} element={<Favourites />} />
 							<Route path={'/my-books'} element={<MyBooks />} />
 

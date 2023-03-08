@@ -7,7 +7,6 @@ import * as bookService from '../../services/bookService';
 
 const Edit = () => {
     const navigate = useNavigate();
-    const [currentBook, setCurrentBook] = useState({});
     const [bookData, setBookData] = useState({});
     const { editBookHandler } = useContext(BookContext);
     const { bookId } = useParams();
@@ -15,11 +14,9 @@ const Edit = () => {
     useEffect(() => {
         bookService.getById(bookId)
             .then(result => {
-                setCurrentBook(result);
                 setBookData(result);
             });
     },[bookId]);
-
 
     const onChangeHandler = (e) => {
         setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
