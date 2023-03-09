@@ -59,9 +59,9 @@ const Favourites = () => {
                             <p>Добави в Любими и си направи списъци според твоите предпочитания.</p>
                             <p>Можеш да ги споделиш по всяко време с приятели.</p>
                         </div>
-                        {/* <Link className={styles['login']} to="/all-books">
+                        <Link className={styles['login']} to="/all-books">
                             Виж всички книги
-                        </Link> */}
+                        </Link>
                     </article>
                 ) : (
                     < article className={styles['favourite-container']}>

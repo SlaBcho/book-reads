@@ -52,7 +52,7 @@
 }
 
 .details .title {
-    height: 10%;
+    height: 15%;
     padding: 0 12px;
     margin-top: 0;
     line-height: 1.2;
@@ -71,7 +71,7 @@
 }
 
 .details .description {
-    height: 40%;
+    height: 60%;
     text-indent: 16px;
     margin-top: 30px;
     margin-bottom: 15px;

@@ -37,11 +37,19 @@ ul li a {
 }
 
 
-.nav-button:hover {
+ul li a:hover {
     border: 1px solid white;
     border-radius: 35px;
     padding: 4px 8px;
     cursor: pointer;
     outline: 0;
+}
+
+.nav-active {
+    border: 1px solid white;
+    border-radius: 35px;
+    padding: 4px 8px;
+    cursor: pointer;
+    outline: 0; 
 }
 

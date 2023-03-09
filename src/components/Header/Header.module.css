@@ -33,7 +33,7 @@ header {
 }
 
 .search {
-    width: 420px;
+    width: 450px;
     height: 35px;
     border: 1px solid #2B7A78;
     font-family: inherit;
@@ -44,7 +44,7 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     outline: 0;
-    background-position: 400px;
+    background-position: 430px;
     background-size: 32px;
     padding-left: 16px;
 }

@@ -1,19 +1,19 @@
 import styles from './Navigation.module.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return (
         <nav>
             <div className={styles['nav']}>
                 <ul>
-                    <li><Link className={styles['nav-button']} to="/all-books">Всички книги</Link></li>
-                    <li><Link className={styles['nav-button']} to="/best-seller">Бест Селъри</Link></li>
-                    <li><Link className={styles['nav-button']} to="/fantasy">Фентъзи</Link></li>
-                    <li><Link className={styles['nav-button']} to="/fiction">Художествена литература</Link></li>
-                    <li><Link className={styles['nav-button']} to="/history-and-politics">История и политика</Link></li>
-                    <li><Link className={styles['nav-button']} to="/psychology">Психология и философия</Link></li>
-                    <li><Link className={styles['nav-button']} to="/autobiography">Автобиографии</Link></li>
-                    <li><Link className={styles['nav-button']} to="/kids-book">Детски книги</Link></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']}  to="/all-books">Всички книги</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/best-seller">Бест Селъри</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/fantasy">Фентъзи</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/fiction">Художествена литература</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/history-and-politics">История и политика</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/psychology">Психология и философия</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/autobiography">Автобиографии</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive && styles['nav-active']} to="/kids-book">Детски книги</NavLink></li>
                 </ul>
             </div>
         </nav>

@@ -25,8 +25,8 @@ function App() {
 	const [books, setBooks] = useState([]);
 	const [bookByCategory, setBooksByCategory] = useState([]);
 	const [favourite, setFavourite] = useState([]);
-	const navigate = useNavigate();
 
+	const navigate = useNavigate();
 	const location = useLocation();
 	const category = location.pathname.slice(1);
 

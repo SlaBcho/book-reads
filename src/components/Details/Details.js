@@ -52,13 +52,7 @@ const Details = () => {
                     <div className={styles['details']}>
                         <h2 className={styles['title']}>{book.title}</h2>
                         <span className={styles['author']}>Автор: {book.author}</span>
-
                         <p className={styles['description']}>{book.description}.</p>
-
-                        <div className={styles['rating']}>
-                        <Rating />
-                        <p className={styles['rating-count']}>{book.rating} (0)</p>
-                        </div>
 
                         {(user.email && added < 1) ?
                             (<button onClick={onAddToFavourite} className={styles['favourites']}>
