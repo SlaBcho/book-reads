@@ -177,9 +177,88 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     background-color: white;
     width:600px;
     border: 1px solid #ddd;
+    padding: 32px;
+
 }
 
 .summary p {
     text-align:justify;
-    padding: 20px;
 }
+
+.comments-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap:24px;
+    width:100%
+}
+
+.comments-form .comments-title {
+    width:100%;
+    height:50px;
+    text-align: left;
+    margin-bottom: 24px;
+
+}
+
+.comments-form .comments-title p {
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+.comments-form .comments-title h2 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.comments-form .username,
+.comments-form .comment-text {
+    width: 100%;
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.comments-form .username input {
+    width: 100%;
+    height: 30px;
+}
+.comments-form .comment-text textarea {
+    width:100%;
+    margin-bottom: 16px;
+    resize: none;
+}
+
+.comments-form .add-btn {
+    border: none;
+    border-radius: 4px;
+    background-color: #2B7A78;
+    color: white;
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.all-comments {
+    margin-bottom: 24px;
+}
+
+.all-comments .comment {
+    height: 100px;
+}
+
+.all-comments .comment .comment-content {
+    margin-bottom: 24px;
+}
+
+.all-comments .comment .comment-author {
+    margin-bottom: 24px;
+}
+
+.buttons .nav-active {
+    color: black;
+}
+

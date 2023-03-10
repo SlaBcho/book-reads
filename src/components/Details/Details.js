@@ -9,7 +9,7 @@ import * as bookService from '../../services/bookService';
 import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
-import Rating from '../Main/Catalog/BookItem/Rating';
+import Comments from './Comments';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
@@ -40,6 +40,29 @@ const Details = () => {
                 setAdded(1);
                 addToFavouriteHandler({ ...book, userId: user._id, newId: result._id });
             });
+    };
+
+    const [summary, setSummary] = useState({ isActive: true });
+    const [comments, setComments] = useState({ isActive: false });
+    const [read, setRead] = useState({ isActive: false });
+
+
+    const onSummaryClick = () => {
+        setSummary({ isActive: true });
+        setComments({ isActive: false });
+        setRead({ isActive: false });
+    };
+
+    const onCommentsClick = () => {
+        setComments({ isActive: true });
+        setSummary({ isActive: false });
+        setRead({ isActive: false });
+    };
+
+    const onReadClick = () => {
+        setRead({ isActive: true });
+        setComments({ isActive: false });
+        setSummary({ isActive: false });
     };
 
     return (
@@ -89,16 +112,18 @@ const Details = () => {
                     </table>
                 </div>
             </section>
-            <section className={styles['bottom-bar']}>
-                <div className={styles['buttons']}>
-                    <button className={styles['active']}>Пълно описание</button>
-                    <button>Мнения</button>
-                    <button>Прелисти</button>
-                </div>
+            <article className={styles['bottom-bar']}>
+                <nav className={styles['buttons']}>
+                    <button onClick={onSummaryClick} style={{ backgroundColor: summary.isActive ? '#c5c3c3' : 'white' }}>Пълно описание</button>
+                    <button onClick={onCommentsClick} style={{ backgroundColor: comments.isActive ? '#c5c3c3' : 'white' }}>Мнения</button>
+                    <button onClick={onReadClick} style={{ backgroundColor: read.isActive ? '#c5c3c3' : 'white' }}>Прелисти</button>
+                </nav>
                 <div className={styles['summary']}>
-                    <p>{book.summary}</p>
+                    {summary.isActive && <p>{book.summary}</p>}
+                    {comments.isActive && <Comments book={book} />}
+                    {read.isActive && <h1>Книгата все още не е налична...</h1>}
                 </div>
-            </section>
+            </article>
         </>
     );
 };
