@@ -7,9 +7,7 @@ import { useContext, useState, useEffect } from 'react';
 import * as bookService from '../../services/bookService';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
-
-
-
+import BookContent from './BookContent';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
@@ -121,7 +119,7 @@ const Details = () => {
                 <div className={styles['summary']}>
                     {summaryView.isActive && <p>{book.summary}</p>}
                     {commentView.isActive && <Comments book={book} setSummaryView={setSummaryView} setCommentView={setCommentView} />}
-                    {readView.isActive && <h1>Книгата все още не е налична...</h1>}
+                    {readView.isActive && <BookContent book={book}/>}
                 </div>
             </section>
         </>

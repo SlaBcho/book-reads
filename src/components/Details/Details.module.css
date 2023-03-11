@@ -30,7 +30,7 @@
     box-sizing: border-box;
     width:40%;
     border: 1px solid #666;
-    padding: 0 25px;
+    padding: 0 20px;
 }
 
 .image img {
@@ -175,7 +175,7 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 
 .summary {
     background-color: white;
-    width:600px;
+    width:700px;
     border: 1px solid #ddd;
     padding: 32px;
 
@@ -273,4 +273,14 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     display: block;
     text-align: end;
     cursor: pointer;
+}
+
+.slide-content {
+    height: 700px;
+    width: 700px;
+    box-shadow: 15px 15px 20px -2px rgb(0 0 0 / 15%);
+}
+
+.slide-content div {
+    height: 700px;
 }

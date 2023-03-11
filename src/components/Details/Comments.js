@@ -52,10 +52,11 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
     return (
         <>
             <ul className={styles['all-comments']}>
-                {comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
+                {!user.email ? <p>Моля влезте в своя акаунт, за да добавите коментар за книгата!</p> : null}
+                {user.email && comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
                 {comments.map(c => (
                     <li key={c._id} className={styles['comment']}>
-                        <span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>X</span>
+                        <span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>x</span>
                         <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {c.username}</h4>
                         <p className={styles['comment-content']}><span>Коментар:</span> {c.comment}</p>
                        <hr />
