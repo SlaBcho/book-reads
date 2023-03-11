@@ -247,7 +247,8 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 }
 
 .all-comments .comment {
-    height: 100px;
+    height: 100%;
+    margin-bottom: 24px;
 }
 
 .all-comments .comment .comment-content {

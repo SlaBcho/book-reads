@@ -4,9 +4,8 @@ import styles from './Details.module.css';
 import * as bookService from '../../services/bookService';
 
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
-const Comments = ({ book }) => {
+const Comments = ({ book, setSummaryView, setCommentView }) => {
 
     const [comments, setComments] = useState([]);
     const [commentData, setCommentData] = useState({
@@ -16,8 +15,6 @@ const Comments = ({ book }) => {
 
     const { user } = useContext(AuthContext);
     const isShowForm = user.email && (user._id !== book._ownerId);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         bookService.getCommentById(book._id)
@@ -35,13 +32,15 @@ const Comments = ({ book }) => {
         const { username, comment } = commentData;
 
         if (comment === '' || username === '') {
-            return alert('Field cant be empty!');
-        } else {
+            return;
+        } 
             bookService.postComment(book._id, comment, username);
-        }
-
-        e.target.reset();
-        navigate('/details/' + book._id);
+            setCommentData({
+                username: '',
+                comment: ''
+            });
+            setSummaryView({isActive:true});
+            setCommentView({isActive:false});        
     };
 
     return (

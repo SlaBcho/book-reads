@@ -42,27 +42,27 @@ const Details = () => {
             });
     };
 
-    const [summary, setSummary] = useState({ isActive: true });
-    const [comments, setComments] = useState({ isActive: false });
-    const [read, setRead] = useState({ isActive: false });
+    const [summaryView, setSummaryView] = useState({ isActive: true });
+    const [commentView, setCommentView] = useState({ isActive: false });
+    const [readView, setReadView] = useState({ isActive: false });
 
 
     const onSummaryClick = () => {
-        setSummary({ isActive: true });
-        setComments({ isActive: false });
-        setRead({ isActive: false });
+        setSummaryView({ isActive: true });
+        setCommentView({ isActive: false });
+        setReadView({ isActive: false });
     };
 
     const onCommentsClick = () => {
-        setComments({ isActive: true });
-        setSummary({ isActive: false });
-        setRead({ isActive: false });
+        setCommentView({ isActive: true });
+        setSummaryView({ isActive: false });
+        setReadView({ isActive: false });
     };
 
     const onReadClick = () => {
-        setRead({ isActive: true });
-        setComments({ isActive: false });
-        setSummary({ isActive: false });
+        setReadView({ isActive: true });
+        setCommentView({ isActive: false });
+        setSummaryView({ isActive: false });
     };
 
     return (
@@ -112,18 +112,18 @@ const Details = () => {
                     </table>
                 </div>
             </section>
-            <article className={styles['bottom-bar']}>
+            <section className={styles['bottom-bar']}>
                 <nav className={styles['buttons']}>
-                    <button onClick={onSummaryClick} style={{ backgroundColor: summary.isActive ? '#c5c3c3' : 'white' }}>Пълно описание</button>
-                    <button onClick={onCommentsClick} style={{ backgroundColor: comments.isActive ? '#c5c3c3' : 'white' }}>Мнения</button>
-                    <button onClick={onReadClick} style={{ backgroundColor: read.isActive ? '#c5c3c3' : 'white' }}>Прелисти</button>
+                    <button onClick={onSummaryClick} style={{ backgroundColor: summaryView.isActive ? '#c5c3c3' : 'white' }}>Пълно описание</button>
+                    <button onClick={onCommentsClick} style={{ backgroundColor: commentView.isActive ? '#c5c3c3' : 'white' }}>Мнения</button>
+                    <button onClick={onReadClick} style={{ backgroundColor: readView.isActive ? '#c5c3c3' : 'white' }}>Прелисти</button>
                 </nav>
                 <div className={styles['summary']}>
-                    {summary.isActive && <p>{book.summary}</p>}
-                    {comments.isActive && <Comments book={book} />}
-                    {read.isActive && <h1>Книгата все още не е налична...</h1>}
+                    {summaryView.isActive && <p>{book.summary}</p>}
+                    {commentView.isActive && <Comments book={book} setSummaryView={setSummaryView} setCommentView={setCommentView}/>}
+                    {readView.isActive && <h1>Книгата все още не е налична...</h1>}
                 </div>
-            </article>
+            </section>
         </>
     );
 };
