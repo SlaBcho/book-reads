@@ -27,3 +27,5 @@ export const removeFavourite = (newId) => request.del(`${baseUrl}/favourites/${n
 export const postComment = (bookId, comment, username) => request.post(`${baseUrl}/comments`, {bookId, comment, username});
 
 export const getCommentById = (bookId) => request.get(`${baseUrl}/comments?where=bookId%3D%22${bookId}%22`);
+
+export const removeCommment = (commentId) => request.del(`${baseUrl}/comments/${commentId}`);

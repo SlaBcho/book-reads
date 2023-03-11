@@ -1,15 +1,15 @@
 import styles from './Details.module.css';
-
+import Comments from './Comments';
 
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import * as bookService from '../../services/bookService';
-
-import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
-import Comments from './Comments';
+
+
+
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
@@ -120,7 +120,7 @@ const Details = () => {
                 </nav>
                 <div className={styles['summary']}>
                     {summaryView.isActive && <p>{book.summary}</p>}
-                    {commentView.isActive && <Comments book={book} setSummaryView={setSummaryView} setCommentView={setCommentView}/>}
+                    {commentView.isActive && <Comments book={book} setSummaryView={setSummaryView} setCommentView={setCommentView} />}
                     {readView.isActive && <h1>Книгата все още не е налична...</h1>}
                 </div>
             </section>

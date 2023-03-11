@@ -1,11 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
 import styles from './Details.module.css';
 
-import * as bookService from '../../services/bookService';
+import { useState, useEffect, useContext } from 'react';
 
+import * as bookService from '../../services/bookService';
 import { AuthContext } from '../../context/AuthContext';
 
+
 const Comments = ({ book, setSummaryView, setCommentView }) => {
+    const { user } = useContext(AuthContext);
 
     const [comments, setComments] = useState([]);
     const [commentData, setCommentData] = useState({
@@ -13,7 +15,6 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
         comment: ''
     });
 
-    const { user } = useContext(AuthContext);
     const isShowForm = user.email && (user._id !== book._ownerId);
 
     useEffect(() => {
@@ -43,15 +44,21 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
             setCommentView({isActive:false});        
     };
 
+    const onDeleteComment = (id) => {
+        setComments(state => state.filter(c => c._id !== id));
+        bookService.removeCommment(id);
+    };
+
     return (
         <>
             <ul className={styles['all-comments']}>
                 {comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
                 {comments.map(c => (
                     <li key={c._id} className={styles['comment']}>
+                        <span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>X</span>
                         <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {c.username}</h4>
                         <p className={styles['comment-content']}><span>Коментар:</span> {c.comment}</p>
-                        <hr />
+                       <hr />
                     </li >
                 ))}
             </ul>

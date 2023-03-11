@@ -269,3 +269,8 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     color: black;
 }
 
+.comment .delete {
+    display: block;
+    text-align: end;
+    cursor: pointer;
+}
