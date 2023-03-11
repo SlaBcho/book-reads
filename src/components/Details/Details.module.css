@@ -258,6 +258,12 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     margin-bottom: 24px;
 }
 
+.comment .comment-author span,
+.comment .comment-content span {
+    font-weight: 600;
+    font-size: 16;
+}
+
 .buttons .nav-active {
     color: black;
 }

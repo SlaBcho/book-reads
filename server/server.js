@@ -1749,6 +1749,9 @@
         },
         favourites: {
         
+        },
+        comments: {
+            
         }
     };
     var rules$1 = {
