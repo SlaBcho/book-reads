@@ -2,15 +2,23 @@ import BookItem from '../BookItem/BookItem';
 
 import styles from './Books.module.css';
 
-import { useContext } from 'react';
-import { BookContext } from '../../../../context/BookContext';
+import { useEffect, useState } from 'react';
+
+import * as bookService from '../../../../services/bookService';
 
 
-const Books = () => {
-    const { books } = useContext(BookContext);
+const Books = ({ criteria }) => {
+    const [sortedBooks, setSortedBooks] = useState([]);
+
+    useEffect(() => {
+        bookService.getByCriteria(criteria)
+            .then(res => {
+                setSortedBooks(res);
+            });
+    });
     return (
         <section className={styles['catalog-items']}>
-            {books ? books.map(b => <BookItem key={b._id} book={b} />) : null}
+            {sortedBooks ? sortedBooks.slice(0,10).map(b => <BookItem key={b._id} book={b} />) : null}
         </section>
     );
 };

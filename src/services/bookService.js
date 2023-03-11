@@ -6,7 +6,7 @@ export const getMyBooks = (userId) => request.get(`${baseUrl}/books?where=_owner
 
 export const getAll = () => request.get(`${baseUrl}/books`);
 
-export const getNewest = () => request.get(`${baseUrl}/books?sortBy=_createdOn%20desc`);
+export const getByCriteria = (criteria) => request.get(`${baseUrl}/books?sortBy=${criteria}%20desc`);
 
 export const getByCategory = (bookCategory) => request.get(`${baseUrl}/books?where=category%3D%22${bookCategory}%22`);
 
