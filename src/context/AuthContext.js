@@ -9,7 +9,11 @@ export const AuthProvider = ({
     const [auth, setAuth] = useLocalStorage('auth', {});
 
     const userLogin = (authData) => {
-        setAuth(authData);
+        setAuth({
+            accessToken: authData.accessToken,
+            email: authData.email,
+            _id: authData._id
+        });
     };
 
     const userLogout = () => {

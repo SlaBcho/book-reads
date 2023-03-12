@@ -30,7 +30,7 @@ const Register = () => {
             return;
         }
 
-        authService.register(email, password)
+        authService.register(email, password, repeatPassword)
             .then(authData => {
                 userLogin(authData);
                 navigate('/');

@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import * as bookService from './services/bookService';
 
@@ -23,12 +22,9 @@ import Edit from './components/Edit/Edit';
 
 function App() {
 	const [books, setBooks] = useState([]);
-	const [bookByCategory, setBooksByCategory] = useState([]);
 	const [favourite, setFavourite] = useState([]);
 
 	const navigate = useNavigate();
-	const location = useLocation();
-	const category = location.pathname.slice(1);
 
 	useEffect(() => {
 		bookService.getAll()
@@ -36,13 +32,6 @@ function App() {
 				setBooks(result);
 			});
 	}, []);
-
-	useEffect(() => {
-		bookService.getByCategory(category)
-			.then(res => {
-				setBooksByCategory(res);
-			});
-	}, [category]);
 
 	const addToFavouriteHandler = (book) => {
 		setFavourite(state => [...state, book]);
@@ -76,7 +65,6 @@ function App() {
 				<Header />
 				<BookContext.Provider value={{
 					books,
-					bookByCategory,
 					favourite,
 					addToFavouriteHandler,
 					removeFromFavouriteHandler,
