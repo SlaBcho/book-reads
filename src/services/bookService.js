@@ -29,3 +29,5 @@ export const postComment = (bookId, comment, username) => request.post(`${baseUr
 export const getCommentById = (bookId) => request.get(`${baseUrl}/comments?where=bookId%3D%22${bookId}%22`);
 
 export const removeCommment = (commentId) => request.del(`${baseUrl}/comments/${commentId}`);
+
+export const searchBook = (query) => request.get(`${baseUrl}/books?where=title%20LIKE%20%22${query}%22`);

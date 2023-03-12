@@ -12,8 +12,8 @@ const Logout = () => {
     useEffect(() => {
         authService.logout(user.accessToken)
             .then(() => {
-                userLogout();
                 navigate('/');
+                userLogout();
             });
         // .catch(() => {
         //     navigate('/');

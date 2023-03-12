@@ -1,9 +1,5 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import * as bookService from './services/bookService';
-
-import { BookContext } from './context/BookContext';
 import { AuthProvider } from './context/AuthContext';
 
 import Header from './components/Header/Header';
@@ -19,66 +15,23 @@ import Footer from './components/Footer/Footer';
 import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
+import { BookProvider } from './context/BookContext';
+import SearchBook from './components/SearchBook/SearchBook';
 
 function App() {
-	const [books, setBooks] = useState([]);
-	const [favourite, setFavourite] = useState([]);
-
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		bookService.getAll()
-			.then(result => {
-				setBooks(result);
-			});
-	}, []);
-
-	const addToFavouriteHandler = (book) => {
-		setFavourite(state => [...state, book]);
-	};
-
-	const removeFromFavouriteHandler = (id) => {
-		setFavourite(state => state.filter(b => b._id !== id));
-	};
-
-	const addBookHandler = (bookData) => {
-		setBooks(state => [
-			...state,
-			bookData
-		]);
-
-		navigate('/my-books');
-	};
-
-	const editBookHandler = (bookId, bookData) => {
-		setBooks(state => state.map(x => x._id === bookId ? bookData : x));
-	};
-
-	const detelteBookHandler = (bookId) => {
-        bookService.remove(bookId);
-        setBooks(state => state.filter( b => b._id !== bookId));
-    };
 
 	return (
 		<AuthProvider>
-			<div className="wrapper">
-				<Header />
-				<BookContext.Provider value={{
-					books,
-					favourite,
-					addToFavouriteHandler,
-					removeFromFavouriteHandler,
-					addBookHandler,
-					editBookHandler,
-					detelteBookHandler
-				}}>
+			<BookProvider>
+				<div className="wrapper">
+					<Header />
 					<main>
 						<Routes>
 							<Route path={'/'} element={<Main />} />
 							<Route path={'/login'} element={<Login />} />
 							<Route path={'/register'} element={<Register />} />
 							<Route path={'/logout'} element={<Logout />} />
-
+							<Route path={'/search'} element={<SearchBook />} />
 							<Route path={'/details/:bookId'} element={<Details />} />
 							<Route path={'/create'} element={<CreateBook />} />
 							<Route path={'/edit/:bookId'} element={<Edit />} />
@@ -96,9 +49,9 @@ function App() {
 							<Route path={'/kids-book'} element={<CategoryBooks />} />
 						</Routes>
 					</main>
-				</BookContext.Provider>
-				<Footer />
-			</div >
+					<Footer />
+				</div >
+			</BookProvider>
 		</AuthProvider>
 	);
 }

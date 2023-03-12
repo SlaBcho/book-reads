@@ -5,10 +5,16 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 import Navigation from './Navigation/Navigation';
+import { BookContext } from '../../context/BookContext';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
+    const { onSearchBook } = useContext(BookContext);
 
+    const onSearch = (e) => {
+        onSearchBook(e);
+    };
+    
     return (
         <header>
             <section className={styles['header']}>
@@ -17,9 +23,12 @@ const Header = () => {
                         <img src="/img/book-reads-logo.png" alt="logo" />
                     </Link>
                 </div>
-                <div className={styles['searcher']}>
-                    <input className={styles['search']} type="text" placeholder="Какво търсиш днес?" />
-                </div>
+
+                <form onSubmit={onSearch} className={styles['searcher']}>
+                    <input className={styles['search']} name="search" type="text" placeholder="Какво търсиш днес?" />
+                    <button className={styles['search-logo']} type="submit"><i className="fa fa-search fa-2x"></i></button>
+                </form>
+
                 <div className={styles['tools']}>
                     <ul className={styles['links']}>
                         <li>
@@ -52,7 +61,7 @@ const Header = () => {
                 </div>
             </section>
             <Navigation />
-        </header>
+        </header >
     );
 };
 

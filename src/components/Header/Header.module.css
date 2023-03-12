@@ -30,12 +30,27 @@ header {
 
 .searcher {
     width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #2B7A78;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.searcher .search-logo {
+    background-color: white;
+    border: none;
+    color: #2B7A78;
+    cursor: pointer;
 }
 
 .search {
     width: 450px;
     height: 35px;
-    border: 1px solid #2B7A78;
+    /* border: 1px solid #2B7A78; */
+    border:none;
     font-family: inherit;
     font-size: inherit;
     font: inherit;

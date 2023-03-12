@@ -1,0 +1,17 @@
+.all-books {
+    display: flex;
+    width: 88%;
+    min-height: 427px;
+    margin:0 auto;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 32px 0;
+}
+
+.all-books article{
+    width: 18%;
+}
