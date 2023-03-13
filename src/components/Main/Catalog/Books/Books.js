@@ -4,15 +4,20 @@ import styles from './Books.module.css';
 
 import { useContext } from 'react';
 import { BookContext } from '../../../../context/BookContext';
+import Spinner from '../../../Spinner/Spinner';
 
 
 const Books = () => {
-    const { books } = useContext(BookContext);
-    
+    const { books, isLoading } = useContext(BookContext);
+
     return (
-        <section className={styles['catalog-items']}>
-            {books ? books.map(b => <BookItem key={b._id} book={b} />) : null}
-        </section>
+        <>
+            {isLoading ? <Spinner /> :
+                <section className={styles['catalog-items']}>
+                    {books?.map(b => <BookItem key={b._id} book={b} />) || []}
+                </section>
+            }
+        </>
     );
 };
 

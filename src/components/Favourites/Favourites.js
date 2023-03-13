@@ -68,7 +68,7 @@ const Favourites = () => {
                         <h2>Любими {favouriteBook.length} книги</h2>
                         <hr />
                         <ul >
-                            {favouriteBook.map(b => <FavouriteBook key={b._id} favourite={b} />)}
+                            {favouriteBook?.map(b => <FavouriteBook key={b._id} favourite={b} />) || []}
                         </ul>
                         <Link className={styles['login']} to="/all-books">
                             Добавете още книги

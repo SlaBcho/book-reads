@@ -7,17 +7,21 @@ import { AuthContext } from '../../context/AuthContext';
 
 import * as bookService from '../../services/bookService';
 import { BookContext } from '../../context/BookContext';
+import Spinner from '../Spinner/Spinner';
 
 const MyBooks = () => {
     const [myBooks, setMyBooks] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const {detelteBookHandler} = useContext(BookContext);
+    const { detelteBookHandler } = useContext(BookContext);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
+        setIsLoading(true);
         bookService.getMyBooks(user._id)
             .then(res => {
                 setMyBooks(res);
+                setIsLoading(false);
             });
     }, [user]);
 
@@ -27,7 +31,9 @@ const MyBooks = () => {
     };
 
     return (
+
         <>
+        {isLoading ? <Spinner /> : 
             <section className={styles['container']}>
                 {user.email ? (
                     <article className={styles['user-container']}>
@@ -74,24 +80,26 @@ const MyBooks = () => {
                             <p>Добави любима книга в секция Моите Книги и си направи списъци според твоите предпочитания.</p>
                             <p>Можеш да ги споделиш по всяко време с приятели.</p>
                         </div>
-                        {/* <Link className={styles['create']} to="/create">
+                        <Link className={styles['create']} to="/create">
                             Добавете книга
-                        </Link> */}
+                        </Link>
                     </article>
                 ) : (
+
                     < article className={styles['favourite-container']}>
                         <h2>Мои {myBooks.length} книги</h2>
                         <hr />
+
                         <ul >
-                            {myBooks.map(b => <MyBook key={b._id} myBook={b} onBookDelete={onBookDelete}/>)}
+                            {myBooks?.map(b => <MyBook key={b._id} myBook={b} onBookDelete={onBookDelete} />) || []}
                         </ul>
                         <Link className={styles['create']} to="/create">
                             Добавете още книги
                         </Link>
                     </article>
                 )}
-
             </section>
+            }
         </>
     );
 };

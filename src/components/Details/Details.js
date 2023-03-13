@@ -8,10 +8,13 @@ import * as bookService from '../../services/bookService';
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
 import BookContent from './BookContent';
+import Spinner from '../Spinner/Spinner';
 
 const Details = () => {
     const { addToFavouriteHandler } = useContext(BookContext);
     const { user } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const [book, setBook] = useState({});
     const [added, setAdded] = useState(0);
@@ -19,6 +22,7 @@ const Details = () => {
     const { bookId } = useParams();
 
     useEffect(() => {
+        setIsLoading(true);
         bookService.getById(bookId)
             .then(res => {
                 setBook(res);
@@ -29,6 +33,7 @@ const Details = () => {
         bookService.getMyFavouritesByBookId(bookId, user._id)
             .then(res => {
                 setAdded(res);
+                setIsLoading(false);
             });
     }, [bookId, user._id]);
 
@@ -65,6 +70,7 @@ const Details = () => {
 
     return (
         <>
+        {isLoading ? <Spinner /> : <>
             <section className={styles['details-section']}>
                 <div className={styles['left-sidebar']}>
                     <div className={styles['image']}>
@@ -122,6 +128,7 @@ const Details = () => {
                     {readView.isActive && <BookContent book={book}/>}
                 </div>
             </section>
+            </> }
         </>
     );
 };

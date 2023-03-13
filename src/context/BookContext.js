@@ -11,13 +11,16 @@ export const BookProvider = ({
 
     const [books, setBooks] = useState([]);
     const [favourite, setFavourite] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
-
+    
     useEffect(() => {
+        setIsLoading(true);
         bookService.getAll()
             .then(result => {
                 setBooks(result);
+                setIsLoading(false);
             });
     }, []);
 
@@ -53,11 +56,13 @@ export const BookProvider = ({
         e.preventDefault();
         const data = new FormData(e.target);
         const bookName = data.get('search');
+        setIsLoading(true);
         bookService.searchBook(bookName)
             .then(res => {
+                setIsLoading(false);
                 setSearchedBook(res);
             });
-        navigate('/search');
+            navigate('/search');
     };
 
     return (
@@ -65,6 +70,7 @@ export const BookProvider = ({
             books,
             favourite,
             searchedBook,
+            isLoading,
             addToFavouriteHandler,
             removeFromFavouriteHandler,
             addBookHandler,

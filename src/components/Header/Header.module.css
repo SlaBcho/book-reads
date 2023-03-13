@@ -44,6 +44,7 @@ header {
     border: none;
     color: #2B7A78;
     cursor: pointer;
+    
 }
 
 .search {
@@ -54,13 +55,7 @@ header {
     font-family: inherit;
     font-size: inherit;
     font: inherit;
-    border-radius: 20px;
-    background-image: url(https://icones.pro/wp-content/uploads/2021/02/loupe-et-icone-de-recherche-de-couleur-bleue.png);
-    background-size: contain;
-    background-repeat: no-repeat;
     outline: 0;
-    background-position: 430px;
-    background-size: 32px;
     padding-left: 16px;
 }
 
