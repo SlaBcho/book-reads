@@ -17,14 +17,13 @@ const Logout = () => {
         setIsLoading(true);
         authService.logout(user.accessToken)
             .then(() => {
-                navigate('/');
                 userLogout();
+                navigate('/');
                 setIsLoading(false);
+            })
+            .catch(() => {
             });
-        // .catch(() => {
-        //     navigate('/');
-        // });
-    },[]);
+    }, [navigate, user.accessToken, userLogout]);
 
     return (<>
         {isLoading ? (<Spinner />) : null}

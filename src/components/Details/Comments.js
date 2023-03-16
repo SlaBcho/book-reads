@@ -4,9 +4,10 @@ import { useState, useEffect, useContext } from 'react';
 
 import * as bookService from '../../services/bookService';
 import { AuthContext } from '../../context/AuthContext';
+import Rating from '../BookItem/Rating';
 
 
-const Comments = ({ book, setSummaryView, setCommentView }) => {
+const Comments = ({ book }) => {
     const { user } = useContext(AuthContext);
 
     const [comments, setComments] = useState([]);
@@ -28,25 +29,25 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
         setCommentData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
-    const onAddComment = (e) => {
+    const onAddComment = async (e) => {
         e.preventDefault();
         const { username, comment } = commentData;
 
         if (comment === '' || username === '') {
             return;
-        } 
-            bookService.postComment(book._id, comment, username);
-            setCommentData({
-                username: '',
-                comment: ''
-            });
-            setSummaryView({isActive:true});
-            setCommentView({isActive:false});        
+        }
+        const result = await bookService.postComment(book._id, comment, username);
+        setComments(state => [...state, result]);
+
+        setCommentData({
+            username: '',
+            comment: ''
+        });
     };
 
-    const onDeleteComment = (id) => {
+    const onDeleteComment = async (id) => {
         setComments(state => state.filter(c => c._id !== id));
-        bookService.removeCommment(id);
+        await bookService.removeCommment(id);
     };
 
     return (
@@ -56,10 +57,10 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
                 {user.email && comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
                 {comments.map(c => (
                     <li key={c._id} className={styles['comment']}>
-                    {user._id === c._ownerId ? (<span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>x</span>) :null}
+                        {user._id === c._ownerId ? (<span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>x</span>) : null}
                         <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {c.username}</h4>
                         <p className={styles['comment-content']}><span>Коментар:</span> {c.comment}</p>
-                       <hr />
+                        <hr />
                     </li >
                 ))}
             </ul>
@@ -70,6 +71,7 @@ const Comments = ({ book, setSummaryView, setCommentView }) => {
                         <p>Вие оценявате:</p>
                         <h2>{book.title}</h2>
                     </div>
+                    <Rating hasRated={true}/>
 
                     <div className={styles['username']}>
                         <label htmlFor="username">Псевдоним</label>

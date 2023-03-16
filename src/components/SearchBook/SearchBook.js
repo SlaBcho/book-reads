@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { BookContext } from '../../context/BookContext';
-import BookItem from '../Main/Catalog/BookItem/BookItem';
+import BookItem from '../BookItem/BookItem';
 import Spinner from '../Spinner/Spinner';
 import styles from './SearchBook.module.css';
 

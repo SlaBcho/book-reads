@@ -15,7 +15,9 @@ const Register = () => {
         password: '',
         repeatPassword: '',
     });
-    
+
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const onChangeHandler = (e) => {
         setUserData(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -25,8 +27,12 @@ const Register = () => {
         e.preventDefault();
 
         const { email, password, repeatPassword } = userData;
-
         if (password !== repeatPassword) {
+            setError(true);
+            setErrorMsg('Passwords don`t match!');
+            setTimeout(() => {
+                setError(false);
+              }, 3000);
             return;
         }
 
@@ -34,6 +40,14 @@ const Register = () => {
             .then(authData => {
                 userLogin(authData);
                 navigate('/');
+            })
+            .catch((err) => {
+                setError(true);
+                setErrorMsg(err.message);
+                setTimeout(() => {
+                    setError(false);
+                  }, 2000);
+                return;
             });
     };
 
@@ -76,6 +90,8 @@ const Register = () => {
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
+                        {error && <p className={styles['error-msg']}>{errorMsg}</p>}
+
                         <input className={styles.register}
                             type="submit"
                             name="user-login"

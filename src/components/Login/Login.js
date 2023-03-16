@@ -16,6 +16,8 @@ const Login = () => {
         email:'',
         password:''
     });
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const onChangeHandler = (e) => {
         setUserData(state => ({...state, [e.target.name]:e.target.value}));
@@ -30,8 +32,13 @@ const Login = () => {
                 userLogin(authData);
                 navigate('/');
             })
-            .catch(() => {
-                navigate('/404');
+            .catch((err) => {
+                setError(true);
+                setErrorMsg(err.message);
+                setTimeout(() => {
+                    setError(false);
+                  }, 2000);
+                return;
             });
     };
 
@@ -63,14 +70,15 @@ const Login = () => {
                                             onChange={onChangeHandler}>
                                             </input>
                                     </div>
+                                    {error && <p className={styles['error-msg']}>{errorMsg}</p>}
 
                                     <input className={styles.continue}
                                         type="submit"
                                         name="user-login"
                                         value="Продължи" />
                                 </form>
-                                <div className={styles.text}>
                                     <p> Нямате акаунт? Не се тревожете!</p>
+                                <div className={styles.text}>
                                     <Link to="/register">
                                         <input className={styles.register}
                                             type="submit"

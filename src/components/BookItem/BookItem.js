@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './BookItem.module.css';
 
 import Rating from './Rating';
 
 const BookItem = ({ book }) => {
+    const [rating, setRating] = useState(book.rating);
+
     return (
         <article className={styles['book-list']}>
             <Link to={`/details/${book._id}`}>
@@ -17,8 +20,8 @@ const BookItem = ({ book }) => {
                 </div>
             </Link>
             <div className={styles['rating']}>
-                <Rating />
-                <p className={styles['rating-count']}>{book.rating} (0)</p>
+                <Rating setRating={setRating} rating={rating} hasRated={false}/>
+                <p className={styles['rating-count']}>{book.rating} (1)</p>
             </div>
         </article>
     );

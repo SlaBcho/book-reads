@@ -41,12 +41,12 @@ export const BookProvider = ({
         navigate('/my-books');
     };
 
-    const editBookHandler = (bookId, bookData) => {
-        setBooks(state => state.map(x => x._id === bookId ? bookData : x));
+    const editBookHandler =  (bookId, bookData) => {
+     setBooks(state => state.map(x => x._id === bookId ? bookData : x));
     };
 
-    const detelteBookHandler = (bookId) => {
-        bookService.remove(bookId);
+    const detelteBookHandler = async (bookId) => {
+         await bookService.remove(bookId);
         setBooks(state => state.filter(b => b._id !== bookId));
     };
 
@@ -57,12 +57,14 @@ export const BookProvider = ({
         const data = new FormData(e.target);
         const bookName = data.get('search');
         setIsLoading(true);
+
         bookService.searchBook(bookName)
             .then(res => {
                 setIsLoading(false);
                 setSearchedBook(res);
             });
             navigate('/search');
+        e.target.reset();
     };
 
     return (

@@ -1,7 +1,7 @@
 import Catalog from './Catalog/Catalog';
 import  Slideshow  from './SlideShow/SlideShow';
 
-const Main = ({book}) => {
+const Home = () => {
     return (
         <main>
             <Slideshow />
@@ -11,4 +11,4 @@ const Main = ({book}) => {
     );
 };
 
-export default Main;
+export default Home;

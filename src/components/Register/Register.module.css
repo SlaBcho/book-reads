@@ -118,3 +118,9 @@ form>div>label {
     border-radius: 21px;
 }
 
+
+.error-msg {
+    color: red;
+    margin-top: 0px;
+    margin-bottom: 8px;
+}

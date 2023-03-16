@@ -1,36 +1,41 @@
 export const request = async (method, url, data) => {
+    
+    const options = {
+        method,
+        headers: {}
+    };
+
+    const userData = localStorage.getItem('auth');
+    const auth = JSON.parse(userData || '{}');
+
+    if (auth.accessToken) {
+        options.headers['X-Authorization'] = auth.accessToken;
+    }
+
+    if (data !== undefined) {
+        options.headers['Content-Type'] = 'application.json';
+        options.body = JSON.stringify(data);
+    }
     try {
-        const userData = localStorage.getItem('auth');
-        const auth = JSON.parse(userData || '{}');
+        const response = await fetch(url, options);
 
-        let headers = {};
-
-        if (auth.accessToken) {
-            headers['X-Authorization'] = auth.accessToken;
+        if (response.status === 204) {
+            return response;
         }
 
-        let buildRequest;
+        const data = await response.json();
 
-        if (method === 'GET') {
-            buildRequest = fetch(url, { headers });
-        } else {
-            buildRequest = fetch(url, {
-                method,
-                headers: {
-                    ...headers,
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
+        if(response.ok === false) {
+            if (response.status === 403) {
+                localStorage.removeItem('auth');
+            }
+            throw new Error(data.message);
         }
 
-        const response = await buildRequest;
+        return data;
 
-        const result = await response.json();
-
-        return result;
-    } catch (error) {
-
+    } catch (err) {
+        throw err;
     }
 };
 

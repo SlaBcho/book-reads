@@ -18,7 +18,7 @@ export const edit = (bookId, bookData) => request.put(`${baseUrl}/books/${bookId
 
 export const remove = (bookId) => request.del(`${baseUrl}/books/${bookId}`);
 
-export const favouriteBook = (bookId) => request.post(`${baseUrl}/favourites`, { bookId });
+export const addFavouriteBook = (bookId) => request.post(`${baseUrl}/favourites`, { bookId });
 
 export const getMyFavouritesByBookId = (bookId, userId) => request.get(`${baseUrl}/favourites?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${userId}%22&count`);
 
@@ -31,3 +31,5 @@ export const getCommentById = (bookId) => request.get(`${baseUrl}/comments?where
 export const removeCommment = (commentId) => request.del(`${baseUrl}/comments/${commentId}`);
 
 export const searchBook = (query) => request.get(`${baseUrl}/books?where=title%20LIKE%20%22${query}%22`);
+
+export const pagination = () => request.get(`${baseUrl}/books?offset=10&pageSize=5`);

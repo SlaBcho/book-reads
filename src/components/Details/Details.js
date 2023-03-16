@@ -38,7 +38,7 @@ const Details = () => {
     }, [bookId, user._id]);
 
     const onAddToFavourite = () => {
-        bookService.favouriteBook(bookId)
+        bookService.addFavouriteBook(bookId)
             .then(result => {
                 setAdded(1);
                 addToFavouriteHandler({ ...book, userId: user._id, newId: result._id });
@@ -124,7 +124,7 @@ const Details = () => {
                 </nav>
                 <div className={styles['summary']}>
                     {summaryView.isActive && <p>{book.summary}</p>}
-                    {commentView.isActive && <Comments book={book} setSummaryView={setSummaryView} setCommentView={setCommentView} />}
+                    {commentView.isActive && <Comments book={book} />}
                     {readView.isActive && <BookContent book={book}/>}
                 </div>
             </section>
