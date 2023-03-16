@@ -1,18 +1,24 @@
 import styles from './Favourites.module.css';
 import { Link } from 'react-router-dom';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { BookContext } from '../../context/BookContext';
 
 import * as bookService from '../../services/bookService';
 
+import ChoiceModal from '../Modal/ChoiceModal';
+
 const FavouriteBook = ({ favourite }) => {
-    const {removeFromFavouriteHandler} = useContext(BookContext);
+    const { removeFromFavouriteHandler } = useContext(BookContext);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const onRemoveFromFavourite = () => {
         bookService.removeFavourite(favourite.newId);
-
         removeFromFavouriteHandler(favourite._id);
+
     };
 
     return (
@@ -25,11 +31,12 @@ const FavouriteBook = ({ favourite }) => {
             <div className={styles['content']}>
                 <h3>{favourite.title}</h3>
                 <h4>{favourite.author}</h4>
-                <button onClick={onRemoveFromFavourite} className={styles['logout']}>
+                <button onClick={handleShow} className={styles['logout']}>
                     <i className="fa-solid fa-trash-can"></i>
                     Изтрий от любими
                 </button>
             </div>
+            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onRemoveFromFavourite}/>
         </li>
     );
 };

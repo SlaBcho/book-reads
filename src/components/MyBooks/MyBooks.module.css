@@ -1,23 +1,26 @@
 .container {
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 20px 0;
+
 }
 
 .container .user-container {
+    padding: 16px;
     margin-left: 90px;
     margin-right: 20px;
     width: 240px;
     height: 100%;
-    padding-right: 16px;
-    padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 15px 15px 15px #ccc;
 }
 
-.container  h3 {
+.container h3 {
     padding-left: 10px;
     text-align: center;
     font-size: 21px;
@@ -25,7 +28,7 @@
     line-height: 1.428571429;
 }
 
-.container  h2 {
+.container h2 {
     padding-left: 10px;
     text-align: left;
     font-size: 21px;
@@ -37,7 +40,6 @@
 
 .user-container p {
     font-size: 14px;
-    margin-left: 10px;
     margin-top: 15px;
     text-align: center;
     line-height: 1.2;
@@ -52,26 +54,24 @@
     border-radius: 5px;
     box-shadow: 15px 15px 15px #ccc;
 }
+
 .favourite-container ul {
     max-height: 400px;
     padding: 0 16px;
     overflow: auto;
 }
 
-.container .user-container .img i{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 50px;
+.container .user-container .img {
+    padding: 16px;
 }
 
-.container .user-container .login{
+.container .user-container .login {
     cursor: pointer;
     background: #0082e6;
     width: 180px;
-    margin-top: 30px;
-    margin-bottom: 10px;
     display: block;
-    margin-left: 15px;
+    margin: 16px auto;
+    display: block;
     padding: 11px;
     color: #fff;
     position: relative;
@@ -85,10 +85,8 @@
     cursor: pointer;
     background: #42b72a;
     width: 180px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    margin-left: 15px;
-
+    display: block;
+    margin: 0 auto;
     display: block;
     padding: 11px;
     color: #fff;
@@ -98,13 +96,13 @@
     border-radius: 21px;
 }
 
-p{
+p {
     font-size: 14px;
     text-align: center;
     margin-top: 10px;
 }
 
-.favourite-container  .image {
+.favourite-container .image {
     margin: auto;
     margin-top: 35px;
     margin-bottom: 40px;
@@ -127,18 +125,20 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap:4px;
+    gap: 4px;
     margin-top: 15px;
 }
+
+
 
 .container .user-container .logout {
     text-align: center;
     cursor: pointer;
     background: #db0000;
+    display: block;
     width: 180px;
     margin-top: 15px;
     margin-bottom: 10px;
-    margin-left: 15px;
 
     display: block;
     padding: 11px;
@@ -153,13 +153,13 @@ a {
     text-align: center;
     cursor: pointer;
     background: #db0000;
-    width: 90px;
+    width: 100px;
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 15px;
 
     display: block;
-    padding: 11px;
+    padding: 12px;
     color: #fff;
     position: relative;
     font-weight: 600;
@@ -171,7 +171,7 @@ a {
     text-align: center;
     cursor: pointer;
     background: #2d8a85;
-    width: 100px;
+    width: 140px;
     margin-top: 15px;
     margin-bottom: 10px;
     margin-left: 15px;
@@ -188,8 +188,8 @@ a {
 .favourite-container .create {
     cursor: pointer;
     background: #0082e6;
-    width: 180px;
-    margin:16px auto;
+    width: 200px;
+    margin: 16px auto;
     display: block;
     padding: 11px;
     color: #fff;

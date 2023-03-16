@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import * as bookService from '../../services/bookService';
 import { AuthContext } from '../../context/AuthContext';
 import Rating from '../BookItem/Rating';
+import ChoiceModal from '../Modal/ChoiceModal';
 
 
 const Comments = ({ book }) => {
@@ -15,6 +16,7 @@ const Comments = ({ book }) => {
         username: '',
         comment: ''
     });
+    const [show, setShow] = useState(false);
 
     const isShowForm = user.email && (user._id !== book._ownerId);
 
@@ -50,6 +52,10 @@ const Comments = ({ book }) => {
         await bookService.removeCommment(id);
     };
 
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <>
             <ul className={styles['all-comments']}>
@@ -57,10 +63,11 @@ const Comments = ({ book }) => {
                 {user.email && comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
                 {comments.map(c => (
                     <li key={c._id} className={styles['comment']}>
-                        {user._id === c._ownerId ? (<span onClick={() => onDeleteComment(c._id)} className={styles['delete']}>x</span>) : null}
+                        {user._id === c._ownerId ? (<span onClick={handleShow} className={styles['delete']}>x</span>) : null}
                         <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {c.username}</h4>
                         <p className={styles['comment-content']}><span>Коментар:</span> {c.comment}</p>
                         <hr />
+                        <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={() => onDeleteComment(c._id)} />
                     </li >
                 ))}
             </ul>

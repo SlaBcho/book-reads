@@ -44,7 +44,7 @@ const MyBooks = () => {
                             <h3>Здравей</h3>
                             <p>{user.email}</p>
                         </div>
-                        <div>
+                        <div className={styles['logoutBtn']}>
                             <Link className={styles['logout']} to="/logout">
                                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
                                 Изход

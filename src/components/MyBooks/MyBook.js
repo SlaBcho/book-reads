@@ -1,8 +1,15 @@
 import styles from './MyBooks.module.css';
 
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import ChoiceModal from '../Modal/ChoiceModal';
 
 const MyBook = ({ myBook, onBookDelete }) => {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <li className={styles['favourite-book']}>
@@ -15,7 +22,7 @@ const MyBook = ({ myBook, onBookDelete }) => {
                 <h3>{myBook.title}</h3>
                 <h4>{myBook.author}</h4>
                 <div className={styles['buttons']}>
-                    <button onClick={() => onBookDelete(myBook._id)} className={styles['delete']}>
+                    <button onClick={handleShow} className={styles['delete']}>
                         <i className="fa-solid fa-trash-can"></i>
                         Изтрий
                     </button>
@@ -25,6 +32,7 @@ const MyBook = ({ myBook, onBookDelete }) => {
                     </Link>
                 </div>
             </div>
+            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={() => onBookDelete(myBook._id)} />
         </li>
     );
 };
