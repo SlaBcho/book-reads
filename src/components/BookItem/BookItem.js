@@ -20,7 +20,7 @@ const BookItem = ({ book }) => {
                 </div>
             </Link>
             <div className={styles['rating']}>
-                <Rating setRating={setRating} rating={rating} hasRated={false}/>
+                <Rating setRating={setRating} rating={rating} canRate={false}/>
                 <p className={styles['rating-count']}>{book.rating} (1)</p>
             </div>
         </article>

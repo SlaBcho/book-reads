@@ -45,90 +45,100 @@ const Details = () => {
             });
     };
 
-    const [summaryView, setSummaryView] = useState({ isActive: true });
-    const [commentView, setCommentView] = useState({ isActive: false });
-    const [readView, setReadView] = useState({ isActive: false });
+    const [activeBtn, setActiveBtn] = useState({
+        summary: true,
+        comments: false,
+        read: false
+    });
+    // const [commentView, setCommentView] = useState({ isActive: false });
+    // const [readView, setReadView] = useState({ isActive: false });
 
 
     const onSummaryClick = () => {
-        setSummaryView({ isActive: true });
-        setCommentView({ isActive: false });
-        setReadView({ isActive: false });
+        setActiveBtn({
+            summary: true,
+            comments: false,
+            read: false
+        });
     };
 
     const onCommentsClick = () => {
-        setCommentView({ isActive: true });
-        setSummaryView({ isActive: false });
-        setReadView({ isActive: false });
+        setActiveBtn({
+            summary: false,
+            comments: true,
+            read: false
+        });
     };
 
     const onReadClick = () => {
-        setReadView({ isActive: true });
-        setCommentView({ isActive: false });
-        setSummaryView({ isActive: false });
+        setActiveBtn({
+            summary: false,
+            comments: false,
+            read: true
+        });
     };
 
     return (
         <>
-        {isLoading ? <Spinner /> : <>
-            <section className={styles['details-section']}>
-                <div className={styles['left-sidebar']}>
-                    <div className={styles['image']}>
-                        <img src={book.imageUrl} alt="book"></img>
-                    </div>
-                    <div className={styles['details']}>
-                        <h2 className={styles['title']}>{book.title}</h2>
-                        <span className={styles['author']}>Автор: {book.author}</span>
-                        <p className={styles['description']}>{book.description}.</p>
+            {isLoading ? <Spinner /> : <>
+                <section className={styles['details-section']}>
+                    <div className={styles['left-sidebar']}>
+                        <div className={styles['image']}>
+                            <img src={book.imageUrl} alt="book"></img>
+                        </div>
+                        <div className={styles['details']}>
+                            <h2 className={styles['title']}>{book.title}</h2>
+                            <span className={styles['author']}>Автор: {book.author}</span>
+                            <p className={styles['description']}>{book.description}.</p>
 
-                        {(user.email && added < 1) ?
-                            (<button onClick={onAddToFavourite} className={styles['favourites']}>
-                                <i className="far fa-heart"></i>
-                                Добави в любими
-                            </button>) : null
-                        }
+                            {(user.email && added < 1) ?
+                                (<button onClick={onAddToFavourite} className={styles['favourites']}>
+                                    <i className="far fa-heart"></i>
+                                    Добави в любими
+                                </button>) : null
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className={styles['right-sidebar']}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Автор</th>
-                                <td>{book.author}</td>
-                            </tr>
-                            <tr>
-                                <th>Година на издаване</th>
-                                <td>2017</td>
-                            </tr>
-                            <tr>
-                                <th>Корица</th>
-                                <td>мека</td>
-                            </tr>
-                            <tr>
-                                <th>Страници</th>
-                                <td>196</td>
-                            </tr>
-                            <tr>
-                                <th>Език</th>
-                                <td>български</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section className={styles['bottom-bar']}>
-                <nav className={styles['buttons']}>
-                    <button onClick={onSummaryClick} style={{ backgroundColor: summaryView.isActive ? '#c5c3c3' : 'white' }}>Пълно описание</button>
-                    <button onClick={onCommentsClick} style={{ backgroundColor: commentView.isActive ? '#c5c3c3' : 'white' }}>Мнения</button>
-                    <button onClick={onReadClick} style={{ backgroundColor: readView.isActive ? '#c5c3c3' : 'white' }}>Прелисти</button>
-                </nav>
-                <div className={styles['summary']}>
-                    {summaryView.isActive && <p>{book.summary}</p>}
-                    {commentView.isActive && <Comments book={book} />}
-                    {readView.isActive && <BookContent book={book}/>}
-                </div>
-            </section>
-            </> }
+                    <div className={styles['right-sidebar']}>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Автор</th>
+                                    <td>{book.author}</td>
+                                </tr>
+                                <tr>
+                                    <th>Година на издаване</th>
+                                    <td>2017</td>
+                                </tr>
+                                <tr>
+                                    <th>Корица</th>
+                                    <td>мека</td>
+                                </tr>
+                                <tr>
+                                    <th>Страници</th>
+                                    <td>196</td>
+                                </tr>
+                                <tr>
+                                    <th>Език</th>
+                                    <td>български</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section className={styles['bottom-bar']}>
+                    <nav className={styles['buttons']}>
+                        <button onClick={onSummaryClick} style={{ backgroundColor: activeBtn.summary ? '#c5c3c3' : 'white' }}>Пълно описание</button>
+                        <button onClick={onCommentsClick} style={{ backgroundColor: activeBtn.comments ? '#c5c3c3' : 'white' }}>Мнения</button>
+                        <button onClick={onReadClick} style={{ backgroundColor: activeBtn.read ? '#c5c3c3' : 'white' }}>Прелисти</button>
+                    </nav>
+                    <div className={styles['summary']}>
+                        {activeBtn.summary && <p>{book.summary}</p>}
+                        {activeBtn.comments && <Comments book={book} />}
+                        {activeBtn.read && <BookContent book={book} />}
+                    </div>
+                </section>
+            </>}
         </>
     );
 };

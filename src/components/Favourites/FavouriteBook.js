@@ -18,7 +18,6 @@ const FavouriteBook = ({ favourite }) => {
     const onRemoveFromFavourite = () => {
         bookService.removeFavourite(favourite.newId);
         removeFromFavouriteHandler(favourite._id);
-
     };
 
     return (
@@ -35,8 +34,8 @@ const FavouriteBook = ({ favourite }) => {
                     <i className="fa-solid fa-trash-can"></i>
                     Изтрий от любими
                 </button>
-            </div>
             <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onRemoveFromFavourite}/>
+            </div>
         </li>
     );
 };

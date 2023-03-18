@@ -1,18 +1,21 @@
 import ReactStars from 'react-rating-stars-component';
 
-const Rating = ({ setRating, rating, hasRated }) => {
+const Rating = ({ rating, canRate, onRatingChange }) => {
+    const ratingChange = (newRating) => {
+        onRatingChange(newRating);
+    };
 
     return (
         <ReactStars
             count={5}
-            // onChange={ratingChanged}
+            onChange={ratingChange}
             size={24}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
             activeColor="#ffd700"
-            edit={hasRated}
+            edit={canRate}
             value={rating}
         />
     );

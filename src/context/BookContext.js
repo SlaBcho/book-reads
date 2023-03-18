@@ -14,7 +14,7 @@ export const BookProvider = ({
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         setIsLoading(true);
         bookService.getAll()
@@ -41,29 +41,28 @@ export const BookProvider = ({
         navigate('/my-books');
     };
 
-    const editBookHandler =  (bookId, bookData) => {
-     setBooks(state => state.map(x => x._id === bookId ? bookData : x));
+    const editBookHandler = (bookId, bookData) => {
+        setBooks(state => state.map(x => x._id === bookId ? bookData : x));
     };
 
     const detelteBookHandler = async (bookId) => {
-         await bookService.remove(bookId);
+        await bookService.remove(bookId);
         setBooks(state => state.filter(b => b._id !== bookId));
     };
 
     const [searchedBook, setSearchedBook] = useState([]);
 
-    const onSearchBook = (e) => {
+    const onSearchBook = (e, search) => {
         e.preventDefault();
-        const data = new FormData(e.target);
-        const bookName = data.get('search');
+        const bookName = search.search;
+        
         setIsLoading(true);
-
         bookService.searchBook(bookName)
             .then(res => {
-                setIsLoading(false);
                 setSearchedBook(res);
+                setIsLoading(false);
             });
-            navigate('/search');
+        navigate('/search');
         e.target.reset();
     };
 

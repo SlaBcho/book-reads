@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 import Navigation from './Navigation/Navigation';
@@ -10,11 +10,16 @@ import { BookContext } from '../../context/BookContext';
 const Header = () => {
     const { user } = useContext(AuthContext);
     const { onSearchBook } = useContext(BookContext);
+    const [search, setSearch] = useState({ search: '' });
+
+    const onChangeHandler = (e) => {
+        setSearch(state => ({...state, [e.target.name]: e.target.value}));
+    };
 
     const onSearch = (e) => {
-        onSearchBook(e);
+        onSearchBook(e, search);
     };
-    
+
     return (
         <header>
             <section className={styles['header']}>
@@ -25,7 +30,12 @@ const Header = () => {
                 </div>
 
                 <form onSubmit={onSearch} className={styles['searcher']}>
-                    <input className={styles['search']} name="search" type="text" placeholder="Какво търсиш днес?" />
+                    <input className={styles['search']}
+                        name="search"
+                        type="text"
+                        value={search.search}
+                        onChange={onChangeHandler}
+                        placeholder="Какво търсиш днес?" />
                     <button className={styles['search-logo']} type="submit"><i className="fa fa-search fa-2x"></i></button>
                 </form>
 

@@ -24,7 +24,7 @@ export const getMyFavouritesByBookId = (bookId, userId) => request.get(`${baseUr
 
 export const removeFavourite = (newId) => request.del(`${baseUrl}/favourites/${newId}`);
 
-export const postComment = (bookId, comment, username) => request.post(`${baseUrl}/comments`, {bookId, comment, username});
+export const postComment = (bookId, comment, username, rating) => request.post(`${baseUrl}/comments`, {bookId, comment, username, rating});
 
 export const getCommentById = (bookId) => request.get(`${baseUrl}/comments?where=bookId%3D%22${bookId}%22`);
 

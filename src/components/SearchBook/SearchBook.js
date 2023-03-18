@@ -11,6 +11,7 @@ const SearchBook = () => {
         <>
             {isLoading ? <Spinner /> :
                 <section className={styles['all-books']}>
+                    {searchedBook.length === 0 && <h2 className={styles['no-books-found']}>Няма намерени книги с това име!</h2>}
                     {searchedBook.map(b => <BookItem key={b._id} book={b} />)}
                 </section>
             }

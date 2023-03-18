@@ -5,18 +5,18 @@ import { useState, useEffect, useContext } from 'react';
 import * as bookService from '../../services/bookService';
 import { AuthContext } from '../../context/AuthContext';
 import Rating from '../BookItem/Rating';
-import ChoiceModal from '../Modal/ChoiceModal';
+import Comment from './Comment';
 
 
 const Comments = ({ book }) => {
     const { user } = useContext(AuthContext);
+    const [rating, setRating] = useState(0);
 
     const [comments, setComments] = useState([]);
     const [commentData, setCommentData] = useState({
         username: '',
-        comment: ''
+        comment: '',
     });
-    const [show, setShow] = useState(false);
 
     const isShowForm = user.email && (user._id !== book._ownerId);
 
@@ -31,6 +31,10 @@ const Comments = ({ book }) => {
         setCommentData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
+    const onRatingChange = (value) => {
+        setRating(value);
+    };
+
     const onAddComment = async (e) => {
         e.preventDefault();
         const { username, comment } = commentData;
@@ -38,38 +42,22 @@ const Comments = ({ book }) => {
         if (comment === '' || username === '') {
             return;
         }
-        const result = await bookService.postComment(book._id, comment, username);
-        setComments(state => [...state, result]);
 
+        const result = await bookService.postComment(book._id, comment, username, rating);
+        setComments(state => [...state, result]);
         setCommentData({
             username: '',
-            comment: ''
+            comment: '',
         });
+        console.log(comments);
     };
-
-    const onDeleteComment = async (id) => {
-        setComments(state => state.filter(c => c._id !== id));
-        await bookService.removeCommment(id);
-    };
-
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     return (
         <>
             <ul className={styles['all-comments']}>
                 {!user.email ? <p>Моля влезте в своя акаунт, за да добавите коментар за книгата!</p> : null}
                 {user.email && comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
-                {comments.map(c => (
-                    <li key={c._id} className={styles['comment']}>
-                        {user._id === c._ownerId ? (<span onClick={handleShow} className={styles['delete']}>x</span>) : null}
-                        <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {c.username}</h4>
-                        <p className={styles['comment-content']}><span>Коментар:</span> {c.comment}</p>
-                        <hr />
-                        <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={() => onDeleteComment(c._id)} />
-                    </li >
-                ))}
+                {comments.map(c => <Comment key={c._id} comment ={c} setComments={setComments}/>)}
             </ul>
 
             {isShowForm && (
@@ -78,7 +66,7 @@ const Comments = ({ book }) => {
                         <p>Вие оценявате:</p>
                         <h2>{book.title}</h2>
                     </div>
-                    <Rating hasRated={true}/>
+                    <Rating rating={commentData.rating} onRatingChange={onRatingChange} />
 
                     <div className={styles['username']}>
                         <label htmlFor="username">Псевдоним</label>

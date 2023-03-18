@@ -101,18 +101,18 @@
     text-align: center;
     cursor: pointer;
     background: #2B7A78;
-    padding: 11px;
+    padding: 8px;
     color: #fff;
     font-weight: 600;
     border: 1px solid transparent;
     border-radius: 21px;
     margin-top: 15px;
-    /* position: absolute;
-    top: 340px;
-    left: 490px; */
+   
 }
 
-
+.favourites i {
+    margin-right: 4px;
+}
 
 table {
     border-collapse: separate;
@@ -270,9 +270,12 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 }
 
 .comment .delete {
-    display: block;
+    display: inline-block;
     text-align: end;
     cursor: pointer;
+    margin-left: 600px;
+    border: none;
+    background-color: white;
 }
 
 .slide-content {
