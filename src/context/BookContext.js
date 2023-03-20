@@ -66,18 +66,28 @@ export const BookProvider = ({
         e.target.reset();
     };
 
+    const [bookRating, setBookRating] = useState([]);
+
+    const onAddBookRating = (book) => {
+        setBookRating(state => [...state, book]);
+    };
+
+
+
     return (
         <BookContext.Provider value={{
             books,
             favourite,
             searchedBook,
             isLoading,
+            bookRating,
             addToFavouriteHandler,
             removeFromFavouriteHandler,
             addBookHandler,
             editBookHandler,
             detelteBookHandler,
-            onSearchBook
+            onSearchBook,
+            onAddBookRating
         }}>
             {children}
         </BookContext.Provider>);

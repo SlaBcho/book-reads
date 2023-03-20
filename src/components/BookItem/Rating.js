@@ -7,6 +7,7 @@ const Rating = ({ rating, canRate, onRatingChange }) => {
 
     return (
         <ReactStars
+            key={`stars_${rating}`}
             count={5}
             onChange={ratingChange}
             size={24}
@@ -15,8 +16,8 @@ const Rating = ({ rating, canRate, onRatingChange }) => {
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
             activeColor="#ffd700"
-            edit={canRate}
             value={rating}
+            edit={canRate}
         />
     );
 };

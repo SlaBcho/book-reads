@@ -24,8 +24,6 @@ const Edit = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // const bookData = Object.fromEntries(new FormData(e.target));
-
         bookService.edit(bookId, bookData)
             .then(result => {
                 editBookHandler(result);

@@ -6,10 +6,12 @@ import * as bookService from '../../services/bookService';
 import { AuthContext } from '../../context/AuthContext';
 import Rating from '../BookItem/Rating';
 import Comment from './Comment';
+import { BookContext } from '../../context/BookContext';
 
 
 const Comments = ({ book }) => {
     const { user } = useContext(AuthContext);
+    const {onAddBookRating, bookRating} = useContext(BookContext);
     const [rating, setRating] = useState(0);
 
     const [comments, setComments] = useState([]);
@@ -42,14 +44,16 @@ const Comments = ({ book }) => {
         if (comment === '' || username === '') {
             return;
         }
-
+        
         const result = await bookService.postComment(book._id, comment, username, rating);
+
         setComments(state => [...state, result]);
         setCommentData({
             username: '',
             comment: '',
         });
-        console.log(comments);
+
+        onAddBookRating({...book, rating:rating});
     };
 
     return (
@@ -66,7 +70,7 @@ const Comments = ({ book }) => {
                         <p>Вие оценявате:</p>
                         <h2>{book.title}</h2>
                     </div>
-                    <Rating rating={commentData.rating} onRatingChange={onRatingChange} />
+                    <Rating onRatingChange={onRatingChange} />
 
                     <div className={styles['username']}>
                         <label htmlFor="username">Псевдоним</label>
