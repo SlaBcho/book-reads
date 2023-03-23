@@ -1,6 +1,6 @@
 .create-section {
     width: 100%;
-    height: 80vh;
+    height: 90vh;
     position: relative;
 }
 
@@ -8,7 +8,7 @@
 
 .create-section .create-form {
     max-width: 500px;
-    padding: 8px 16px;
+    padding: 16px 16px;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
@@ -22,6 +22,21 @@
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.create-section .create-form h2 {
+    margin-bottom: 16px;
+    font-size: 32px;
+}
+
+.create-section .create-form div {
+    width: 95%;
+}
+
+.create-form div:nth-child(2),
+.create-form div:nth-child(3) {
+    width:45%;
+    margin:0 auto;
 }
 
 .create-form div:nth-child(6),

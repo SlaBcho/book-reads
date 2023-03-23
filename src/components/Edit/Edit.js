@@ -21,6 +21,7 @@ const Edit = () => {
     const onChangeHandler = (e) => {
         setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
+    
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -78,6 +79,7 @@ const Edit = () => {
                         value={bookData.imageUrl}
                         onChange={onChangeHandler}
                     />
+
                 </div>
                 <div>
                     <label htmlFor="description">На кратко за книгата</label>

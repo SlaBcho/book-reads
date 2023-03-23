@@ -1,32 +1,29 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { useForm } from '../../hooks/useForm';
 import * as authService from '../../services/authService';
 
 import styles from './Register.module.css';
 
 const Register = () => {
-
-    const navigate = useNavigate();
-    const { userLogin } = useContext(AuthContext);
-
-    const [userData, setUserData] = useState({
-        email: '',
-        password: '',
-        repeatPassword: '',
-    });
-
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const onChangeHandler = (e) => {
-        setUserData(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
+    const navigate = useNavigate();
+
+    const { userLogin } = useContext(AuthContext);
+    const {formValues, onChangeHandler} = useForm({
+        email:'',
+        password:'',
+        repeatPassword:''
+    });
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const { email, password, repeatPassword } = userData;
+        const { email, password, repeatPassword } = formValues;
+        
         if (password !== repeatPassword) {
             setError(true);
             setErrorMsg('Passwords don`t match!');
@@ -66,7 +63,7 @@ const Register = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                value={userData.email}
+                                value={formValues.email}
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
@@ -76,7 +73,7 @@ const Register = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                value={userData.password}
+                                value={formValues.password}
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
@@ -86,7 +83,7 @@ const Register = () => {
                                 type="password"
                                 id="repeatPassword"
                                 name="repeatPassword"
-                                value={userData.repeatPassword}
+                                value={formValues.repeatPassword}
                                 onChange={onChangeHandler}>
                             </input>
                         </div>

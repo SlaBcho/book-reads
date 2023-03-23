@@ -6,26 +6,24 @@ import * as authService from '../../services/authService';
 
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useForm } from '../../hooks/useForm';
 
 const Login = () => {
-
-    const { userLogin } = useContext(AuthContext);
-    const navigate = useNavigate();
-
-    const [userData, setUserData] = useState({
-        email:'',
-        password:''
-    });
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const onChangeHandler = (e) => {
-        setUserData(state => ({...state, [e.target.name]:e.target.value}));
-    };
+    const navigate = useNavigate();
+    
+    const { userLogin } = useContext(AuthContext);
+    const {formValues, onChangeHandler} = useForm({
+        email:'',
+        password:''
+    });
+
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const {email, password} = userData;
+        const {email, password} = formValues;
 
         authService.login(email, password)
             .then(authData => {
@@ -56,7 +54,7 @@ const Login = () => {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            value={userData.email}
+                                            value={formValues.email}
                                             onChange={onChangeHandler}>
                                             </input>
                                     </div>
@@ -66,7 +64,7 @@ const Login = () => {
                                             type="password"
                                             id="passwprd"
                                             name="password"
-                                            value={userData.password}
+                                            value={formValues.password}
                                             onChange={onChangeHandler}>
                                             </input>
                                     </div>

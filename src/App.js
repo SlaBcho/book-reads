@@ -17,6 +17,7 @@ import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
 import SearchBook from './components/SearchBook/SearchBook';
 import Home from './components/Home/Home';
+import { Img } from './Img';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
 					<Header />
 					<main>
 						<Routes>
+							<Route path={'/image'} element={<Img />} />
 							<Route path={'/'} element={<Home />} />
 							<Route path={'/login'} element={<Login />} />
 							<Route path={'/register'} element={<Register />} />

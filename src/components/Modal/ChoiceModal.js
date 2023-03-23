@@ -7,7 +7,7 @@ const ChoiceModal = ({ show, handleClose, onRemoveFromFavourite }) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} onEscapeKeyDown={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Внимание</Modal.Title>
         </Modal.Header>

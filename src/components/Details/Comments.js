@@ -7,18 +7,25 @@ import { AuthContext } from '../../context/AuthContext';
 import Rating from '../BookItem/Rating';
 import Comment from './Comment';
 import { BookContext } from '../../context/BookContext';
+import { useForm } from '../../hooks/useForm';
 
 
 const Comments = ({ book }) => {
     const { user } = useContext(AuthContext);
-    const {onAddBookRating, bookRating} = useContext(BookContext);
+    const {onAddBookRating} = useContext(BookContext);
     const [rating, setRating] = useState(0);
 
     const [comments, setComments] = useState([]);
-    const [commentData, setCommentData] = useState({
-        username: '',
-        comment: '',
+    // const [commentData, setCommentData] = useState({
+    //     username: '',
+    //     comment: '',
+    // });
+
+    const {formValues, onChangeHandler} = useForm({
+        username:'',
+        comment:''
     });
+    
 
     const isShowForm = user.email && (user._id !== book._ownerId);
 
@@ -29,17 +36,13 @@ const Comments = ({ book }) => {
             });
     }, [book]);
 
-    const onChangeHandler = (e) => {
-        setCommentData(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
-
     const onRatingChange = (value) => {
         setRating(value);
     };
 
     const onAddComment = async (e) => {
         e.preventDefault();
-        const { username, comment } = commentData;
+        const { username, comment } = formValues;
 
         if (comment === '' || username === '') {
             return;
@@ -48,10 +51,8 @@ const Comments = ({ book }) => {
         const result = await bookService.postComment(book._id, comment, username, rating);
 
         setComments(state => [...state, result]);
-        setCommentData({
-            username: '',
-            comment: '',
-        });
+        formValues.username = '';
+        formValues.comment = '';
 
         onAddBookRating({...book, rating:rating});
     };
@@ -70,7 +71,7 @@ const Comments = ({ book }) => {
                         <p>Вие оценявате:</p>
                         <h2>{book.title}</h2>
                     </div>
-                    <Rating onRatingChange={onRatingChange} />
+                    <Rating  onRatingChange={onRatingChange} />
 
                     <div className={styles['username']}>
                         <label htmlFor="username">Псевдоним</label>
@@ -78,7 +79,7 @@ const Comments = ({ book }) => {
                             type="text"
                             id="username"
                             name="username"
-                            value={commentData.username}
+                            value={formValues.username}
                             onChange={onChangeHandler}
                         />
                     </div>
@@ -89,7 +90,7 @@ const Comments = ({ book }) => {
                             id="comment"
                             name="comment"
                             rows={4}
-                            value={commentData.comment}
+                            value={formValues.comment}
                             onChange={onChangeHandler} />
                     </div>
 
