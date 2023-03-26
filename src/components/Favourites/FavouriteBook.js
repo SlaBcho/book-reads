@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { BookContext } from '../../context/BookContext';
 
-import * as bookService from '../../services/bookService';
+import * as favouriteBookService from '../../services/favouriteBookService';
+
 
 import ChoiceModal from '../Modal/ChoiceModal';
 
@@ -16,7 +17,7 @@ const FavouriteBook = ({ favourite }) => {
     const handleShow = () => setShow(true);
 
     const onRemoveFromFavourite = () => {
-        bookService.removeFavourite(favourite.newId);
+        favouriteBookService.removeFavourite(favourite.newId);
         removeFromFavouriteHandler(favourite._id);
     };
 
@@ -34,7 +35,7 @@ const FavouriteBook = ({ favourite }) => {
                     <i className="fa-solid fa-trash-can"></i>
                     Изтрий от любими
                 </button>
-            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onRemoveFromFavourite}/>
+            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onRemoveFromFavourite} title={favourite.title}/>
             </div>
         </li>
     );

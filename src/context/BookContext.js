@@ -68,11 +68,10 @@ export const BookProvider = ({
 
     const [bookRating, setBookRating] = useState([]);
 
-    const onAddBookRating = (book) => {
+    const onAddBookRating = (book, rating) => {
         setBookRating(state => [...state, book]);
+        setBooks(state => state.map(b => b._id === book._id ? ({...b, rating: rating}) : b));
     };
-
-
 
     return (
         <BookContext.Provider value={{

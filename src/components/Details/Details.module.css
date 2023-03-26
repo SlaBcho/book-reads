@@ -287,3 +287,9 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 .slide-content div {
     height: 700px;
 }
+
+.error-msg {
+    color: red;
+    margin:0;
+    padding: 0;
+}

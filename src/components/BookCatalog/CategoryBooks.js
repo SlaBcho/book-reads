@@ -11,9 +11,9 @@ import { BookContext } from '../../context/BookContext';
 const CategoryBooks = () => {
     const location = useLocation();
     // const [isLoading, setIsLoading] = useState(false);
-    
+
     const category = location.pathname.slice(1);
-    
+
     const { books } = useContext(BookContext);
     // const [bookByCategory, setBooksByCategory] = useState([]);
     const filteredBooks = books.filter(b => b.category === category);
@@ -29,9 +29,9 @@ const CategoryBooks = () => {
     // }, [category]);
 
     return (
-                <section className={styles['all-books']}>
-                    {filteredBooks?.map(b => <BookItem key={b._id} book={b} />) || []}
-                </section>
+        <section className={styles['all-books']}>
+            {filteredBooks?.map(b => <BookItem key={b._id} book={b} />) || []}
+        </section>
     );
 };
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import * as authService from '../../services/authService';
+import { errors } from '../../util/error';
 
 import styles from './Register.module.css';
 
@@ -25,11 +26,7 @@ const Register = () => {
         const { email, password, repeatPassword } = formValues;
         
         if (password !== repeatPassword) {
-            setError(true);
-            setErrorMsg('Passwords don`t match!');
-            setTimeout(() => {
-                setError(false);
-              }, 3000);
+            errors(setError, setErrorMsg, 'Passwords don`t match!');
             return;
         }
 
@@ -39,11 +36,7 @@ const Register = () => {
                 navigate('/');
             })
             .catch((err) => {
-                setError(true);
-                setErrorMsg(err.message);
-                setTimeout(() => {
-                    setError(false);
-                  }, 2000);
+                errors(setError, setErrorMsg, err.message);
                 return;
             });
     };

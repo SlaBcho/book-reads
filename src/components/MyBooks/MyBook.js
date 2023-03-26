@@ -32,7 +32,7 @@ const MyBook = ({ myBook, onBookDelete }) => {
                     </Link>
                 </div>
             </div>
-            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={() => onBookDelete(myBook._id)} />
+            <ChoiceModal show={show} title={myBook.title} handleClose={handleClose} onRemoveFromFavourite={() => onBookDelete(myBook._id)} />
         </li>
     );
 };

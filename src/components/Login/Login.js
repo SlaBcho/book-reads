@@ -7,6 +7,7 @@ import * as authService from '../../services/authService';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
+import { errors } from '../../util/error';
 
 const Login = () => {
     const [error, setError] = useState(false);
@@ -31,11 +32,8 @@ const Login = () => {
                 navigate('/');
             })
             .catch((err) => {
-                setError(true);
-                setErrorMsg(err.message);
-                setTimeout(() => {
-                    setError(false);
-                  }, 2000);
+            errors(setError, setErrorMsg, err.message);
+                
                 return;
             });
     };

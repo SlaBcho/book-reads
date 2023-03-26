@@ -1,6 +1,6 @@
 .create-section {
     width: 100%;
-    height: 90vh;
+    min-height: 800px;
     position: relative;
 }
 
@@ -87,4 +87,9 @@
     font-weight: 600;
     border: 1px solid transparent;
     border-radius: 21px;
+}
+
+.error-msg {
+    color: red;
+    margin-bottom: 8px;
 }

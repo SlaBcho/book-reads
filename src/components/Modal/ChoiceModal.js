@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-const ChoiceModal = ({ show, handleClose, onRemoveFromFavourite }) => {
+const ChoiceModal = ({title, show, handleClose, onRemoveFromFavourite }) => {
 
   return (
     <>
@@ -11,7 +11,7 @@ const ChoiceModal = ({ show, handleClose, onRemoveFromFavourite }) => {
         <Modal.Header closeButton>
           <Modal.Title>Внимание</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Сигурен ли сте, че искате да изтриите?</Modal.Body>
+        <Modal.Body>Сигурен ли сте, че искате да изтриите "{title}"?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Отказ

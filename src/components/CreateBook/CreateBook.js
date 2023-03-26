@@ -1,11 +1,14 @@
 import styles from './CreateBook.module.css';
 
-import { useContext, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { BookContext } from '../../context/BookContext';
 import * as bookService from '../../services/bookService';
 import { useForm } from '../../hooks/useForm';
+import { errors } from '../../util/error';
 
 const CreateBook = () => {
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const { addBookHandler } = useContext(BookContext);
 
@@ -28,6 +31,10 @@ const CreateBook = () => {
             .then(result => {
                 addBookHandler(result);
             });
+
+        if(formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary ==='' ) {
+            errors(setError, setErrorMsg, 'All fields are required!');
+        }
     };
 
     return (
@@ -112,6 +119,7 @@ const CreateBook = () => {
                     />
                 </div>
                 <div>
+                {error && <p className={styles['error-msg']}>{errorMsg}</p>}
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
                 </div>
             </form>

@@ -5,21 +5,22 @@ import { useParams } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 
 import * as bookService from '../../services/bookService';
+import * as favouriteBookService from '../../services/favouriteBookService';
+
 import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
 import BookContent from './BookContent';
 import Spinner from '../Spinner/Spinner';
 
 const Details = () => {
-    const { addToFavouriteHandler } = useContext(BookContext);
+    const { bookId } = useParams();
     const { user } = useContext(AuthContext);
+    const { addToFavouriteHandler } = useContext(BookContext);
+    
     const [isLoading, setIsLoading] = useState(false);
-
-
     const [book, setBook] = useState({});
     const [added, setAdded] = useState(0);
 
-    const { bookId } = useParams();
 
     useEffect(() => {
         setIsLoading(true);
@@ -30,7 +31,7 @@ const Details = () => {
     }, [bookId]);
 
     useEffect(() => {
-        bookService.getMyFavouritesByBookId(bookId, user._id)
+        favouriteBookService.getMyFavouritesByBookId(bookId, user._id)
             .then(res => {
                 setAdded(res);
                 setIsLoading(false);
@@ -38,7 +39,7 @@ const Details = () => {
     }, [bookId, user._id]);
 
     const onAddToFavourite = () => {
-        bookService.addFavouriteBook(bookId)
+        favouriteBookService.addFavouriteBook(bookId)
             .then(result => {
                 setAdded(1);
                 addToFavouriteHandler({ ...book, userId: user._id, newId: result._id });
@@ -50,9 +51,6 @@ const Details = () => {
         comments: false,
         read: false
     });
-    // const [commentView, setCommentView] = useState({ isActive: false });
-    // const [readView, setReadView] = useState({ isActive: false });
-
 
     const onSummaryClick = () => {
         setActiveBtn({
