@@ -21,8 +21,8 @@ import Home from './components/Home/Home';
 function App() {
 
 	return (
-		<AuthProvider>
-			<BookProvider>
+		<BookProvider>
+			<AuthProvider>
 				<div className="wrapper">
 					<Header />
 					<main>
@@ -51,8 +51,8 @@ function App() {
 					</main>
 					<Footer />
 				</div >
-			</BookProvider>
-		</AuthProvider>
+			</AuthProvider>
+		</BookProvider>
 	);
 }
 

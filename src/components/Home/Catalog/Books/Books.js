@@ -1,24 +1,20 @@
 
 import styles from './Books.module.css';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext} from 'react';
 import { BookContext } from '../../../../context/BookContext';
 import Spinner from '../../../Spinner/Spinner';
 import BookItem from '../../../BookItem/BookItem';
 
 
-const Books = () => {
+const Books = ({criteria}) => {
     const { books, isLoading } = useContext(BookContext);
-    const [filtered, setFiltered] = useState(books);
     
-    useEffect(() => {
-            setFiltered(state => state.sort((a,b) => (b.rating) - (a.rating))); 
-    },[books, filtered]);
     return (
         <>
             {isLoading ? <Spinner /> :
                 <section className={styles['catalog-items']}>
-                    {filtered?.map(b => <BookItem key={b._id} book={b} />) || []}
+                    {  books?.sort((a,b) => b[criteria] - a[criteria]).slice(0,10).map(b => <BookItem key={b._id} book={b} />) || []}
                 </section>
             }
         </>

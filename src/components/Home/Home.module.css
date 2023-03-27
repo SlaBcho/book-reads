@@ -1,6 +1,17 @@
-main {
+/* main {
     width:89%;
 
     border-radius: 1px solid black;
     margin:0 auto;
+} */
+.banner {
+    max-width: 100%;
+    height: 500px;
+    object-fit: cover;
+    margin-top: 32px;
+}
+
+.banner img {
+    width:100%;
+    height: 100%;
 }
