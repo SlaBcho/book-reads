@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../context/AuthContext';
-import { useForm } from '../../hooks/useForm';
 import * as authService from '../../services/authService';
+import { useForm } from '../../hooks/useForm';
 import { errors } from '../../util/error';
 
 import styles from './Register.module.css';

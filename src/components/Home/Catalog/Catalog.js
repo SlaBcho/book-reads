@@ -1,10 +1,7 @@
 import styles from './Catalog.module.css';
-
 import Books from './Books/Books';
 
 const Catalog = () => {
-
-    
 
     return (
         <section className={styles['catalog']}>

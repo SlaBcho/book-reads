@@ -66,7 +66,6 @@ export const BookProvider = ({
         e.target.reset();
     };
 
-
     const onAddBookRating = (book, rating, result) => {
         setBookRating(state => [...state, book]);
         setBooks(state => state.map(b => b._id === book._id ? ({...b, rating: rating, commentId:result._id}) : b));

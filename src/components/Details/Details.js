@@ -1,14 +1,14 @@
-import styles from './Details.module.css';
-import Comments from './Comments';
-
 import { useParams } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
+
+import { BookContext } from '../../context/BookContext';
+import { AuthContext } from '../../context/AuthContext';
 
 import * as bookService from '../../services/bookService';
 import * as favouriteBookService from '../../services/favouriteBookService';
 
-import { BookContext } from '../../context/BookContext';
-import { AuthContext } from '../../context/AuthContext';
+import styles from './Details.module.css';
+import Comments from './Comments';
 import BookContent from './BookContent';
 import Spinner from '../Spinner/Spinner';
 
@@ -28,7 +28,7 @@ const Details = () => {
             .then(res => {
                 setBook(res);
             });
-    }, [bookId]);
+    }, [bookId, user]);
 
     useEffect(() => {
         favouriteBookService.getMyFavouritesByBookId(bookId, user._id)

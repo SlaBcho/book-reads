@@ -1,8 +1,9 @@
-import styles from './MyBooks.module.css';
-
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import ChoiceModal from '../Modal/ChoiceModal';
+
+import styles from './MyBooks.module.css';
 
 const MyBook = ({ myBook, onBookDelete }) => {
 

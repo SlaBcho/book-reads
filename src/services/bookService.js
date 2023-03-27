@@ -21,4 +21,4 @@ export const remove = (bookId) => request.del(`${baseUrl}/books/${bookId}`);
 
 export const searchBook = (query) => request.get(`${baseUrl}/books?where=title%20LIKE%20%22${query}%22`);
 
-export const pagination = () => request.get(`${baseUrl}/books?offset=10&pageSize=5`);
+export const pagination = (skip) => request.get(`${baseUrl}/books?offset=${skip}&pageSize=12`);

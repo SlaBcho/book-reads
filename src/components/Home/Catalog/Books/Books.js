@@ -1,10 +1,10 @@
-
-import styles from './Books.module.css';
-
 import { useContext} from 'react';
+
 import { BookContext } from '../../../../context/BookContext';
+
 import Spinner from '../../../Spinner/Spinner';
 import BookItem from '../../../BookItem/BookItem';
+import styles from './Books.module.css';
 
 
 const Books = ({criteria}) => {

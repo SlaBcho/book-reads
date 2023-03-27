@@ -1,12 +1,10 @@
-import styles from './Favourites.module.css';
 import { Link } from 'react-router-dom';
-
 import { useContext, useState } from 'react';
-import { BookContext } from '../../context/BookContext';
 
+import { BookContext } from '../../context/BookContext';
 import * as favouriteBookService from '../../services/favouriteBookService';
 
-
+import styles from './Favourites.module.css';
 import ChoiceModal from '../Modal/ChoiceModal';
 
 const FavouriteBook = ({ favourite }) => {

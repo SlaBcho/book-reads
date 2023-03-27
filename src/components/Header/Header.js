@@ -1,11 +1,11 @@
-import styles from './Header.module.css';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useContext, useState } from 'react';
+import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
 
 import Navigation from './Navigation/Navigation';
-import { BookContext } from '../../context/BookContext';
+import styles from './Header.module.css';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
