@@ -12,6 +12,8 @@ export const BookProvider = ({
     const [books, setBooks] = useState([]);
     const [favourite, setFavourite] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [searchedBook, setSearchedBook] = useState([]);
+    const [bookRating, setBookRating] = useState([]);
 
     const navigate = useNavigate();
 
@@ -50,8 +52,6 @@ export const BookProvider = ({
         setBooks(state => state.filter(b => b._id !== bookId));
     };
 
-    const [searchedBook, setSearchedBook] = useState([]);
-
     const onSearchBook = (e, search) => {
         e.preventDefault();
         const bookName = search.search;
@@ -66,11 +66,15 @@ export const BookProvider = ({
         e.target.reset();
     };
 
-    const [bookRating, setBookRating] = useState([]);
 
-    const onAddBookRating = (book, rating) => {
+    const onAddBookRating = (book, rating, result) => {
         setBookRating(state => [...state, book]);
-        setBooks(state => state.map(b => b._id === book._id ? ({...b, rating: rating}) : b));
+        setBooks(state => state.map(b => b._id === book._id ? ({...b, rating: rating, commentId:result._id}) : b));
+    };
+
+    const onRemoveRating = (id) => {
+        setBookRating(state => state.filter(b => b.commentId !== id));
+        setBooks((state => state.filter(b => b._commentId !== id)));
     };
 
     return (
@@ -86,7 +90,8 @@ export const BookProvider = ({
             editBookHandler,
             detelteBookHandler,
             onSearchBook,
-            onAddBookRating
+            onAddBookRating,
+            onRemoveRating
         }}>
             {children}
         </BookContext.Provider>);

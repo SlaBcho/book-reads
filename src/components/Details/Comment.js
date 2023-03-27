@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { BookContext } from '../../context/BookContext';
 
 import * as commentService from '../../services/commentService';
 
@@ -7,8 +8,9 @@ import ChoiceModal from '../Modal/ChoiceModal';
 import styles from './Details.module.css';
 
 
-const Comment = ({ comment, setComments, onEditComment }) => {
+const Comment = ({ comment, setComments }) => {
     const { user } = useContext(AuthContext);
+    const { onRemoveRating } = useContext(BookContext);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,6 +19,7 @@ const Comment = ({ comment, setComments, onEditComment }) => {
     const onDeleteComment = () => {
         commentService.removeCommment(comment._id);
         setComments(state => state.filter(c => c._id !== comment._id));
+        onRemoveRating(comment._id);
     };
 
     return (

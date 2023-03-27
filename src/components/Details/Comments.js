@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 
-import * as bookService from '../../services/bookService';
 import * as commentService from '../../services/commentService';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -50,7 +49,6 @@ const Comments = ({ book }) => {
         const { username, comment } = formValues;
 
         const result = await commentService.postComment(book._id, comment, username, rating);
-
         if (comment === '' || username === '') {
             errors(setError, setErrorMsg, 'All fileds are required');
             return;
@@ -60,7 +58,7 @@ const Comments = ({ book }) => {
         formValues.username = '';
         formValues.comment = '';
         setHasComment(1);
-        onAddBookRating({ ...book, rating: rating }, rating);
+        onAddBookRating({ ...book, rating: rating, commentId: result._id }, rating, result);
     };
 
     const isShowForm = user.email && (user._id !== book._ownerId) && hasComment < 1;
