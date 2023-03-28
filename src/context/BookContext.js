@@ -54,6 +54,7 @@ export const BookProvider = ({
 
     const onSearchBook = (e, search) => {
         e.preventDefault();
+        
         const bookName = search.search;
         
         setIsLoading(true);

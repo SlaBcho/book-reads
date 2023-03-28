@@ -19,7 +19,6 @@ const AllBooks = () => {
         let skip = (page-1)*12;
         const result = await bookService.pagination(skip);
         setBooksPerPage(result);
-        console.log(result);
         setPage(page);
     };
 
