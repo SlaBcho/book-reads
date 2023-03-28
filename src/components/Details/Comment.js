@@ -25,7 +25,7 @@ const Comment = ({ comment, setComments }) => {
     return (
         <li key={comment._id} className={styles['comment']}>
             {user._id === comment._ownerId ? (
-                <button onClick={handleShow} className={styles['delete']}>X</button>
+                <button onClick={handleShow} className={styles['delete']}>x</button>
             ) : null}
             <h3>Рейтинг: {comment.rating} (5)</h3>
             <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {comment.username}</h4>

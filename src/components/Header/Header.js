@@ -10,6 +10,7 @@ import styles from './Header.module.css';
 const Header = () => {
     const { user } = useContext(AuthContext);
     const { onSearchBook } = useContext(BookContext);
+    
     const [search, setSearch] = useState({ search: '' });
 
     const onChangeHandler = (e) => {
