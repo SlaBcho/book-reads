@@ -16,7 +16,7 @@ const CreateBook = () => {
     const { formValues, onChangeHandler } = useForm({
         title: '',
         author: '',
-        category: '',
+        category: 'best-seller',
         description: '',
         summary: ''
     });

@@ -74,7 +74,6 @@ export const BookProvider = ({
 
     const onRemoveRating = (id) => {
         setBookRating(state => state.filter(b => b.commentId !== id));
-        setBooks((state => state.filter(b => b._commentId !== id)));
     };
 
     return (

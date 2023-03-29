@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BookContext } from '../../context/BookContext';
 import BookItem from '../BookItem/BookItem';
 
@@ -13,7 +13,11 @@ const AllBooks = () => {
     const { books, isLoading } = useContext(BookContext);
     const [page, setPage] = useState(1);
 
-    const [booksPerPage, setBooksPerPage] = useState(books.slice(0,12));
+    const [booksPerPage, setBooksPerPage] = useState([]);
+
+    useEffect(() => {
+        setBooksPerPage(books.slice(0,12));
+    },[books]);
 
     const onChangeHandler = async (page) => {
         let skip = (page-1)*12;

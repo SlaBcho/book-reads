@@ -1,19 +1,25 @@
 import styles from './Catalog.module.css';
-import Books from './Books/Books';
+import { useContext } from 'react';
+import { BookContext } from '../../../context/BookContext';
+import BookItem from '../../BookItem/BookItem';
 
 const Catalog = () => {
+    const { books } = useContext(BookContext);
+    
+    const highestRating = [...books].sort((a, b) => b.rating - a.rating);
+    const newestBooks = [...books].sort((a,b) => b._createdOn - a._createdOn);
 
     return (
         <section className={styles['catalog']}>
             <h2 className={styles['articles-name']}>Най-нови книги</h2>
-            <Books criteria="_createdOn"/>
+            <section className={styles['catalog-items']}>
+                {newestBooks?.slice(0, 10).map(b => <BookItem key={b._id} book={b} />) || []}
+            </section>
             
             <h2 className={styles['articles-name']}>Книги с най-висок рейтинг</h2>
-            <Books criteria="rating"/>
-            {/* <h2 className={styles['articles-name']}>Най-четени книги</h2>
-            <Books criteria='rating'/> */}
-            {/* <h2 className={styles['articles-name']}>Най-коментирани</h2>
-            <Books criteria='_createdOn'/> */}
+            <section className={styles['catalog-items']}>
+                {highestRating.slice(0, 10).map(b => <BookItem key={b._id} book={b} />) || []}
+            </section>
         </section>
     );
 };
