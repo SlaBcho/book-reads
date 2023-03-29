@@ -69,7 +69,20 @@ const MyBooks = () => {
                         </div>
                     </article>
                 )}
-                {myBooks.length === 0 || !user.email ? (
+                {myBooks.length === 0 && !user.email && (
+                    <article className={styles['favourite-container']}>
+                        <h2>Мои 0 книги</h2>
+                        <hr />
+                        <div >
+                            <img className={styles['image']} src="img/favourite.webp" alt="favourite" />
+                            <h3>Хмм, няма нито един продукт в твоя списък.</h3>
+                            <h3>Виж някои препоръки, които могат да те вдъхновят.</h3>
+                            <p>Добави любима книга в секция Моите Книги и си направи списъци според твоите предпочитания.</p>
+                            <p>Можеш да ги споделиш по всяко време с приятели.</p>
+                        </div>
+                    </article>
+                ) }
+                {myBooks.length === 0 && user.email && (
                     <article className={styles['favourite-container']}>
                         <h2>Мои 0 книги</h2>
                         <hr />
@@ -84,8 +97,9 @@ const MyBooks = () => {
                             Добавете книга
                         </Link>
                     </article>
-                ) : (
-
+                ) }
+                {myBooks.length > 0 && user.email && (
+                
                     < article className={styles['favourite-container']}>
                         <h2>Мои {myBooks.length} книги</h2>
                         <hr />
