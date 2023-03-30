@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 
-import { BookContext } from '../../context/BookContext';
 import * as favouriteBookService from '../../services/favouriteBookService';
 
 import styles from './Favourites.module.css';
 import ChoiceModal from '../Modal/ChoiceModal';
+import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 const FavouriteBook = ({ favourite }) => {
-    const { removeFromFavouriteHandler } = useContext(BookContext);
+    const { removeFromFavouriteHandler } = useContext(FavouriteBookContext);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

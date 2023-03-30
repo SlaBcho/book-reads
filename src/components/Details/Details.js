@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 
-import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
 
 import * as bookService from '../../services/bookService';
@@ -11,11 +10,12 @@ import styles from './Details.module.css';
 import Comments from './Comments';
 import BookContent from './BookContent';
 import Spinner from '../Spinner/Spinner';
+import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 const Details = () => {
     const { bookId } = useParams();
     const { user } = useContext(AuthContext);
-    const { addToFavouriteHandler } = useContext(BookContext);
+    const { addToFavouriteHandler } = useContext(FavouriteBookContext);
     
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState({});

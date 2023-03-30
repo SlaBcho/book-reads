@@ -2,14 +2,14 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthContext';
-import { BookContext } from '../../context/BookContext';
+import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 import FavouriteBook from './FavouriteBook';
 import styles from './Favourites.module.css';
 
 const Favourites = () => {
     const { user } = useContext(AuthContext);
-    const { favourite } = useContext(BookContext);
+    const { favourite } = useContext(FavouriteBookContext);
    
     const favouriteBook = favourite.filter(b => b.userId === user._id);
     return (

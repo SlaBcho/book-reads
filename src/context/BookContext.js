@@ -90,7 +90,7 @@ export const BookProvider = ({
             detelteBookHandler,
             onSearchBook,
             onAddBookRating,
-            onRemoveRating
+            onRemoveRating,
         }}>
             {children}
         </BookContext.Provider>);

@@ -22,7 +22,6 @@ const Edit = () => {
     const onChangeHandler = (e) => {
         setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
-    
 
     const onSubmit = (e) => {
         e.preventDefault();

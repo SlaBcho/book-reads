@@ -18,45 +18,52 @@ import Edit from './components/Edit/Edit';
 import SearchBook from './components/SearchBook/SearchBook';
 import Home from './components/Home/Home';
 import { RouteGuard } from './components/common/RouteGuard';
+import { IsPublicRouteGuard } from './components/common/IsPublicRouteGuard';
+import BookOwner from './components/common/BookOwner';
+import { FavouriteBookProvider } from './context/FavouriteBooksContext';
 
 function App() {
 
 	return (
-		<BookProvider>
-			<AuthProvider>
-				<div className="wrapper">
-					<Header />
-					<main>
-						<Routes>
-							<Route path={'/'} element={<Home />} />
-							<Route path={'/login'} element={<Login />} />
-							<Route path={'/register'} element={<Register />} />
-							<Route path={'/search'} element={<SearchBook />} />
-							<Route path={'/details/:bookId'} element={<Details />} />
-							
-							<Route element={<RouteGuard />}>
-								<Route path={'/logout'} element={<Logout />} />
-								<Route path={'/create'} element={<CreateBook />} />
-								<Route path={'/edit/:bookId'} element={<Edit />} />
-							</Route>
+		<AuthProvider>
+			<BookProvider>
+				<FavouriteBookProvider>
+					<div className="wrapper">
+						<Header />
+						<main>
+							<Routes>
+								<Route path={'/'} element={<Home />} />
+								<Route path={'/search'} element={<SearchBook />} />
+								<Route path={'/details/:bookId'} element={<Details />} />
 
-							<Route path={'/favourites'} element={<Favourites />} />
-							<Route path={'/my-books'} element={<MyBooks />} />
+								<Route element={<IsPublicRouteGuard />}>
+									<Route path={'/login'} element={<Login />} />
+									<Route path={'/register'} element={<Register />} />
+								</Route>
 
-							<Route path={'/all-books'} element={<AllBooks />} />
-							<Route path={'/best-seller'} element={<CategoryBooks />} />
-							<Route path={'/fantasy'} element={<CategoryBooks />} />
-							<Route path={'/fiction'} element={<CategoryBooks />} />
-							<Route path={'/history-and-politics'} element={<CategoryBooks />} />
-							<Route path={'/psychology'} element={<CategoryBooks />} />
-							<Route path={'/autobiography'} element={<CategoryBooks />} />
-							<Route path={'/kids-book'} element={<CategoryBooks />} />
-						</Routes>
-					</main>
-					<Footer />
-				</div >
-			</AuthProvider>
-		</BookProvider>
+								<Route element={<RouteGuard />}>
+									<Route path={'/logout'} element={<Logout />} />
+									<Route path={'/create'} element={<CreateBook />} />
+
+									<Route path={'/edit/:bookId'} element={
+										<BookOwner>
+											<Edit />
+										</BookOwner>
+									} />
+								</Route>
+
+								<Route path={'/favourites'} element={<Favourites />} />
+								<Route path={'/my-books'} element={<MyBooks />} />
+
+								<Route path={'/all-books'} element={<AllBooks />} />
+								<Route path={'/:category'} element={<CategoryBooks />} />
+							</Routes>
+						</main>
+						<Footer />
+					</div >
+				</FavouriteBookProvider>
+			</BookProvider>
+		</AuthProvider>
 	);
 }
 

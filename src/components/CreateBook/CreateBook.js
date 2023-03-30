@@ -22,6 +22,7 @@ const CreateBook = () => {
     });
 
     const [photo, setphoto] = useState(null);
+    
     const handleInputChange = (event) => {
         setphoto(URL.createObjectURL(event.target.files[0]));
     };

@@ -1,13 +1,12 @@
 import { useContext} from 'react';
 import styles from './AllBooks.module.css';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import BookItem from '../BookItem/BookItem';
 import { BookContext } from '../../context/BookContext';
 
 
 const CategoryBooks = () => {
-    const location = useLocation();
-    const category = location.pathname.slice(1);
+    const {category} = useParams();
     const { books } = useContext(BookContext);
     const filteredBooks = books.filter(b => b.category === category);
     // setBooksByCategory(filteredBooks);
