@@ -6,11 +6,9 @@ import { useForm } from '../../hooks/useForm';
 import { errors } from '../../util/error';
 
 import styles from './CreateBook.module.css';
+import { useErrors } from '../../hooks/useErrors';
 
 const CreateBook = () => {
-    const [error, setError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-
     const { addBookHandler } = useContext(BookContext);
 
     const { formValues, onChangeHandler } = useForm({
@@ -21,6 +19,9 @@ const CreateBook = () => {
         description: '',
         summary: ''
     });
+
+    const { error, errorMsg, onErrorHandler } = useErrors();
+
     
     const onSubmit = (e) => {
         e.preventDefault();
@@ -30,7 +31,7 @@ const CreateBook = () => {
             });
 
         if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
-            errors(setError, setErrorMsg, 'All fields are required!');
+            onErrorHandler('All fields are required!');
         }
     };
 

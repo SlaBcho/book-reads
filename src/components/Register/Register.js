@@ -7,11 +7,10 @@ import { useForm } from '../../hooks/useForm';
 import { errors } from '../../util/error';
 
 import styles from './Register.module.css';
+import { useErrors } from '../../hooks/useErrors';
 
 const Register = () => {
-    const [error, setError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-
+   
     const navigate = useNavigate();
 
     const { userLogin } = useContext(AuthContext);
@@ -20,6 +19,8 @@ const Register = () => {
         password:'',
         repeatPassword:''
     });
+    const { error, errorMsg, onErrorHandler } = useErrors();
+
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +28,7 @@ const Register = () => {
         const { email, password, repeatPassword } = formValues;
         
         if (password !== repeatPassword) {
-            errors(setError, setErrorMsg, 'Passwords don`t match!');
+            onErrorHandler('Passwords don`t match!');
             return;
         }
 
@@ -37,7 +38,7 @@ const Register = () => {
                 navigate('/');
             })
             .catch((err) => {
-                errors(setError, setErrorMsg, err.message);
+                onErrorHandler(err.message);
                 return;
             });
     };

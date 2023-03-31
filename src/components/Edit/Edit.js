@@ -6,6 +6,7 @@ import { BookContext } from '../../context/BookContext';
 
 import styles from './Edit.module.css';
 import { useForm } from '../../hooks/useForm';
+import { useErrors } from '../../hooks/useErrors';
 
 const Edit = () => {
     const navigate = useNavigate();
@@ -28,10 +29,13 @@ const Edit = () => {
             });
     }, [bookId]);
 
-  
+    const { error, errorMsg, onErrorHandler } = useErrors();
 
     const onSubmit = (e) => {
         e.preventDefault();
+        if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
+            onErrorHandler('All fields are required!');
+        }
         bookService.edit(bookId, formValues)
             .then(result => {
                 editBookHandler(bookId, result);
