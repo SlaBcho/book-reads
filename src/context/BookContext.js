@@ -10,7 +10,6 @@ export const BookProvider = ({
 }) => {
 
     const [books, setBooks] = useState([]);
-    const [favourite, setFavourite] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [searchedBook, setSearchedBook] = useState([]);
     const [bookRating, setBookRating] = useState([]);
@@ -26,14 +25,6 @@ export const BookProvider = ({
             });
     }, []);
 
-    const addToFavouriteHandler = (book) => {
-        setFavourite(state => [...state, book]);
-    };
-
-    const removeFromFavouriteHandler = (id) => {
-        setFavourite(state => state.filter(b => b._id !== id));
-    };
-
     const addBookHandler = (bookData) => {
         setBooks(state => [
             ...state,
@@ -47,8 +38,7 @@ export const BookProvider = ({
         setBooks(state => state.map(x => x._id === bookId ? bookData : x));
     };
 
-    const detelteBookHandler = async (bookId) => {
-        await bookService.remove(bookId);
+    const detelteBookHandler = (bookId) => {
         setBooks(state => state.filter(b => b._id !== bookId));
     };
 
@@ -79,12 +69,9 @@ export const BookProvider = ({
     return (
         <BookContext.Provider value={{
             books,
-            favourite,
             searchedBook,
             isLoading,
             bookRating,
-            addToFavouriteHandler,
-            removeFromFavouriteHandler,
             addBookHandler,
             editBookHandler,
             detelteBookHandler,

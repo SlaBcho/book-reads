@@ -1,33 +1,40 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as bookService from '../../services/bookService';
 import { BookContext } from '../../context/BookContext';
 
 import styles from './Edit.module.css';
+import { useForm } from '../../hooks/useForm';
 
 const Edit = () => {
     const navigate = useNavigate();
-    const [bookData, setBookData] = useState({});
     const { editBookHandler } = useContext(BookContext);
     const { bookId } = useParams();
+
+    const { formValues, onChangeHandler, changeValues } = useForm({
+        title: '',
+        author: '',
+        category: 'best-seller',
+        imageUrl:'',
+        description: '',
+        summary: ''
+    });
 
     useEffect(() => {
         bookService.getById(bookId)
             .then(result => {
-                setBookData(result);
+                changeValues(result);
             });
     }, [bookId]);
 
-    const onChangeHandler = (e) => {
-        setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
+  
 
     const onSubmit = (e) => {
         e.preventDefault();
-        bookService.edit(bookId, bookData)
+        bookService.edit(bookId, formValues)
             .then(result => {
-                editBookHandler(result);
+                editBookHandler(bookId, result);
                 navigate(`/details/${bookId}`);
             });
     };
@@ -43,7 +50,7 @@ const Edit = () => {
                         type="text"
                         name="title"
                         id="title"
-                        value={bookData.title}
+                        value={formValues.title}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -54,7 +61,7 @@ const Edit = () => {
                         type="text"
                         name="author"
                         id="author"
-                        value={bookData.author}
+                        value={formValues.author}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -65,7 +72,7 @@ const Edit = () => {
                         type="text"
                         name="category"
                         id="category"
-                        value={bookData.category}
+                        value={formValues.category}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -76,7 +83,7 @@ const Edit = () => {
                         type="text"
                         name="imageUrl"
                         id="imageUrl"
-                        value={bookData.imageUrl}
+                        value={formValues.imageUrl}
                         onChange={onChangeHandler}
                     />
 
@@ -89,7 +96,7 @@ const Edit = () => {
                         type="text"
                         name="description"
                         id="description"
-                        value={bookData.description}
+                        value={formValues.description}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -101,7 +108,7 @@ const Edit = () => {
                         type="text"
                         name="summary"
                         id="summary"
-                        value={bookData.summary}
+                        value={formValues.summary}
                         onChange={onChangeHandler}
                     />
                 </div>

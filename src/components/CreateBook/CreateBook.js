@@ -17,19 +17,14 @@ const CreateBook = () => {
         title: '',
         author: '',
         category: 'best-seller',
+        imageUrl:'',
         description: '',
         summary: ''
     });
-
-    const [photo, setphoto] = useState(null);
     
-    const handleInputChange = (event) => {
-        setphoto(URL.createObjectURL(event.target.files[0]));
-    };
-
     const onSubmit = (e) => {
         e.preventDefault();
-        bookService.create({ ...formValues, imageUrl: photo })
+        bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
             });
@@ -86,7 +81,7 @@ const CreateBook = () => {
                     </select>
                 </div>
                 <div>
-                    {/* <label htmlFor="imageUrl">Снимка(линк)</label>
+                    <label htmlFor="imageUrl">Снимка(линк)</label>
                     <input
                         className={styles['form-input']}
                         type="text"
@@ -94,16 +89,8 @@ const CreateBook = () => {
                         id="imageUrl"
                         value={formValues.imageUrl}
                         onChange={onChangeHandler}
-                    /> */}
-                    <label htmlFor="imageUrl">Снимка(линк)</label>
-                    <input
-                        name="imageUrl"
-                        accept="image/*"
-                        type="file"
-                        value={formValues.imageUrl}
-                        onChange={handleInputChange}
                     />
-                    <img style={{ height: "200px", width: "200px" }} src={photo} alt='img' />
+                    
                 </div>
                 <div>
                     <label htmlFor="description">На кратко за книгата</label>

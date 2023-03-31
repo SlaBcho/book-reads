@@ -25,7 +25,8 @@ const MyBooks = () => {
             });
     }, [user]);
 
-    const onBookDelete = (bookId) => {
+    const onBookDelete = async (bookId) => {
+        await bookService.remove(bookId);
         detelteBookHandler(bookId);
         setMyBooks(state => state.filter(b => b._id !== bookId));
     };
