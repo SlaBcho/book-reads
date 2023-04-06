@@ -89,3 +89,8 @@
     border: 1px solid transparent;
     border-radius: 21px;
 }
+
+.error-msg {
+    color: red;
+    margin-bottom: 8px;
+}

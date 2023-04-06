@@ -17,7 +17,7 @@ const Edit = () => {
         title: '',
         author: '',
         category: 'best-seller',
-        imageUrl:'',
+        imageUrl: '',
         description: '',
         summary: ''
     });
@@ -35,6 +35,7 @@ const Edit = () => {
         e.preventDefault();
         if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
             onErrorHandler('All fields are required!');
+            return;
         }
         bookService.edit(bookId, formValues)
             .then(result => {
@@ -71,14 +72,23 @@ const Edit = () => {
                 </div>
                 <div>
                     <label htmlFor="category">Категория</label>
-                    <input
+                    <select
                         className={styles['form-input']}
                         type="text"
                         name="category"
                         id="category"
                         value={formValues.category}
                         onChange={onChangeHandler}
-                    />
+                    >
+                        <option value="best-seller">best-seller</option>
+                        <option value="fantasy">fantasy</option>
+                        <option value="fiction">fiction</option>
+                        <option value="history-and-politics">history-and-politics</option>
+                        <option value="psychology">psychology</option>
+                        <option value="autobiography">autobiography</option>
+                        <option value="kids-book">kids-book</option>
+
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="imageUrl">Снимка(линк)</label>
@@ -117,6 +127,8 @@ const Edit = () => {
                     />
                 </div>
                 <div>
+                    {error && <p className={styles['error-msg']}>{errorMsg}</p>}
+
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
                 </div>
             </form>

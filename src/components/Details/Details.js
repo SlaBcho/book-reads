@@ -21,7 +21,6 @@ const Details = () => {
     const [book, setBook] = useState({});
     const [added, setAdded] = useState(0);
 
-
     useEffect(() => {
         setIsLoading(true);
         bookService.getById(bookId)

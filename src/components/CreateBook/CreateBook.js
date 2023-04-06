@@ -25,14 +25,15 @@ const CreateBook = () => {
     
     const onSubmit = (e) => {
         e.preventDefault();
+        if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
+            onErrorHandler('All fields are required!');
+            return;
+        }
         bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
             });
 
-        if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
-            onErrorHandler('All fields are required!');
-        }
     };
 
     return (

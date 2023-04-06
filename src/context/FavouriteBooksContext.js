@@ -8,7 +8,6 @@ export const FavouriteBookProvider = ({
 
     const [favourite, setFavourite] = useState([]);
  
-
     const addToFavouriteHandler = (book) => {
         setFavourite(state => [...state, book]);
     };
@@ -16,7 +15,6 @@ export const FavouriteBookProvider = ({
     const removeFromFavouriteHandler = (id) => {
         setFavourite(state => state.filter(b => b._id !== id));
     };
-
 
     return (
         <FavouriteBookContext.Provider value={{
