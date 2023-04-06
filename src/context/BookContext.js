@@ -11,7 +11,6 @@ export const BookProvider = ({
 
     const [books, setBooks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [searchedBook, setSearchedBook] = useState([]);
     const [bookRating, setBookRating] = useState([]);
 
     const navigate = useNavigate();
@@ -42,20 +41,6 @@ export const BookProvider = ({
         setBooks(state => state.filter(b => b._id !== bookId));
     };
 
-    const onSearchBook = (e, search) => {
-        e.preventDefault();
-        
-        const bookName = search.search;
-        
-        setIsLoading(true);
-        bookService.searchBook(bookName)
-            .then(res => {
-                setSearchedBook(res);
-                setIsLoading(false);
-            });
-        navigate('/search');
-        e.target.reset();
-    };
 
     const onAddBookRating = (book, rating, result) => {
         setBookRating(state => [...state, book]);
@@ -69,13 +54,11 @@ export const BookProvider = ({
     return (
         <BookContext.Provider value={{
             books,
-            searchedBook,
             isLoading,
             bookRating,
             addBookHandler,
             editBookHandler,
             detelteBookHandler,
-            onSearchBook,
             onAddBookRating,
             onRemoveRating,
         }}>

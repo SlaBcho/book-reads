@@ -1,24 +1,22 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { BookContext } from '../../context/BookContext';
 import { AuthContext } from '../../context/AuthContext';
+import { SearchContext } from '../../context/SearchContext';
 
 import Navigation from './Navigation/Navigation';
 import styles from './Header.module.css';
+import { useForm } from '../../hooks/useForm';
 
 const Header = () => {
     const { user } = useContext(AuthContext);
-    const { onSearchBook } = useContext(BookContext);
-    
-    const [search, setSearch] = useState({ search: '' });
+    const { onSearchBook } = useContext(SearchContext);
 
-    const onChangeHandler = (e) => {
-        setSearch(state => ({...state, [e.target.name]: e.target.value}));
-    };
+    const { formValues, onChangeHandler, changeValues } = useForm({ search: '' });
 
     const onSearch = (e) => {
-        onSearchBook(e, search);
+        onSearchBook(e, formValues);
+        changeValues({ search: '' });
     };
 
     return (
@@ -34,7 +32,7 @@ const Header = () => {
                     <input className={styles['search']}
                         name="search"
                         type="text"
-                        value={search.search}
+                        value={formValues.search}
                         onChange={onChangeHandler}
                         placeholder="Какво търсиш днес?" />
                     <button className={styles['search-logo']} type="submit"><i className="fa fa-search fa-2x"></i></button>

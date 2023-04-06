@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import { BookContext } from '../../context/BookContext';
+import { SearchContext } from '../../context/SearchContext';
 
 import BookItem from '../BookItem/BookItem';
 import Spinner from '../Spinner/Spinner';
 import styles from './SearchBook.module.css';
 
 const SearchBook = () => {
-    const { searchedBook, isLoading } = useContext(BookContext);
+    const { searchedBook, isLoading } = useContext(SearchContext);
 
     return (
         <>
