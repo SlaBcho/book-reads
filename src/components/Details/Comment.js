@@ -16,8 +16,8 @@ const Comment = ({ comment, setComments }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const onDeleteComment = () => {
-        commentService.removeCommment(comment._id);
+    const onDeleteComment = async () => {
+        await commentService.removeCommment(comment._id);
         setComments(state => state.filter(c => c._id !== comment._id));
         onRemoveRating(comment._id);
     };
@@ -31,7 +31,7 @@ const Comment = ({ comment, setComments }) => {
             <h4 className={styles['comment-author']}><span>Пвсевдоним:</span> {comment.username}</h4>
             <p className={styles['comment-content']}><span>Коментар:</span> {comment.comment}</p>
             <hr />
-            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onDeleteComment} />
+            <ChoiceModal show={show} handleClose={handleClose} onRemoveFromFavourite={onDeleteComment} title={comment.comment} />
         </li >
     );
 };

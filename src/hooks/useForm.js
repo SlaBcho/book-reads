@@ -8,8 +8,6 @@ export const useForm = (initialState) => {
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     };
     const changeValues = (newValues) => {
-        // TODO: Validate newValues shape (like initialValues)
-        
         setFormValues(newValues);
     };
 

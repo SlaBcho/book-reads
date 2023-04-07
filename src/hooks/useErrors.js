@@ -1,6 +1,4 @@
-
 import { useState } from 'react';
-
 
 export const useErrors = () => {
     const [error, setError] = useState(false);
@@ -17,6 +15,4 @@ export const useErrors = () => {
     return {
         error, errorMsg, onErrorHandler
     };
-
-
 };

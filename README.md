@@ -1,3 +1,10 @@
+BookReads App The e-Shop App is an open-source e-commerce platform built using React and softUni practice server. This app allows you to search for a books and read their rating. The logged users are allowed to add, edit, delete books their own books, also can add rating and comments to the other books. you can see short description for every added book.
+
+Project is deployed in firebase on: https://react-book-reads.web.app/
+To run the app you need to dowload folder "server" from the repository and to start it local from there with file server.js (node server.js); 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
