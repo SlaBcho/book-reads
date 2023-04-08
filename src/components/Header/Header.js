@@ -32,7 +32,7 @@ const Header = () => {
                     <input className={styles['search']}
                         name="text"
                         type="text"
-                        value={formValues.search}
+                        value={formValues.text}
                         onChange={onChangeHandler}
                         placeholder="Какво търсиш днес?" />
                     <button className={styles['search-logo']} type="submit"><i className="fa fa-search fa-2x"></i></button>
