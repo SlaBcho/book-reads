@@ -23,14 +23,14 @@ const Comments = ({ book }) => {
         comment: ''
     });
 
-    const {error, errorMsg, onErrorHandler} = useErrors();
+    const { error, errorMsg, onErrorHandler } = useErrors();
 
     useEffect(() => {
-        const allPromises = Promise.all([
-        commentService.getCommentById(book._id),
-        commentService.getMyCommentsByBookId(book._id, user._id)
-        ]);
-            allPromises.then(res => {
+        Promise.all([
+            commentService.getCommentById(book._id),
+            commentService.getMyCommentsByBookId(book._id, user._id)
+        ])
+            .then(res => {
                 const [comment, hasComment] = res;
                 setComments(comment);
                 setHasComment(hasComment);
@@ -39,14 +39,13 @@ const Comments = ({ book }) => {
 
     const onRatingChange = (value) => {
         setRating(value);
-    };   
-    
+    };
+
     const onAddComment = async (e) => {
         e.preventDefault();
         const { username, comment } = formValues;
 
         const result = await commentService.postComment(book._id, comment, username, rating);
-        console.log(result)
         if (comment === '' || username === '') {
             onErrorHandler('All fileds are required');
             return;

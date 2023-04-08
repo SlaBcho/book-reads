@@ -12,11 +12,11 @@ const Header = () => {
     const { user } = useContext(AuthContext);
     const { onSearchBook } = useContext(SearchContext);
 
-    const { formValues, onChangeHandler, changeValues } = useForm({ search: '' });
+    const { formValues, onChangeHandler, changeValues } = useForm({ text: '' });
 
     const onSearch = (e) => {
-        onSearchBook(e, formValues);
-        changeValues({ search: '' });
+        onSearchBook(e, formValues.text);
+        changeValues({ text: '' });
     };
 
     return (
@@ -30,7 +30,7 @@ const Header = () => {
 
                 <form onSubmit={onSearch} className={styles['searcher']}>
                     <input className={styles['search']}
-                        name="search"
+                        name="text"
                         type="text"
                         value={formValues.search}
                         onChange={onChangeHandler}

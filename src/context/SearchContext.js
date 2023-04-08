@@ -12,19 +12,16 @@ export const SearchProvider = ({
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const onSearchBook = (e, search) => {
+    const onSearchBook = (e, query) => {
         e.preventDefault();
 
-        const bookName = search.search;
-
         setIsLoading(true);
-        bookService.searchBook(bookName)
+        bookService.searchBook(query)
             .then(res => {
                 setSearchedBook(res);
                 setIsLoading(false);
             });
             navigate('/search');
-            e.target.reset();
     };
     return (
         <SearchContext.Provider value={{

@@ -8,7 +8,7 @@ import * as favouriteBookService from '../../services/favouriteBookService';
 
 import styles from './Details.module.css';
 import Comments from './Comments';
-import BookContent from './BookContent';
+// import BookContent from './BookContent';
 import Spinner from '../Spinner/Spinner';
 import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
@@ -30,17 +30,16 @@ const Details = () => {
 
         setIsLoading(true);
 
-        const allPromisses = Promise.all([
+        Promise.all([
             bookService.getById(bookId),
             favouriteBookService.getMyFavouritesByBookId(bookId, user._id)
-        ]);
-
-        allPromisses.then(res => {
-            const [book, added] = res;
-            setBook(book);
-            setAdded(added);
-            setIsLoading(false);
-        });
+        ])
+            .then(res => {
+                const [book, added] = res;
+                setBook(book);
+                setAdded(added);
+                setIsLoading(false);
+            });
     }, [bookId, user]);
 
     const onAddToFavourite = () => {
