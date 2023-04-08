@@ -78,15 +78,17 @@ header {
     justify-content: space-between;
     align-items: center;
     display: flex;
-    color: black;
+    color: #0e5c59;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
-.tool :hover {
-    color: black;
-    font-weight: 400;
+.tool:hover  {
+    color: #033533;
+
 }
+
+
 
 .links {
     display: flex;
