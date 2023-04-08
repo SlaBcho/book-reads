@@ -125,8 +125,8 @@ const Details = () => {
                 </section>
                 <section className={styles['bottom-bar']}>
                     <nav className={styles['buttons']}>
-                        <button onClick={onSummaryClick} style={{ backgroundColor: activeBtn.summary ? '#c5c3c3' : 'white' }}>Пълно описание</button>
-                        <button onClick={onCommentsClick} style={{ backgroundColor: activeBtn.comments ? '#c5c3c3' : 'white' }}>Мнения</button>
+                        <button onClick={onSummaryClick} style={{ backgroundColor: activeBtn.summary ? '#3AAFA9' : '#c3f2ed' }}>Пълно описание</button>
+                        <button onClick={onCommentsClick} style={{ backgroundColor: activeBtn.comments ? '#3AAFA9' : '#c3f2ed' }}>Мнения</button>
                         {/* <button onClick={onReadClick} style={{ backgroundColor: activeBtn.read ? '#c5c3c3' : 'white' }}>Прелисти</button> */}
                     </nav>
                     <div className={styles['summary']}>

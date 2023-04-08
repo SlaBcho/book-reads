@@ -73,13 +73,19 @@ header {
     color: #2B7A78;
 }
 
+
 .tool {
     justify-content: space-between;
     align-items: center;
     display: flex;
     color: black;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.tool :hover {
+    color: black;
+    font-weight: 400;
 }
 
 .links {

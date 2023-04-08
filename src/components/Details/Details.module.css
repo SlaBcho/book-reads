@@ -151,25 +151,31 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 
 .bottom-bar {
     width: 1180px;
+    min-height: 250px;
     margin: 0 auto;
     background-color: white;
     display: flex;
     margin-top: 40px;
 }
 
-.buttons button {
+.bottom-bar .buttons button {
 
     display: block;
     cursor: pointer;
-    color: #444;
-    background-color: white;
-    border: 1px solid #ddd;
+    color: rgb(39, 39, 39);
+    background-color: #DEF2F0;
+    border: none;
     width: 240px;
     height: 60px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
-.buttons .active {
+.bottom-bar .buttons .active {
     background-color: #c5c3c3;
+    color: rgb(39, 39, 39);
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .summary {

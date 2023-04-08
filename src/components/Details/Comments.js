@@ -46,6 +46,7 @@ const Comments = ({ book }) => {
         const { username, comment } = formValues;
 
         const result = await commentService.postComment(book._id, comment, username, rating);
+        console.log(result)
         if (comment === '' || username === '') {
             onErrorHandler('All fileds are required');
             return;
