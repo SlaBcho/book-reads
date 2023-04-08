@@ -12,15 +12,14 @@ const AllBooks = () => {
 
     const { books, isLoading } = useContext(BookContext);
     const [page, setPage] = useState(1);
-
     const [booksPerPage, setBooksPerPage] = useState([]);
 
     useEffect(() => {
-        setBooksPerPage(books.slice(0,12));
-    },[books]);
+        setBooksPerPage(books.slice(0, 12));
+    }, [books]);
 
     const onChangeHandler = async (page) => {
-        let skip = (page-1)*12;
+        let skip = (page - 1) * 12;
         const result = await bookService.pagination(skip);
         setBooksPerPage(result);
         setPage(page);
@@ -33,7 +32,7 @@ const AllBooks = () => {
                     {booksPerPage?.map(b => <BookItem key={b._id} book={b} />) || []}
                 </section>
             }
-            <Pagination onChangeHandler={onChangeHandler} page={page} totalItems={books.length}/>
+            <Pagination onChangeHandler={onChangeHandler} page={page} totalItems={books.length} />
         </>
     );
 };

@@ -16,26 +16,32 @@ const Details = () => {
     const { bookId } = useParams();
     const { user } = useContext(AuthContext);
     const { addToFavouriteHandler } = useContext(FavouriteBookContext);
-    
+
     const [isLoading, setIsLoading] = useState(false);
     const [book, setBook] = useState({});
     const [added, setAdded] = useState(0);
+    const [activeBtn, setActiveBtn] = useState({
+        summary: true,
+        comments: false,
+        read: false
+    });
 
     useEffect(() => {
+
         setIsLoading(true);
-        bookService.getById(bookId)
-            .then(res => {
-                setBook(res);
-            });
-    }, [bookId, user]);
 
-    useEffect(() => {
-        favouriteBookService.getMyFavouritesByBookId(bookId, user._id)
-            .then(res => {
-                setAdded(res);
-                setIsLoading(false);
-            });
-    }, [bookId, user._id]);
+        const allPromisses = Promise.all([
+            bookService.getById(bookId),
+            favouriteBookService.getMyFavouritesByBookId(bookId, user._id)
+        ]);
+
+        allPromisses.then(res => {
+            const [book, added] = res;
+            setBook(book);
+            setAdded(added);
+            setIsLoading(false);
+        });
+    }, [bookId, user]);
 
     const onAddToFavourite = () => {
         favouriteBookService.addFavouriteBook(bookId)
@@ -44,12 +50,6 @@ const Details = () => {
                 addToFavouriteHandler({ ...book, userId: user._id, newId: result._id });
             });
     };
-
-    const [activeBtn, setActiveBtn] = useState({
-        summary: true,
-        comments: false,
-        read: false
-    });
 
     const onSummaryClick = () => {
         setActiveBtn({
@@ -67,13 +67,13 @@ const Details = () => {
         });
     };
 
-    const onReadClick = () => {
-        setActiveBtn({
-            summary: false,
-            comments: false,
-            read: true
-        });
-    };
+    // const onReadClick = () => {
+    //     setActiveBtn({
+    //         summary: false,
+    //         comments: false,
+    //         read: true
+    //     });
+    // };
 
     return (
         <>
@@ -127,12 +127,12 @@ const Details = () => {
                     <nav className={styles['buttons']}>
                         <button onClick={onSummaryClick} style={{ backgroundColor: activeBtn.summary ? '#c5c3c3' : 'white' }}>Пълно описание</button>
                         <button onClick={onCommentsClick} style={{ backgroundColor: activeBtn.comments ? '#c5c3c3' : 'white' }}>Мнения</button>
-                        <button onClick={onReadClick} style={{ backgroundColor: activeBtn.read ? '#c5c3c3' : 'white' }}>Прелисти</button>
+                        {/* <button onClick={onReadClick} style={{ backgroundColor: activeBtn.read ? '#c5c3c3' : 'white' }}>Прелисти</button> */}
                     </nav>
                     <div className={styles['summary']}>
                         {activeBtn.summary && <p>{book.summary}</p>}
                         {activeBtn.comments && <Comments book={book} />}
-                        {activeBtn.read && <BookContent book={book} />}
+                        {/* {activeBtn.read && <BookContent book={book} />} */}
                     </div>
                 </section>
             </>}

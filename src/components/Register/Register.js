@@ -1,13 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthContext';
 import * as authService from '../../services/authService';
 import { useForm } from '../../hooks/useForm';
-import { errors } from '../../util/error';
+import { useErrors } from '../../hooks/useErrors';
 
 import styles from './Register.module.css';
-import { useErrors } from '../../hooks/useErrors';
 
 const Register = () => {
    
@@ -20,7 +19,6 @@ const Register = () => {
         repeatPassword:''
     });
     const { error, errorMsg, onErrorHandler } = useErrors();
-
 
     const onSubmit = (e) => {
         e.preventDefault();

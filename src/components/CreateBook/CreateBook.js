@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import { BookContext } from '../../context/BookContext';
 import * as bookService from '../../services/bookService';
 import { useForm } from '../../hooks/useForm';
-import { errors } from '../../util/error';
 
 import styles from './CreateBook.module.css';
 import { useErrors } from '../../hooks/useErrors';
@@ -15,14 +14,13 @@ const CreateBook = () => {
         title: '',
         author: '',
         category: 'best-seller',
-        imageUrl:'',
+        imageUrl: '',
         description: '',
         summary: ''
     });
 
     const { error, errorMsg, onErrorHandler } = useErrors();
 
-    
     const onSubmit = (e) => {
         e.preventDefault();
         if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
@@ -32,6 +30,9 @@ const CreateBook = () => {
         bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
+            })
+            .catch((err) => {
+                onErrorHandler(err.message);
             });
 
     };
@@ -92,7 +93,7 @@ const CreateBook = () => {
                         value={formValues.imageUrl}
                         onChange={onChangeHandler}
                     />
-                    
+
                 </div>
                 <div>
                     <label htmlFor="description">На кратко за книгата</label>

@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 
 import * as favouriteBookService from '../../services/favouriteBookService';
+import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 import styles from './Favourites.module.css';
 import ChoiceModal from '../Modal/ChoiceModal';
-import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 const FavouriteBook = ({ favourite }) => {
     const { removeFromFavouriteHandler } = useContext(FavouriteBookContext);

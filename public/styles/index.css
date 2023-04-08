@@ -9,6 +9,11 @@ html {
     color: #222222;
 }
 
+body {
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
 main {
     background-color:#eeefff;
 

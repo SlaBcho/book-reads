@@ -63,8 +63,11 @@ Resources used:
     --react-bootstrap
     --react-bootstrap-pagination-control
     --SoftUni practice server
+    --react-rating-stars-component
+
+
 
 
 Using SoftUni practice server for authentication and API requests.
 
-Hosted in firebase: https://react-book-reads.web.app/
+Deployed in firebase: https://react-book-reads.web.app/

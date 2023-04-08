@@ -5,7 +5,7 @@ import * as commentService from '../../services/commentService';
 import { AuthContext } from '../../context/AuthContext';
 import { BookContext } from '../../context/BookContext';
 import { useForm } from '../../hooks/useForm';
-import { errors } from '../../util/error';
+import { useErrors } from '../../hooks/useErrors';
 
 import Rating from '../BookItem/Rating';
 import Comment from './Comment';
@@ -16,9 +16,6 @@ const Comments = ({ book }) => {
     const { onAddBookRating } = useContext(BookContext);
     const [rating, setRating] = useState(0);
     const [comments, setComments] = useState([]);
-    const [error, setError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-
     const [hasComment, setHasComment] = useState(0);
 
     const { formValues, onChangeHandler } = useForm({
@@ -26,19 +23,19 @@ const Comments = ({ book }) => {
         comment: ''
     });
 
-    useEffect(() => {
-        commentService.getCommentById(book._id)
-            .then(res => {
-                setComments(res);
-            });
-    }, [book]);
+    const {error, errorMsg, onErrorHandler} = useErrors();
 
     useEffect(() => {
+        const allPromises = Promise.all([
+        commentService.getCommentById(book._id),
         commentService.getMyCommentsByBookId(book._id, user._id)
-            .then(res => {
-                setHasComment(res);
+        ]);
+            allPromises.then(res => {
+                const [comment, hasComment] = res;
+                setComments(comment);
+                setHasComment(hasComment);
             });
-    },[book, user]);
+    }, [book, user]);
 
     const onRatingChange = (value) => {
         setRating(value);
@@ -50,7 +47,7 @@ const Comments = ({ book }) => {
 
         const result = await commentService.postComment(book._id, comment, username, rating);
         if (comment === '' || username === '') {
-            errors(setError, setErrorMsg, 'All fileds are required');
+            onErrorHandler('All fileds are required');
             return;
         }
 

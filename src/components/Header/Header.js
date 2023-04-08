@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthContext';
 import { SearchContext } from '../../context/SearchContext';
+import { useForm } from '../../hooks/useForm';
 
 import Navigation from './Navigation/Navigation';
 import styles from './Header.module.css';
-import { useForm } from '../../hooks/useForm';
 
 const Header = () => {
     const { user } = useContext(AuthContext);

@@ -16,24 +16,22 @@ const slideImages = [
     {
         url: 'img/picture4.jpg',
     },
-    //{
-    //     url: 'img/pic2.jpg',
-    // }
+
 ];
 
 const Slideshow = () => {
     return (
-            <section className={styles['slide-container']}>
-                <Slide>
-                    {slideImages.map((slideImage, index) => (
-                        <div className="each-slide" key={index}>
-                            <div style={{ 'backgroundImage': `url(${slideImage.url})` }}>
-                                <span>{slideImage.caption}</span>
-                            </div>
+        <section className={styles['slide-container']}>
+            <Slide>
+                {slideImages.map((slideImage, index) => (
+                    <div className="each-slide" key={index}>
+                        <div style={{ 'backgroundImage': `url(${slideImage.url})` }}>
+                            <span>{slideImage.caption}</span>
                         </div>
-                    ))}
-                </Slide>
-            </section>
+                    </div>
+                ))}
+            </Slide>
+        </section>
     );
 };
 

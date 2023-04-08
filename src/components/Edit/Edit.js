@@ -27,7 +27,7 @@ const Edit = () => {
             .then(result => {
                 changeValues(result);
             });
-    }, [bookId]);
+    }, [bookId, changeValues]);
 
     const { error, errorMsg, onErrorHandler } = useErrors();
 

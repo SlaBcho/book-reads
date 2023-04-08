@@ -25,7 +25,7 @@ export const request = async (method, url, data) => {
 
         const data = await response.json();
 
-        if(response.ok === false) {
+        if(response.ok !== true) {
             if (response.status === 403) {
                 localStorage.removeItem('auth');
             }
@@ -35,7 +35,7 @@ export const request = async (method, url, data) => {
         return data;
 
     } catch (err) {
-        throw err;
+        throw new Error (err.message);
     }
 };
 

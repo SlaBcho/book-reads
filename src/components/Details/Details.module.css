@@ -155,7 +155,6 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     background-color: white;
     display: flex;
     margin-top: 40px;
-    margin-bottom: 32px;
 }
 
 .buttons button {
@@ -175,9 +174,9 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 
 .summary {
     background-color: white;
-    width:700px;
-    border: 1px solid #ddd;
-    padding: 32px;
+    width:100%;
+    /* border: 1px solid #ddd; */
+    padding:  32px 64px;
 
 }
 
