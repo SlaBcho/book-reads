@@ -2,17 +2,17 @@ import { useState } from 'react';
 
 export const useErrors = () => {
     const [error, setError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onErrorHandler = (message) => {
         setError(true);
-        setErrorMsg(message);
+        setErrorMessage(message);
         setTimeout(() => {
             setError(false);
         }, 2000);
     };
 
     return {
-        error, errorMsg, onErrorHandler
+        error, errorMessage, onErrorHandler
     };
 };

@@ -29,7 +29,7 @@ const Edit = () => {
             });
     }, [bookId, changeValues]);
 
-    const { error, errorMsg, onErrorHandler } = useErrors();
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -127,7 +127,7 @@ const Edit = () => {
                     />
                 </div>
                 <div>
-                    {error && <p className={styles['error-msg']}>{errorMsg}</p>}
+                    {error && <p className={styles['error-msg']}>{errorMessage}</p>}
 
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
                 </div>

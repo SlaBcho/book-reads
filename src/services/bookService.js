@@ -17,7 +17,7 @@ export const create = (bookData) => request.post(`${baseUrl}/books`, bookData);
 
 export const edit = (bookId, bookData) => request.put(`${baseUrl}/books/${bookId}`, bookData);
 
-export const remove = (bookId) => request.del(`${baseUrl}/books/${bookId}`);
+export const remove = (bookId) => request.remove(`${baseUrl}/books/${bookId}`);
 
 
 export const searchBook = (query) => request.get(`${baseUrl}/books?where=title%20LIKE%20%22${query}%22`);

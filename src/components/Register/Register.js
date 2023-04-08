@@ -18,7 +18,7 @@ const Register = () => {
         password:'',
         repeatPassword:''
     });
-    const { error, errorMsg, onErrorHandler } = useErrors();
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -80,7 +80,7 @@ const Register = () => {
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
-                        {error && <p className={styles['error-msg']}>{errorMsg}</p>}
+                        {error && <p className={styles['error-msg']}>{errorMessage}</p>}
 
                         <input className={styles.register}
                             type="submit"

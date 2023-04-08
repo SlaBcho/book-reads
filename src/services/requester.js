@@ -42,4 +42,4 @@ export const request = async (method, url, data) => {
 export const get = request.bind({}, 'GET');
 export const post = request.bind({}, 'POST');
 export const put = request.bind({}, 'PUT');
-export const del = request.bind({}, 'DELETE');
+export const remove = request.bind({}, 'DELETE');

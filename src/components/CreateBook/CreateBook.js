@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 
-import { BookContext } from '../../context/BookContext';
 import * as bookService from '../../services/bookService';
+import { BookContext } from '../../context/BookContext';
+
 import { useForm } from '../../hooks/useForm';
+import { useErrors } from '../../hooks/useErrors';
 
 import styles from './CreateBook.module.css';
-import { useErrors } from '../../hooks/useErrors';
 
 const CreateBook = () => {
     const { addBookHandler } = useContext(BookContext);
@@ -19,7 +20,7 @@ const CreateBook = () => {
         summary: ''
     });
 
-    const { error, errorMsg, onErrorHandler } = useErrors();
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -119,8 +120,8 @@ const CreateBook = () => {
                         onChange={onChangeHandler}
                     />
                 </div>
+                    {error && <p className={styles['error-msg']}>{errorMessage}</p>}
                 <div>
-                    {error && <p className={styles['error-msg']}>{errorMsg}</p>}
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
                 </div>
             </form>
