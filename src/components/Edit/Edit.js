@@ -5,45 +5,41 @@ import * as bookService from '../../services/bookService';
 import { BookContext } from '../../context/BookContext';
 
 import styles from './Edit.module.css';
-import { useForm } from '../../hooks/useForm';
 import { useErrors } from '../../hooks/useErrors';
+import { useState } from 'react';
 
 const Edit = () => {
     const navigate = useNavigate();
     const { editBookHandler } = useContext(BookContext);
     const { bookId } = useParams();
+    const [bookData, setBookData] = useState({});
 
-    const { formValues, onChangeHandler, changeValues } = useForm({
-        title: '',
-        author: '',
-        category: 'best-seller',
-        imageUrl: '',
-        description: '',
-        summary: ''
-    });
+
+    const onChangeHandler = (e) => {
+        setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
+    };
 
     useEffect(() => {
         bookService.getById(bookId)
             .then(result => {
-                changeValues(result);
+                setBookData(result);        
             });
-    }, [bookId, changeValues]);
+    }, [bookId]);
 
     const { error, errorMessage, onErrorHandler } = useErrors();
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
+        if (bookData.title === '' || bookData.author === '' || bookData.imageURl === '' || bookData.category === '' || bookData.description === '' || bookData.summary === '') {
             onErrorHandler('All fields are required!');
             return;
         }
-        bookService.edit(bookId, formValues)
+        bookService.edit(bookId, bookData)
             .then(result => {
                 editBookHandler(bookId, result);
                 navigate(`/details/${bookId}`);
             });
     };
-
     return (
         <section className={styles['create-section']}>
             <form onSubmit={onSubmit} className={styles['create-form']}>
@@ -55,7 +51,7 @@ const Edit = () => {
                         type="text"
                         name="title"
                         id="title"
-                        value={formValues.title}
+                        value={bookData.title}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -66,7 +62,7 @@ const Edit = () => {
                         type="text"
                         name="author"
                         id="author"
-                        value={formValues.author}
+                        value={bookData.author}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -77,7 +73,7 @@ const Edit = () => {
                         type="text"
                         name="category"
                         id="category"
-                        value={formValues.category}
+                        value={bookData.category}
                         onChange={onChangeHandler}
                     >
                         <option value="best-seller">best-seller</option>
@@ -97,7 +93,7 @@ const Edit = () => {
                         type="text"
                         name="imageUrl"
                         id="imageUrl"
-                        value={formValues.imageUrl}
+                        value={bookData.imageUrl}
                         onChange={onChangeHandler}
                     />
 
@@ -110,7 +106,7 @@ const Edit = () => {
                         type="text"
                         name="description"
                         id="description"
-                        value={formValues.description}
+                        value={bookData.description}
                         onChange={onChangeHandler}
                     />
                 </div>
@@ -122,7 +118,7 @@ const Edit = () => {
                         type="text"
                         name="summary"
                         id="summary"
-                        value={formValues.summary}
+                        value={bookData.summary}
                         onChange={onChangeHandler}
                     />
                 </div>
