@@ -19,14 +19,20 @@ const Register = () => {
         repeatPassword:''
     });
     const { error, errorMessage, onErrorHandler } = useErrors();
-
+    
+    
     const onSubmit = (e) => {
         e.preventDefault();
-
+        
         const { email, password, repeatPassword } = formValues;
         
         if (password !== repeatPassword) {
             onErrorHandler('Passwords don`t match!');
+            return;
+        }
+
+        if (password.length < 6 || repeatPassword.length < 6 || password.length > 12 || repeatPassword.length > 12) {
+            onErrorHandler('Your password must be between 6 and 12 characters!');
             return;
         }
 
