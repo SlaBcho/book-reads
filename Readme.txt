@@ -19,6 +19,7 @@ Components with:
         --admin@abv.bg / passowrd: 123456
 
  - Register Page
+    --regex validation for new user, password must contain at least one letter and one number
 
  - Log out page
 
@@ -38,6 +39,10 @@ Components with:
  - Details Page
     --you can Add and Delete comment and rating(only if you are logged in, also if you are not owner on the book);
     --you can add book to favourite if you are logged in;
+
+-404 page
+    -- if path dont match, show 404 page
+
 
 -Loading Spinner for waiting the requests.
 
