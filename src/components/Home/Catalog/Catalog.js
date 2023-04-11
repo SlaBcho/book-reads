@@ -13,13 +13,13 @@ const Catalog = () => {
         <section className={styles['catalog']}>
             <h2 className={styles['articles-name']}>Най-нови книги</h2>
             <section className={styles['catalog-items']}>
-                {newestBooks.length === 0 && <p>Все още няма налични книги</p>}
+                {newestBooks.length === 0 && <p className={styles['no-books']}>В момента няма налични книги</p>}
                 {newestBooks?.slice(0, 10).map(b => <BookItem key={b._id} book={b} />) || []}
             </section>
 
             <h2 className={styles['articles-name']}>Книги с най-висок рейтинг</h2>
             <section className={styles['catalog-items']}>
-                {newestBooks.length === 0 && <p>Все още няма налични книги</p>}
+                {newestBooks.length === 0 && <p className={styles['no-books']}>В момента няма налични книги</p>}
                 {highestRating.slice(0, 10).map(b => <BookItem key={b._id} book={b} />) || []}
             </section>
         </section>

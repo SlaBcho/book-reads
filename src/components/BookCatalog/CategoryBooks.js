@@ -35,7 +35,7 @@ const CategoryBooks = () => {
             {isLoading ? <Spinner /> :
 
                 <section className={styles['all-books']}>
-                    {bookByCategory.length === 0 && <p>Все още няма налични книги</p>}
+                    {bookByCategory.length === 0 && <h2 className={styles['no-books-found']}>В момента няма налични книги!</h2>}
 
                     {bookByCategory?.map(b => <BookItem key={b._id} book={b} />) || []}
                 </section>

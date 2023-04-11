@@ -29,7 +29,7 @@ const AllBooks = () => {
         <>
             {isLoading ? <Spinner /> :
                 <section className={styles['all-books']}>
-                    {booksPerPage.length === 0 && <p>Все още няма налични книги</p>}
+                    {booksPerPage.length === 0 && <h2 className={styles['no-books-found']}>В момента няма налични книги!</h2>}
                     {booksPerPage?.map(b => <BookItem key={b._id} book={b} />) || []}
                 </section>
             }
