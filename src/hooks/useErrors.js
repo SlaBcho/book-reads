@@ -9,7 +9,7 @@ export const useErrors = () => {
         setErrorMessage(message);
         setTimeout(() => {
             setError(false);
-        }, 2000);
+        }, 3000);
     };
 
     return {

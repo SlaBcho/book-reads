@@ -21,20 +21,33 @@ const Register = () => {
     const { error, errorMessage, onErrorHandler } = useErrors();
     
     
+
     const onSubmit = (e) => {
         e.preventDefault();
         
         const { email, password, repeatPassword } = formValues;
         
+        if (password.length < 6 || password.length > 15) {
+            onErrorHandler('Your password must be between 6 and 12 characters!');
+            return;
+        }
+
+        if (password.search(/[a-z]/i) < 0){
+            onErrorHandler('password must contain atleast one letter!');
+            return ;
+        }
+
+        if (password.search(/[0-9]/i) < 0){
+            onErrorHandler('password must contain atleast one number!');
+            return ;
+        }
+
         if (password !== repeatPassword) {
             onErrorHandler('Passwords don`t match!');
             return;
         }
 
-        if (password.length < 6 || repeatPassword.length < 6 || password.length > 12 || repeatPassword.length > 12) {
-            onErrorHandler('Your password must be between 6 and 12 characters!');
-            return;
-        }
+
 
         authService.register(email, password, repeatPassword)
             .then(authData => {
