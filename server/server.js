@@ -1324,7 +1324,8 @@
             "35c62d76-8152-4626-8712-eeb96381bea8": {
                 email: "sboyukliev1990@mail.bg",
                 hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
-                username: "Sully"
+                username: "Sully",
+                admin: true
             },
             "847ec027-f659-4086-8032-5173e2f9c93a": {
                 email: "admin@abv.bg",

@@ -12,7 +12,8 @@ export const AuthProvider = ({
         setAuth({
             accessToken: authData.accessToken,
             email: authData.email,
-            _id: authData._id
+            _id: authData._id,
+            admin: authData.admin || false
         });
     };
 

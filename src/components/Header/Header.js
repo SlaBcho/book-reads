@@ -11,12 +11,12 @@ import styles from './Header.module.css';
 const Header = () => {
     const { user } = useContext(AuthContext);
     const { onSearchBook } = useContext(SearchContext);
-
+ 
     const { formValues, onChangeHandler, changeValues } = useForm({ text: '' });
 
     const onSearch = (e) => {
         onSearchBook(e, formValues.text);
-        changeValues({ text: '' });
+        changeValues({ text:'' });
     };
 
     return (

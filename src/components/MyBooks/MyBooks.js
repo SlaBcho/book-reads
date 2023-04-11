@@ -22,6 +22,10 @@ const MyBooks = () => {
             .then(res => {
                 setMyBooks(res);
                 setIsLoading(false);
+            })
+            .catch((error) => {
+                setMyBooks([]);
+                setIsLoading(false);
             });
     }, [user]);
 

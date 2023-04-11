@@ -23,6 +23,7 @@ import Footer from './components/Footer/Footer';
 import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 
@@ -60,6 +61,7 @@ function App() {
 											</BookOwner>
 										} />
 									</Route>
+									<Route path="*" element={<NotFound />} />
 									
 								</Routes>
 							</main>

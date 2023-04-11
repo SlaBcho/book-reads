@@ -21,11 +21,17 @@ export const BookProvider = ({
             .then(result => {
                 setBooks(result);
                 setIsLoading(false);
+            })
+            .catch((err) => {
+                setTimeout(() => {
+                    setIsLoading(false);
+                    setBooks([]);
+                }, 200);
             });
     }, []);
 
     const addBookHandler = (bookData) => {
-        
+
         setBooks(state => [
             ...state,
             bookData
@@ -45,7 +51,7 @@ export const BookProvider = ({
 
     const onAddBookRating = (book, rating, result) => {
         setBookRating(state => [...state, book]);
-        setBooks(state => state.map(b => b._id === book._id ? ({...b, rating: rating, commentId:result._id}) : b));
+        setBooks(state => state.map(b => b._id === book._id ? ({ ...b, rating: rating, commentId: result._id }) : b));
     };
 
     const onRemoveRating = (id) => {

@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    background: white;
+}
+.error-404 {
+    width:50%;
+    height: 77.8vh;
+    object-fit: cover;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: transparent
+};
+
+.error-404 img {
+    width: 100%;
+    margin: 0 auto;
+}
