@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -14,6 +14,7 @@ import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 const Details = () => {
     const { bookId } = useParams();
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const { addToFavouriteHandler } = useContext(FavouriteBookContext);
 
@@ -39,8 +40,14 @@ const Details = () => {
                 setBook(book);
                 setAdded(added);
                 setIsLoading(false);
+            })
+            .catch((err) => {
+                setTimeout(() => {
+                    setIsLoading(false);
+                    navigate('/404');
+                }, 2000);
             });
-    }, [bookId, user]);
+    }, [bookId, user, navigate]);
 
     const onAddToFavourite = () => {
         favouriteBookService.addFavouriteBook(bookId)

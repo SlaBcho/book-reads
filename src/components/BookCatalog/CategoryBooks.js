@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './AllBooks.module.css';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import BookItem from '../BookItem/BookItem';
 // import { BookContext } from '../../context/BookContext';
 import * as bookService from '../../services/bookService';
@@ -26,7 +26,8 @@ const CategoryBooks = () => {
                 setTimeout(() => {
                     setIsLoading(false);
                     setBooksByCategory([]);
-                }, 200);
+                }, 2000);
+
             });
     }, [category]);
 

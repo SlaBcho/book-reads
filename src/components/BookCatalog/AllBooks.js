@@ -9,7 +9,7 @@ import styles from './AllBooks.module.css';
 import Pagination from '../Pagination/Pagination';
 
 const AllBooks = () => {
-
+    
     const { books, isLoading } = useContext(BookContext);
     const [page, setPage] = useState(1);
     const [booksPerPage, setBooksPerPage] = useState([]);
@@ -29,8 +29,8 @@ const AllBooks = () => {
         <>
             {isLoading ? <Spinner /> :
                 <section className={styles['all-books']}>
-                    {booksPerPage.length === 0 && <h2 className={styles['no-books-found']}>В момента няма налични книги!</h2>}
                     {booksPerPage?.map(b => <BookItem key={b._id} book={b} />) || []}
+                    {books.length === 0 && <h2 className={styles['no-books-found']}>В момента няма налични книги!</h2>}
                 </section>
             }
             <Pagination onChangeHandler={onChangeHandler} page={page} totalItems={books.length} />

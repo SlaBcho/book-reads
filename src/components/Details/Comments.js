@@ -64,8 +64,9 @@ const Comments = ({ book }) => {
         <>
             <ul className={styles['all-comments']}>
                 {!user.email ? <p>Моля влезте в своя акаунт, за да добавите коментар за книгата!</p> : null}
-                {user.email && comments.length === 0 ? <p>Бъдете първия оценил тази книга!</p> : null}
+                {user.email && comments.length === 0 && user._id !== book._ownerId? <p>Бъдете първия оценил тази книга!</p> : null}
                 {comments.map(c => <Comment key={c._id} comment={c} setComments={setComments} />)}
+                {user._id === book._ownerId && comments.length === 0 && <p>Вие сте добавили тази книга и не може да добавите мнение!</p>}
             </ul>
 
             {isShowForm && (
