@@ -13,6 +13,9 @@ export const AuthProvider = ({
             accessToken: authData.accessToken,
             email: authData.email,
             _id: authData._id,
+            firstName: authData.firstName,
+            lastName: authData.lastName,
+            username: authData.username
         });
     };
 

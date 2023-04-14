@@ -11,12 +11,12 @@ import styles from './Header.module.css';
 const Header = () => {
     const { user } = useContext(AuthContext);
     const { onSearchBook } = useContext(SearchContext);
- 
+
     const { formValues, onChangeHandler, changeValues } = useForm({ text: '' });
 
     const onSearch = (e) => {
         onSearchBook(e, formValues.text);
-        changeValues({ text:'' });
+        changeValues({ text: '' });
     };
 
     return (
@@ -42,9 +42,12 @@ const Header = () => {
                     <ul className={styles['links']}>
                         <li>
                             {user.email ? (
-                                <Link className={styles['tool']} to="/logout">
-                                    <i className="fa-solid fa-arrow-right-from-bracket fa-2x"></i>
-                                    <span>Изход</span>
+                                <Link className={styles['tool']} to="/myAccount">
+                                    {/* <i className="fa-solid fa-arrow-right-from-bracket fa-2x"></i> */}
+                                    <div className={styles['my-account-img']}>
+                                        <p>SB</p>
+                                    </div>
+                                    <span>Моят профил</span>
                                 </Link>
                             ) : (
                                 <Link className={styles['tool']} to="/login">

@@ -24,6 +24,7 @@ import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
+import MyAccount from './components/MyAccount/MyAccount';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
 									</Route>
 
 									<Route element={<RouteGuard />}>
+										<Route path={'/myAccount'} element={<MyAccount />} />
 										<Route path={'/logout'} element={<Logout />} />
 										<Route path={'/create'} element={<CreateBook />} />
 
@@ -63,7 +65,7 @@ function App() {
 									</Route>
 									<Route path='/404' element={<NotFound />} />
 									<Route path="*" element={<NotFound />} />
-									
+
 								</Routes>
 							</main>
 						</FavouriteBookProvider>

@@ -8,7 +8,6 @@ import * as favouriteBookService from '../../services/favouriteBookService';
 
 import styles from './Details.module.css';
 import Comments from './Comments';
-// import BookContent from './BookContent';
 import Spinner from '../Spinner/Spinner';
 import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
@@ -73,14 +72,6 @@ const Details = () => {
         });
     };
 
-    // const onReadClick = () => {
-    //     setActiveBtn({
-    //         summary: false,
-    //         comments: false,
-    //         read: true
-    //     });
-    // };
-
     return (
         <>
             {isLoading ? <Spinner /> : <>
@@ -133,12 +124,10 @@ const Details = () => {
                     <nav className={styles['buttons']}>
                         <button onClick={onSummaryClick} style={{ backgroundColor: activeBtn.summary ? '#3AAFA9' : '#c3f2ed' }}>Пълно описание</button>
                         <button onClick={onCommentsClick} style={{ backgroundColor: activeBtn.comments ? '#3AAFA9' : '#c3f2ed' }}>Мнения</button>
-                        {/* <button onClick={onReadClick} style={{ backgroundColor: activeBtn.read ? '#c5c3c3' : 'white' }}>Прелисти</button> */}
                     </nav>
                     <div className={styles['summary']}>
                         {activeBtn.summary && <p>{book.summary}</p>}
                         {activeBtn.comments && <Comments book={book} />}
-                        {/* {activeBtn.read && <BookContent book={book} />} */}
                     </div>
                 </section>
             </>}

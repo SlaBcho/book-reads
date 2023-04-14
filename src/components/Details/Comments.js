@@ -19,7 +19,7 @@ const Comments = ({ book }) => {
     const [hasComment, setHasComment] = useState(0);
 
     const { formValues, onChangeHandler } = useForm({
-        username: '',
+        username: user.username,
         comment: ''
     });
 
