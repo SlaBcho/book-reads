@@ -29,7 +29,7 @@ const CreateBook = () => {
             onErrorHandler('All fields are required!');
             return;
         }
-        
+
         bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
@@ -122,7 +122,7 @@ const CreateBook = () => {
                         onChange={onChangeHandler}
                     />
                 </div>
-                    {error && <p className={styles['error-msg']}>{errorMessage}</p>}
+                {error && <p className={styles['error-msg']}>{errorMessage}</p>}
                 <div>
                     <input className={styles['create-btn']} type="submit" value="Добави книгата" />
                 </div>

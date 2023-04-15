@@ -25,6 +25,7 @@ import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import MyAccount from './components/MyAccount/MyAccount';
+import { ProfileProvider } from './context/ProfileContext';
 
 function App() {
 
@@ -35,39 +36,41 @@ function App() {
 					<Header />
 					<BookProvider>
 						<FavouriteBookProvider>
-							<main>
-								<Routes>
-									<Route path={'/'} element={<Home />} />
-									<Route path={'/search'} element={<SearchBook />} />
+							<ProfileProvider>
+								<main>
+									<Routes>
+										<Route path={'/'} element={<Home />} />
+										<Route path={'/search'} element={<SearchBook />} />
 
-									<Route path={'/my-books'} element={<MyBooks />} />
-									<Route path={'/favourites'} element={<Favourites />} />
+										<Route path={'/my-books'} element={<MyBooks />} />
+										<Route path={'/favourites'} element={<Favourites />} />
 
-									<Route path={'/all-books'} element={<AllBooks />} />
-									<Route path={'/:category'} element={<CategoryBooks />} />
-									<Route path={'/details/:bookId'} element={<Details />} />
+										<Route path={'/all-books'} element={<AllBooks />} />
+										<Route path={'/:category'} element={<CategoryBooks />} />
+										<Route path={'/details/:bookId'} element={<Details />} />
 
-									<Route element={<IsPublicRouteGuard />}>
-										<Route path={'/login'} element={<Login />} />
-										<Route path={'/register'} element={<Register />} />
-									</Route>
+										<Route element={<IsPublicRouteGuard />}>
+											<Route path={'/login'} element={<Login />} />
+											<Route path={'/register'} element={<Register />} />
+										</Route>
 
-									<Route element={<RouteGuard />}>
-										<Route path={'/myAccount'} element={<MyAccount />} />
-										<Route path={'/logout'} element={<Logout />} />
-										<Route path={'/create'} element={<CreateBook />} />
+										<Route element={<RouteGuard />}>
+											<Route path={'/myAccount'} element={<MyAccount />} />
+											<Route path={'/logout'} element={<Logout />} />
+											<Route path={'/create'} element={<CreateBook />} />
 
-										<Route path={'/edit/:bookId'} element={
-											<BookOwner>
-												<Edit />
-											</BookOwner>
-										} />
-									</Route>
-									<Route path='/404' element={<NotFound />} />
-									<Route path="*" element={<NotFound />} />
+											<Route path={'/edit/:bookId'} element={
+												<BookOwner>
+													<Edit />
+												</BookOwner>
+											} />
+										</Route>
+										<Route path='/404' element={<NotFound />} />
+										<Route path="*" element={<NotFound />} />
 
-								</Routes>
-							</main>
+									</Routes>
+								</main>
+							</ProfileProvider>
 						</FavouriteBookProvider>
 					</BookProvider>
 					<Footer />

@@ -10,16 +10,18 @@ import { useErrors } from '../../hooks/useErrors';
 import Rating from '../BookItem/Rating';
 import Comment from './Comment';
 import styles from './Details.module.css';
+import { ProfileContext } from '../../context/ProfileContext';
 
 const Comments = ({ book }) => {
     const { user } = useContext(AuthContext);
     const { onAddBookRating } = useContext(BookContext);
+    const {profileInfo} = useContext(ProfileContext);
     const [rating, setRating] = useState(0);
     const [comments, setComments] = useState([]);
     const [hasComment, setHasComment] = useState(0);
 
     const { formValues, onChangeHandler } = useForm({
-        username: user.username,
+        username: profileInfo ? profileInfo.username : '',
         comment: ''
     });
 

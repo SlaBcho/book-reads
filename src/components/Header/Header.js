@@ -43,10 +43,7 @@ const Header = () => {
                         <li>
                             {user.email ? (
                                 <Link className={styles['tool']} to="/myAccount">
-                                    {/* <i className="fa-solid fa-arrow-right-from-bracket fa-2x"></i> */}
-                                    <div className={styles['my-account-img']}>
-                                        <p>SB</p>
-                                    </div>
+                            <i className="fas fa-user-circle fa-2x"></i>
                                     <span>Моят профил</span>
                                 </Link>
                             ) : (

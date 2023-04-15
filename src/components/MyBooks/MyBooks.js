@@ -8,6 +8,7 @@ import * as bookService from '../../services/bookService';
 import Spinner from '../Spinner/Spinner';
 import MyBook from './MyBook';
 import styles from './MyBooks.module.css';
+import { ProfileContext } from '../../context/ProfileContext';
 
 const MyBooks = () => {
     const [myBooks, setMyBooks] = useState([]);
@@ -15,6 +16,7 @@ const MyBooks = () => {
 
     const { detelteBookHandler } = useContext(BookContext);
     const { user } = useContext(AuthContext);
+    const { profileInfo } = useContext(ProfileContext);
 
     useEffect(() => {
         setIsLoading(true);
@@ -47,7 +49,11 @@ const MyBooks = () => {
                         </div>
                         <div>
                             <h3>Здравей</h3>
-                            <p>{user.email}</p>
+                            {profileInfo ?
+                                <p>{profileInfo.name}</p>
+                                :
+                                <p>{user.email}</p>
+                            }
                         </div>
                         <div className={styles['logoutBtn']}>
                             <Link className={styles['logout']} to="/logout">
