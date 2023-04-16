@@ -49,7 +49,11 @@ const Comments = ({ book }) => {
 
         const result = await commentService.postComment(book._id, comment, username, rating);
         if (comment === '' || username === '') {
-            onErrorHandler('All fileds are required');
+            onErrorHandler('All fileds are required!');
+            return;
+        }
+        if(comment.length < 10) {
+            onErrorHandler('Please enter at least 10 symbols!');
             return;
         }
 

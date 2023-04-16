@@ -4,6 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useState,useEffect } from 'react';
 
+import * as profileService from '../../services/profileService';
+
 const EditFormModal = ({profileInfo, show, handleClose , onEditProfile }) => {
 
     const [profileData, setProfileData] = useState({});
@@ -18,7 +20,12 @@ const EditFormModal = ({profileInfo, show, handleClose , onEditProfile }) => {
 
     const onSetProfileSubmit = (e) => { 
         e.preventDefault();
-        onEditProfile(profileData);
+
+        profileService.editMyProfile(profileInfo._id, profileData)
+            .then(res => {
+                onEditProfile(res);
+            });
+            
         handleClose();
     };
 

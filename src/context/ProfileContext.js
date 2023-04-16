@@ -23,20 +23,11 @@ export const ProfileProvider = ({
     }, [user]);
 
     const onSetProfile = (profileData) => {
-
-        profileService.setMyProfile(profileData)
-            .then(res => {
-                setProfileInfo(res);
-            });
+        setProfileInfo(profileData);
     };
 
     const onEditProfile = (profileData) => {
-
-        profileService.editMyProfile(profileInfo._id, profileData)
-            .then(res => {
-                console.log(res);
-                setProfileInfo(res);
-            });
+        setProfileInfo(profileData);
     };
 
     return (

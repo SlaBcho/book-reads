@@ -5,7 +5,6 @@ import { BookContext } from '../../context/BookContext';
 import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 import * as commentService from '../../services/commentService';
-import * as profileService from '../../services/profileService';
 
 import EditFormModal from '../Modal/EditFormModal';
 import CreateFormModal from '../Modal/CreateFormModal';
@@ -29,7 +28,6 @@ const MyAccount = () => {
 
     const favouriteBook = favourite.filter(b => b.userId === user._id);
     const myBooks = books.filter(b => b._ownerId === user._id);
-
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

@@ -23,6 +23,10 @@ Components with:
 
  - Log out page
 
+ -Profile page
+    -- you can add your personal info such as username, name, date of birth and edit import
+    --you can see how many books, favourite books and comments you have
+
  - Favourite Books page
     --you can see all your favourite books and remove them from there.
 
