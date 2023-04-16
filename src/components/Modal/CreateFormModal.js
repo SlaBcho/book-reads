@@ -5,8 +5,13 @@ import Form from 'react-bootstrap/Form';
 import { useForm } from '../../hooks/useForm';
 
 import * as profileService from '../../services/profileService';
+import { ProfileContext } from '../../context/ProfileContext';
+import { useContext } from 'react';
+import { useErrors } from '../../hooks/useErrors';
 
 const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
+    const {allProfiles} = useContext(ProfileContext);
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
     const { formValues, onChangeHandler } = useForm({
         username: '',
@@ -17,6 +22,12 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
 
     const onSetProfileSubmit = (e) => {
         e.preventDefault();
+
+        if(allProfiles !== undefined && allProfiles.find(el => el.username === formValues.username)) {
+            onErrorHandler('This username already exist!');
+            return;
+        }
+
         profileService.setMyProfile(formValues)
             .then(res => {
                 onSetProfile(res);
@@ -74,6 +85,7 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
                                 onChange={onChangeHandler}
                             />
                         </Form.Group>
+                        {error && <p style={{color: 'red'}}>{errorMessage}</p>}
                         <Button onClick={onSetProfileSubmit} variant="primary" type="submit">
                             Submit
                         </Button>

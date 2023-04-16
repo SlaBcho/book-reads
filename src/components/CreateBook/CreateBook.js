@@ -33,9 +33,6 @@ const CreateBook = () => {
         bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
-            })
-            .catch((err) => {
-                onErrorHandler(err.message);
             });
 
     };

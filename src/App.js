@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { BookProvider } from './context/BookContext';
 import { FavouriteBookProvider } from './context/FavouriteBooksContext';
 import { SearchProvider } from './context/SearchContext';
+import { ProfileProvider } from './context/ProfileContext';
 
 import { RouteGuard } from './components/common/RouteGuard';
 import { IsPublicRouteGuard } from './components/common/IsPublicRouteGuard';
@@ -25,7 +26,6 @@ import CreateBook from './components/CreateBook/CreateBook';
 import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import MyAccount from './components/MyAccount/MyAccount';
-import { ProfileProvider } from './context/ProfileContext';
 
 function App() {
 

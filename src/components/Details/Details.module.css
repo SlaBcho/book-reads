@@ -293,8 +293,11 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     height: 700px;
 }
 
-.error-msg {
+.comments-form .errors-msg {
     color: red;
+    width:100px;
+    height: 100px;
+    font-size: 16px;
     margin:0;
     padding: 0;
 }

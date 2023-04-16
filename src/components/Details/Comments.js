@@ -25,7 +25,7 @@ const Comments = ({ book }) => {
         comment: ''
     });
 
-    const { error, errorMsg, onErrorHandler } = useErrors();
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
     useEffect(() => {
         Promise.all([
@@ -47,15 +47,17 @@ const Comments = ({ book }) => {
         e.preventDefault();
         const { username, comment } = formValues;
 
-        const result = await commentService.postComment(book._id, comment, username, rating);
+        
         if (comment === '' || username === '') {
             onErrorHandler('All fileds are required!');
             return;
         }
+
         if(comment.length < 10) {
             onErrorHandler('Please enter at least 10 symbols!');
             return;
         }
+        const result = await commentService.postComment(book._id, comment, username, rating);
 
         setComments(state => [...state, result]);
         formValues.username = '';
@@ -103,7 +105,8 @@ const Comments = ({ book }) => {
                             value={formValues.comment}
                             onChange={onChangeHandler} />
                     </div>
-                    {error ? <p className={styles['error-msg']}>{errorMsg}</p> : null}
+
+                    {error && <p style={{color: 'red'}}>{errorMessage}</p>}
                     <input className={styles['add-btn']} type="submit" value="Добави коментар" />
                 </form>
             )}

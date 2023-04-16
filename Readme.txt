@@ -52,6 +52,8 @@ Components with:
 
 -Common folder for Route Guards
 
+-error handling and data validation for login, register, comments, create and edit
+
 Contexts
     -AuthContext
         -- context for authentication 
