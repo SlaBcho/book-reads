@@ -28,7 +28,7 @@ export const BookProvider = ({
                     setBooks([]);
                 }, 2000);
             });
-    }, [navigate]);
+    }, []);
 
     const addBookHandler = (bookData) => {
 

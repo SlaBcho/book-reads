@@ -58,8 +58,8 @@ const Comments = ({ book }) => {
                 };
                 break;
             case 'comment':
-                if (value.trim().length < 20) {
-                    error = 'Comment can`t be less than 20 symbols!';
+                if (value.trim().length < 10) {
+                    error = 'Comment can`t be less than 10 symbols!';
                 }
                 break;
             default:
@@ -72,6 +72,10 @@ const Comments = ({ book }) => {
     const onAddComment = async (e) => {
         e.preventDefault();
         const { username, comment } = formValues;
+
+        if(errors.username || errors.comment) {
+            return;
+        }
 
         if (comment === '' || username === '') {
             onErrorHandler('All fileds are required!');
