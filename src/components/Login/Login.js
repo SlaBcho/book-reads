@@ -63,7 +63,7 @@ const Login = () => {
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
-                        {error && <p className={styles['error-msg']}>{errorMessage}</p>}
+                        {error && <span className={styles['error-msg']}>{errorMessage}</span>}
 
                         <input className={styles.continue}
                             type="submit"

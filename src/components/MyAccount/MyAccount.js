@@ -60,7 +60,8 @@ const MyAccount = () => {
                                 show={show}
                                 handleClose={handleClose}
                                 onEditProfile={onEditProfile}
-                                profileInfo={profileInfo} />
+                                profileInfo={profileInfo} 
+                                user={user}/>
                         </>
                         :
                         <>
@@ -73,7 +74,8 @@ const MyAccount = () => {
                                 show={show}
                                 handleClose={handleClose}
                                 onSetProfile={onSetProfile}
-                                email={user.email} />
+                                user={user}
+                                 />
                         </>
                     }
 

@@ -13,21 +13,57 @@ const Edit = () => {
     const { editBookHandler } = useContext(BookContext);
     const { bookId } = useParams();
     const [bookData, setBookData] = useState({});
+    const [errors, setErrors] = useState({});
+    const { error, errorMessage, onErrorHandler } = useErrors();
 
+    useEffect(() => {
+        bookService.getById(bookId)
+            .then(result => {
+                setBookData(result);
+            });
+    }, [bookId]);
 
     const onChangeHandler = (e) => {
         setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
-    useEffect(() => {
-        bookService.getById(bookId)
-            .then(result => {
-                setBookData(result);        
-            });
-    }, [bookId]);
+    const onBlurHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let error = null;
 
-    const { error, errorMessage, onErrorHandler } = useErrors();
+        switch (name) {
+            case 'title':
+                if (value.trim().length < 2) {
+                    error = 'Title should be at least 2 symbols!';
+                }
+                break;
+            case 'author':
+                if (value.trim().length < 2) {
+                    error = 'Author should be at least 2 symbols!!';
+                }
+                break;
+            case 'imageUrl':
+                if (value.trim().length < 10) {
+                    error = 'ImageUrl should be at lest 10 symbols';
+                }
+                break;
+            case 'description':
+                if (value.trim().length < 30) {
+                    error = 'Description should be at least 30 symbols!';
+                }
+                break;
+            case 'summary':
+                if (value.trim().length < 30) {
+                    error = 'Summary should be at least 30 symbols!';
+                }
+                break;
+            default:
+                break;
+        }
 
+        setErrors({ ...errors, [name]: error });
+    };
     const onSubmit = (e) => {
         e.preventDefault();
         if (bookData.title === '' || bookData.author === '' || bookData.imageURl === '' || bookData.category === '' || bookData.description === '' || bookData.summary === '') {
@@ -43,7 +79,7 @@ const Edit = () => {
     return (
         <section className={styles['create-section']}>
             <form onSubmit={onSubmit} className={styles['create-form']}>
-                <h2>Добавете вашата книга</h2>
+                <h2>Редактирайте вашата книга</h2>
                 <div >
                     <label htmlFor="title">Заглавие</label>
                     <input
@@ -53,7 +89,10 @@ const Edit = () => {
                         id="title"
                         value={bookData.title}
                         onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
+                {errors.title && <span className={styles['error-msg']}>{errors.title}</span>}
+
                 </div>
                 <div>
                     <label htmlFor="author">Автор</label>
@@ -64,7 +103,10 @@ const Edit = () => {
                         id="author"
                         value={bookData.author}
                         onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
+                {errors.author && <span className={styles['error-msg']}>{errors.author}</span>}
+
                 </div>
                 <div>
                     <label htmlFor="category">Категория</label>
@@ -95,7 +137,9 @@ const Edit = () => {
                         id="imageUrl"
                         value={bookData.imageUrl}
                         onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
+                {errors.imageUrl && <span className={styles['error-msg']}>{errors.imageUrl}</span>}
 
                 </div>
                 <div>
@@ -108,7 +152,10 @@ const Edit = () => {
                         id="description"
                         value={bookData.description}
                         onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
+                {errors.description && <span className={styles['error-msg']}>{errors.description}</span>}
+
                 </div>
                 <div>
                     <label htmlFor="summary">Резюме</label>
@@ -120,12 +167,15 @@ const Edit = () => {
                         id="summary"
                         value={bookData.summary}
                         onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
+                {errors.summary && <span className={styles['error-msg']}>{errors.summary}</span>}
+
                 </div>
                 <div>
-                    {error && <p className={styles['error-msg']}>{errorMessage}</p>}
+                    {error && <span className={styles['error-msg']}>{errorMessage}</span>}
 
-                    <input className={styles['create-btn']} type="submit" value="Добави книгата" />
+                    <input className={styles['create-btn']} type="submit" value="Редактирай книгата" />
                 </div>
             </form>
         </section>

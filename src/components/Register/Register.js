@@ -94,7 +94,7 @@ const Register = () => {
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}>
                             </input>
-                            {errors.email && <span style={{ color: 'red' }}>{errors.email} </span>}
+                            {errors.email && <span className={styles['error-msg']}>{errors.email} </span>}
 
                         </div>
                         <div>
@@ -107,7 +107,7 @@ const Register = () => {
                                 onChange={onChangeHandler}
                                 onBlur={onBlurHandler}>
                             </input>
-                            {errors.password && <span style={{ color: 'red' }}>{errors.password} </span>}
+                            {errors.password && <span className={styles['error-msg']}>{errors.password} </span>}
                         </div>
                         <div>
                             <label htmlFor="repeatPassword" >Моля повторете паролата</label>
@@ -119,7 +119,7 @@ const Register = () => {
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
-                        {error && <span style={{ color: 'red' }}>{errorMessage}</span>}
+                        {error && <span className={styles['error-msg']}>{errorMessage}</span>}
 
                         <input className={styles.register}
                             type="submit"

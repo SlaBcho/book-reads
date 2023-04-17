@@ -9,15 +9,15 @@ import { ProfileContext } from '../../context/ProfileContext';
 import { useContext } from 'react';
 import { useErrors } from '../../hooks/useErrors';
 
-const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
+const CreateFormModal = ({ user, show, handleClose, onSetProfile }) => {
     const { allProfiles } = useContext(ProfileContext);
     const { errorMessage, onErrorHandler } = useErrors();
     const [errors, setErrors] = useState({});
 
-    const { formValues, onChangeHandler } = useForm({
+    const { formValues, onChangeHandler, changeValues } = useForm({
         username: '',
         name: '',
-        email: email,
+        email: user.email,
         dateOfBirth: '',
     });
 
@@ -25,10 +25,10 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
         e.preventDefault();
         const { name, value } = e.target;
         let error = null;
-
+        
         switch (name) {
             case 'username':
-                if (allProfiles !== undefined && allProfiles.find(el => el.username === value)) {
+                if (allProfiles !== undefined && allProfiles.find(el => el.username === value && el._ownerId !== user._id)) {
                     error = 'This username already exist!';
                 }
                 break;
@@ -54,6 +54,16 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
             .catch((err) => {
                 onErrorHandler(err.message);
             });
+        handleClose();
+    };
+
+    const onHandleClose = () => {
+        changeValues({
+            username: '',
+            name: '',
+            email: user.email,
+            dateOfBirth: '',
+        });
         handleClose();
     };
 
@@ -115,8 +125,11 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
 
                         </Form.Group>
                         {errorMessage && <span style={{ color: 'red' }}>{errorMessage} </span>}
-                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit"  disabled={errors.username || errors.dateOfBirth}>
-                            Submit
+                        <Button className="me-4" onClick={onSetProfileSubmit} variant="primary" type="submit"  disabled={errors.username || errors.dateOfBirth}>
+                            Потвърди
+                        </Button>
+                        <Button onClick={onHandleClose} variant="primary" >
+                            Откажи
                         </Button>
                     </Form>
                 </Modal.Body>

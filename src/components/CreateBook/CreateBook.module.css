@@ -48,7 +48,6 @@
 .create-form .form-input {
     width: 95%;
     height: 30px;
-    margin-bottom: 15px;
     color: black;
     font-size: 15px;
     background: #fff;
@@ -62,7 +61,6 @@
 
 .create-form .form-area {
     width: 100%;
-    margin-bottom: 15px;
     color: black;
     font-size: 15px;
     background: #fff;
@@ -89,7 +87,13 @@
     border-radius: 21px;
 }
 
+.create-form label {
+    margin-top: 12px;
+}
+
 .error-msg {
     color: red;
-    margin-bottom: 8px;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
 }

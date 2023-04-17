@@ -9,10 +9,10 @@ import { useContext } from 'react';
 import { ProfileContext } from '../../context/ProfileContext';
 import { useErrors } from '../../hooks/useErrors';
 
-const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
+const EditFormModal = ({ user, profileInfo, show, handleClose, onEditProfile }) => {
     const { allProfiles } = useContext(ProfileContext);
     const [profileData, setProfileData] = useState({});
-    const {error, errorMessage, onErrorHandler } = useErrors();
+    const { error, errorMessage, onErrorHandler } = useErrors();
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
 
         switch (name) {
             case 'username':
-                if (allProfiles !== undefined && allProfiles.find(el => el.username === value)) {
+                if (allProfiles !== undefined && allProfiles.find(el => el.username === value && el._ownerId !== user._id)) {
                     error = 'This username already exist!';
                 }
                 break;
@@ -54,9 +54,14 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
                 onEditProfile(res);
             })
             .catch((err) => {
-                onErrorHandler(err.message );
+                onErrorHandler(err.message);
             });
 
+        handleClose();
+    };
+
+    const onHandleClose = () => {
+        setProfileData(profileInfo);
         handleClose();
     };
 
@@ -119,8 +124,11 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
                         </Form.Group>
                         {error && <span style={{ color: 'red' }}>{errorMessage}</span>}
 
-                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit" disabled={errors.username || errors.dateOfBirth} >
-                            Submit
+                        <Button className="me-4" onClick={onSetProfileSubmit} variant="primary" type="submit" disabled={errors.username || errors.dateOfBirth} >
+                            Потвърди
+                        </Button>
+                        <Button onClick={onHandleClose} variant="primary" >
+                            Откажи
                         </Button>
                     </Form>
                 </Modal.Body>

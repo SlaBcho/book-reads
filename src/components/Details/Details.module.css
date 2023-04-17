@@ -233,7 +233,6 @@ tbody:nth-child(odd) tr:nth-child(odd) {
 }
 .comments-form .comment-text textarea {
     width:100%;
-    margin-bottom: 16px;
     resize: none;
 }
 
@@ -293,11 +292,10 @@ tbody:nth-child(odd) tr:nth-child(odd) {
     height: 700px;
 }
 
-.comments-form .errors-msg {
+.comments-form .error-msg {
     color: red;
-    width:100px;
-    height: 100px;
-    font-size: 16px;
+    font-size: 12px;
     margin:0;
     padding: 0;
 }
+
