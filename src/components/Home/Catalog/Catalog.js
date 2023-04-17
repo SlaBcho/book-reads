@@ -10,7 +10,6 @@ const Catalog = () => {
         const ratedBooks = books.sort((a,b) => b.rating - a.rating);
         return ratedBooks;
     });
-    
     const newestBooks = [...books].sort((a, b) => b._createdOn - a._createdOn);
 
     return (

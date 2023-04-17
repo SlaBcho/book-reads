@@ -6,12 +6,10 @@ import { FavouriteBookContext } from '../../context/FavouriteBooksContext';
 
 import FavouriteBook from './FavouriteBook';
 import styles from './Favourites.module.css';
-import { ProfileContext } from '../../context/ProfileContext';
 
 const Favourites = () => {
     const { user } = useContext(AuthContext);
     const { favourite } = useContext(FavouriteBookContext);
-    const { profileInfo } = useContext(ProfileContext);
 
     const favouriteBook = favourite.filter(b => b.userId === user._id);
     return (
@@ -24,11 +22,7 @@ const Favourites = () => {
                         </div>
                         <div>
                             <h3>Здравей</h3>
-                            {profileInfo.name ?
-                                <p>{profileInfo.name}</p>
-                                :
                                 <p>{user.email}</p>
-                            }
                         </div>
                         <div>
                             <Link className={styles['logout']} to="/logout">

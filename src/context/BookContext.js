@@ -51,11 +51,33 @@ export const BookProvider = ({
 
     const onAddBookRating = (book, rating, result) => {
         setBookRating(state => [...state, book]);
-        setBooks(state => state.map(b => b._id === book._id ? ({ ...b, rating: rating, commentId: result._id }) : b));
+        const filterRating = bookRating.filter(r => r._id === book._id);
+
+        let sum = rating;
+        filterRating.forEach(r => sum += r.rating);
+        if (filterRating.length > 0) {
+            sum = sum / (filterRating.length + 1).toFixed(2);
+        } else {
+            sum = rating;
+        };
+
+        setBooks(state => state.map(b => b._id === book._id ? ({ ...b, rating: sum, commentId: result._id }) : b));
     };
 
-    const onRemoveRating = (id) => {
-        setBookRating(state => state.filter(b => b.commentId !== id));
+    const onRemoveRating = (commentDd, bookId) => {
+        setBookRating(state => state.filter(b => b.commentId !== commentDd));
+        const filterRating = bookRating.filter(r => r.commentId !== commentDd);
+        
+        let sum = 0;
+        
+        filterRating.forEach(r => sum += r.rating);
+
+        if (filterRating.length > 0) {
+            sum = sum / (filterRating.length - 1).toFixed(2);
+        } else {
+            sum = 0;
+        };
+        setBooks(state => state.map(b=> b._id === bookId ? ({...b, rating:sum}): b));
     };
 
     return (

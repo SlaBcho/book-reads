@@ -8,7 +8,7 @@ import ChoiceModal from '../Modal/ChoiceModal';
 import styles from './Details.module.css';
 
 
-const Comment = ({ comment, setComments }) => {
+const Comment = ({bookId, comment, setComments }) => {
     const { user } = useContext(AuthContext);
     const { onRemoveRating } = useContext(BookContext);
 
@@ -19,7 +19,7 @@ const Comment = ({ comment, setComments }) => {
     const onDeleteComment = async () => {
         await commentService.removeCommment(comment._id);
         setComments(state => state.filter(c => c._id !== comment._id));
-        onRemoveRating(comment._id);
+        onRemoveRating(comment._id, bookId);
     };
 
     return (
