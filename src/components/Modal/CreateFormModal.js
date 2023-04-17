@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -10,8 +10,9 @@ import { useContext } from 'react';
 import { useErrors } from '../../hooks/useErrors';
 
 const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
-    const {allProfiles} = useContext(ProfileContext);
-    const { error, errorMessage, onErrorHandler } = useErrors();
+    const { allProfiles } = useContext(ProfileContext);
+    const { errorMessage, onErrorHandler } = useErrors();
+    const [errors, setErrors] = useState({});
 
     const { formValues, onChangeHandler } = useForm({
         username: '',
@@ -20,24 +21,45 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
         dateOfBirth: '',
     });
 
+    const onBlurHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let error = null;
+
+        switch (name) {
+            case 'username':
+                if (allProfiles !== undefined && allProfiles.find(el => el.username === value)) {
+                    error = 'This username already exist!';
+                }
+                break;
+            case 'dateOfBirth':
+                if (Number(value.slice(0, 4)) >= 2023 || Number(value.slice(0, 4)) <= 1900) {
+                    error = 'Invalid date of Birth!';
+                }
+                break;
+            default:
+                break;
+        }
+
+        setErrors({ ...errors, [name]: error });
+    };
+
     const onSetProfileSubmit = (e) => {
         e.preventDefault();
-
-        if(allProfiles !== undefined && allProfiles.find(el => el.username === formValues.username)) {
-            onErrorHandler('This username already exist!');
-            return;
-        }
 
         profileService.setMyProfile(formValues)
             .then(res => {
                 onSetProfile(res);
+            })
+            .catch((err) => {
+                onErrorHandler(err.message);
             });
         handleClose();
     };
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} onEscapeKeyDown={handleClose}>
+            <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false}>
 
                 <Modal.Body>
                     <Form>
@@ -48,7 +70,10 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
                                 name="username"
                                 placeholder="Johniee"
                                 value={formValues.username}
-                                onChange={onChangeHandler} />
+                                onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
+                            />
+                            {errors.username && <span style={{ color: 'red' }}>{errors.username} </span>}
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicName">
@@ -59,6 +84,7 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
                                 placeholder="John Doe"
                                 value={formValues.name}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
                             />
                         </Form.Group>
 
@@ -78,15 +104,18 @@ const CreateFormModal = ({ email, show, handleClose, onSetProfile }) => {
                             <Form.Control
                                 type="date"
                                 name="dateOfBirth"
-                                min="1900-01-01"
-                                max="2023-040-15"
+                                min="01-01-1990"
+                                max="01-01-2023"
                                 placeholder="01/01/1990"
                                 value={formValues.dateOfBirth}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
                             />
+                            {errors.dateOfBirth && <span style={{ color: 'red' }}>{errors.dateOfBirth} </span>}
+
                         </Form.Group>
-                        {error && <p style={{color: 'red'}}>{errorMessage}</p>}
-                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit">
+                        {errorMessage && <span style={{ color: 'red' }}>{errorMessage} </span>}
+                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit"  disabled={errors.username || errors.dateOfBirth}>
                             Submit
                         </Button>
                     </Form>

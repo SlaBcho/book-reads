@@ -46,7 +46,6 @@ const Comments = ({ book }) => {
     const onAddComment = async (e) => {
         e.preventDefault();
         const { username, comment } = formValues;
-
         
         if (comment === '' || username === '') {
             onErrorHandler('All fileds are required!');
@@ -105,8 +104,8 @@ const Comments = ({ book }) => {
                             value={formValues.comment}
                             onChange={onChangeHandler} />
                     </div>
+                    {error && <span style={{color: 'red'}}>{errorMessage}</span>}
 
-                    {error && <p style={{color: 'red'}}>{errorMessage}</p>}
                     <input className={styles['add-btn']} type="submit" value="Добави коментар" />
                 </form>
             )}

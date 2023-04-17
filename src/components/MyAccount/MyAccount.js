@@ -86,19 +86,19 @@ const MyAccount = () => {
                     <i className="fas fa-book fa-3x"></i>
                     <p>{myBooks.length} добавени книги</p>
                     <div className={styles['divider']}></div>
-                    <Link to='/my-books'>Виж добавените книги</Link>
+                    {/* <Link to='/my-books'>Виж добавените книги</Link> */}
                 </div>
                 <div>
                     <i className="fa-solid fa-heart fa-3x"></i>
                     <p>{favouriteBook.length} любими книги</p>
                     <div className={styles['divider']}></div>
-                    <Link to='/favourites'>Виж любимите книги</Link>
+                    {/* <Link to='/favourites'>Виж любимите книги</Link> */}
                 </div>
                 <div>
                     <i className="fa-solid fa-star fa-3x"></i>
                     <p>{comments.length} добавени ревюта</p>
                     <div className={styles['divider']}></div>
-                    <Link to='/my-books'>Виж твоите ревюта</Link>
+                    {/* <Link to='/my-books'>Виж твоите ревюта</Link> */}
                 </div>
             </section>
         </section>

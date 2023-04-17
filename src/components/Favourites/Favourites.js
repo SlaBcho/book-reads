@@ -24,7 +24,7 @@ const Favourites = () => {
                         </div>
                         <div>
                             <h3>Здравей</h3>
-                            {profileInfo ?
+                            {profileInfo.name ?
                                 <p>{profileInfo.name}</p>
                                 :
                                 <p>{user.email}</p>

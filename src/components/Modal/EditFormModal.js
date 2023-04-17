@@ -12,7 +12,8 @@ import { useErrors } from '../../hooks/useErrors';
 const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
     const { allProfiles } = useContext(ProfileContext);
     const [profileData, setProfileData] = useState({});
-    const { error, errorMessage, onErrorHandler } = useErrors();
+    const {error, errorMessage, onErrorHandler } = useErrors();
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         setProfileData(profileInfo);
@@ -22,18 +23,38 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
         setProfileData(state => ({ ...state, [e.target.name]: e.target.value }));
     };
 
+    const onBlurHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let error = null;
+
+        switch (name) {
+            case 'username':
+                if (allProfiles !== undefined && allProfiles.find(el => el.username === value)) {
+                    error = 'This username already exist!';
+                }
+                break;
+            case 'dateOfBirth':
+                if (Number(value.slice(0, 4)) >= 2023 || Number(value.slice(0, 4)) <= 1900) {
+                    error = 'Invalid date of Birth!';
+                }
+                break;
+            default:
+                break;
+        }
+
+        setErrors({ ...errors, [name]: error });
+    };
+
     const onSetProfileSubmit = (e) => {
         e.preventDefault();
-
-
-        if (allProfiles && allProfiles.find(el => el.username === profileData.username)) {
-            onErrorHandler('This username already exist!');
-            return;
-        }
 
         profileService.editMyProfile(profileInfo._id, profileData)
             .then(res => {
                 onEditProfile(res);
+            })
+            .catch((err) => {
+                onErrorHandler(err.message );
             });
 
         handleClose();
@@ -41,7 +62,7 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} onEscapeKeyDown={handleClose}>
+            <Modal show={show} onHide={handleClose} backdrop='static' keyboard={false}>
 
                 <Modal.Body>
                     <Form>
@@ -52,7 +73,11 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
                                 name="username"
                                 placeholder="Johniee"
                                 value={profileData.username}
-                                onChange={onChangeHandler} />
+                                onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
+                            />
+                            {errors.username && <span style={{ color: 'red' }}>{errors.username} </span>}
+
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicName">
@@ -87,11 +112,14 @@ const EditFormModal = ({ profileInfo, show, handleClose, onEditProfile }) => {
                                 placeholder="01-01-1990"
                                 value={profileData.dateOfBirth}
                                 onChange={onChangeHandler}
+                                onBlur={onBlurHandler}
                             />
-                        </Form.Group>
-                        {error && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                            {errors.dateOfBirth && <span style={{ color: 'red' }}>{errors.dateOfBirth} </span>}
 
-                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit">
+                        </Form.Group>
+                        {error && <span style={{ color: 'red' }}>{errorMessage}</span>}
+
+                        <Button onClick={onSetProfileSubmit} variant="primary" type="submit" disabled={errors.username || errors.dateOfBirth} >
                             Submit
                         </Button>
                     </Form>

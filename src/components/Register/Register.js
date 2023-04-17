@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -9,45 +9,60 @@ import { useErrors } from '../../hooks/useErrors';
 import styles from './Register.module.css';
 
 const Register = () => {
-   
+
     const navigate = useNavigate();
 
     const { userLogin } = useContext(AuthContext);
-    const {formValues, onChangeHandler} = useForm({
-        email:'',
-        password:'',
-        repeatPassword:''
+    const { formValues, onChangeHandler } = useForm({
+        email: '',
+        password: '',
+        repeatPassword: ''
     });
     const { error, errorMessage, onErrorHandler } = useErrors();
-    
-    
+    const [errors, setErrors] = useState(false);
+
+    const validateEmail = (email) => {
+        const regex = /\S+@\S+\.\S+/;
+        return regex.test(email);
+    };
+
+    const onBlurHandler = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let error = null;
+
+
+        switch (name) {
+            case 'email':
+                if (!validateEmail(value)) {
+                    error = 'Invalid email address';
+                  }
+                  break;
+            case 'password':
+                if (value.length < 6 || value.length > 15) {
+                    error = 'Your password must be between 6 and 12 characters!';
+                } else if (value.search(/[a-z]/i) < 0) {
+                    error = 'Password must contain atleast one letter!';
+                } else if (value.search(/[0-9]/i) < 0) {
+                    error = 'Password must contain atleast one nymber!';
+                }
+                break;
+            default:
+                break;
+        }
+
+        setErrors({ ...errors, [name]: error });
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        
+
         const { email, password, repeatPassword } = formValues;
-        
-        if (password.length < 6 || password.length > 15) {
-            onErrorHandler('Your password must be between 6 and 12 characters!');
-            return;
-        }
-
-        if (password.search(/[a-z]/i) < 0){
-            onErrorHandler('password must contain atleast one letter!');
-            return ;
-        }
-
-        if (password.search(/[0-9]/i) < 0){
-            onErrorHandler('password must contain atleast one number!');
-            return ;
-        }
 
         if (password !== repeatPassword) {
             onErrorHandler('Passwords don`t match!');
             return;
         }
-
-
 
         authService.register(email, password, repeatPassword)
             .then(authData => {
@@ -76,8 +91,11 @@ const Register = () => {
                                 id="email"
                                 name="email"
                                 value={formValues.email}
-                                onChange={onChangeHandler}>
+                                onChange={onChangeHandler}
+                                onBlur={onBlurHandler}>
                             </input>
+                            {errors.email && <span style={{ color: 'red' }}>{errors.email} </span>}
+
                         </div>
                         <div>
                             <label htmlFor="password" >Моля въведете парола</label>
@@ -86,8 +104,10 @@ const Register = () => {
                                 id="password"
                                 name="password"
                                 value={formValues.password}
-                                onChange={onChangeHandler}>
+                                onChange={onChangeHandler}
+                                onBlur={onBlurHandler}>
                             </input>
+                            {errors.password && <span style={{ color: 'red' }}>{errors.password} </span>}
                         </div>
                         <div>
                             <label htmlFor="repeatPassword" >Моля повторете паролата</label>
@@ -99,13 +119,13 @@ const Register = () => {
                                 onChange={onChangeHandler}>
                             </input>
                         </div>
-                        {error && <p className={styles['error-msg']}>{errorMessage}</p>}
+                        {error && <span style={{ color: 'red' }}>{errorMessage}</span>}
 
                         <input className={styles.register}
                             type="submit"
                             name="user-login"
-                            value="Регистрирай се" 
-                            />
+                            value="Регистрирай се"
+                        />
                     </form>
                 </div>
             </div>
