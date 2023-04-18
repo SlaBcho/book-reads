@@ -50,12 +50,12 @@ const Edit = () => {
                 break;
             case 'description':
                 if (value.trim().length < 30) {
-                    error = 'Description should be at least 30 symbols!';
+                    error = 'Description should be at least 20 symbols!';
                 }
                 break;
             case 'summary':
                 if (value.trim().length < 30) {
-                    error = 'Summary should be at least 30 symbols!';
+                    error = 'Summary should be at least 20 symbols!';
                 }
                 break;
             default:
