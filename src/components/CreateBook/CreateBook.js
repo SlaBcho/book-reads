@@ -64,7 +64,7 @@ const CreateBook = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        if (formValues.title === '' || formValues.author === '' || formValues.imageURl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
+        if (formValues.title === '' || formValues.author === '' || formValues.imageUrl === '' || formValues.category === '' || formValues.description === '' || formValues.summary === '') {
             onErrorHandler('All fields are required!');
             return;
         }

@@ -12,20 +12,32 @@ const Edit = () => {
     const navigate = useNavigate();
     const { editBookHandler } = useContext(BookContext);
     const { bookId } = useParams();
-    const [bookData, setBookData] = useState({});
     const [errors, setErrors] = useState({});
     const { error, errorMessage, onErrorHandler } = useErrors();
+    const [bookData, setBookData] = useState({});
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState('');
+    const [summary, setSummary] = useState('');
 
     useEffect(() => {
         bookService.getById(bookId)
             .then(result => {
                 setBookData(result);
+                setTitle(result.title);
+                setAuthor(result.author);
+                setImageUrl(result.imageUrl);
+                setCategory(result.category);
+                setDescription(result.description);
+                setSummary(result.summary);
             });
     }, [bookId]);
 
-    const onChangeHandler = (e) => {
-        setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
+    // const (e) => setTitle(e.target.value) = (e) => {
+    //     setBookData(state => ({ ...state, [e.target.name]: e.target.value }));
+    // };
 
     const onBlurHandler = (e) => {
         e.preventDefault();
@@ -66,11 +78,22 @@ const Edit = () => {
     };
     const onSubmit = (e) => {
         e.preventDefault();
-        if (bookData.title === '' || bookData.author === '' || bookData.imageURl === '' || bookData.category === '' || bookData.description === '' || bookData.summary === '') {
+        if (title === '' || author === '' || imageUrl === '' || category === '' || description === '' || summary === '') {
             onErrorHandler('All fields are required!');
             return;
         }
-        bookService.edit(bookId, bookData)
+
+        const updateBookData = {
+            ...bookData,
+            title,
+            author,
+            imageUrl,
+            category,
+            description,
+            summary
+        };
+
+        bookService.edit(bookId, updateBookData)
             .then(result => {
                 editBookHandler(bookId, result);
                 navigate(`/details/${bookId}`);
@@ -87,8 +110,8 @@ const Edit = () => {
                         type="text"
                         name="title"
                         id="title"
-                        value={bookData.title}
-                        onChange={onChangeHandler}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         onBlur={onBlurHandler}
                     />
                 {errors.title && <span className={styles['error-msg']}>{errors.title}</span>}
@@ -101,8 +124,8 @@ const Edit = () => {
                         type="text"
                         name="author"
                         id="author"
-                        value={bookData.author}
-                        onChange={onChangeHandler}
+                        value={author}
+                        onChange={(e) => setAuthor(e.target.value)}
                         onBlur={onBlurHandler}
                     />
                 {errors.author && <span className={styles['error-msg']}>{errors.author}</span>}
@@ -115,8 +138,8 @@ const Edit = () => {
                         type="text"
                         name="category"
                         id="category"
-                        value={bookData.category}
-                        onChange={onChangeHandler}
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="best-seller">best-seller</option>
                         <option value="fantasy">fantasy</option>
@@ -135,8 +158,8 @@ const Edit = () => {
                         type="text"
                         name="imageUrl"
                         id="imageUrl"
-                        value={bookData.imageUrl}
-                        onChange={onChangeHandler}
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
                         onBlur={onBlurHandler}
                     />
                 {errors.imageUrl && <span className={styles['error-msg']}>{errors.imageUrl}</span>}
@@ -150,8 +173,8 @@ const Edit = () => {
                         type="text"
                         name="description"
                         id="description"
-                        value={bookData.description}
-                        onChange={onChangeHandler}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         onBlur={onBlurHandler}
                     />
                 {errors.description && <span className={styles['error-msg']}>{errors.description}</span>}
@@ -165,8 +188,8 @@ const Edit = () => {
                         type="text"
                         name="summary"
                         id="summary"
-                        value={bookData.summary}
-                        onChange={onChangeHandler}
+                        value={summary}
+                        onChange={(e) => setSummary(e.target.value)}
                         onBlur={onBlurHandler}
                     />
                 {errors.summary && <span className={styles['error-msg']}>{errors.summary}</span>}
