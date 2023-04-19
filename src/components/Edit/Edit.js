@@ -83,6 +83,10 @@ const Edit = () => {
             return;
         }
 
+        if(errors.title || errors.author || errors.imageUrl || errors.category || errors.description || errors.summary) {
+            return;
+        };
+
         const updateBookData = {
             ...bookData,
             title,

@@ -64,6 +64,10 @@ const Register = () => {
             return;
         }
 
+        if(errors.email || errors.password) {
+            return;
+        }
+
         authService.register(email, password, repeatPassword)
             .then(authData => {
                 userLogin(authData);

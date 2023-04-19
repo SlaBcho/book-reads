@@ -35,7 +35,7 @@ const CreateFormModal = ({ user, show, handleClose, onSetProfile }) => {
             case 'dateOfBirth':
                 if (Number(value.slice(0, 4)) >= 2023 || Number(value.slice(0, 4)) <= 1900) {
                     error = 'Invalid date of Birth!';
-                }
+                } 
                 break;
             default:
                 break;

@@ -69,6 +69,10 @@ const CreateBook = () => {
             return;
         }
 
+        if(errors.title || errors.author || errors.imageUrl || errors.category || errors.description || errors.summary) {
+            return;
+        };
+
         bookService.create(formValues)
             .then(result => {
                 addBookHandler(result);
